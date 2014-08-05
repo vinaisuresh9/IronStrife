@@ -1,4 +1,0 @@
-IronStrife
-==========
-
-Swift IronStrife
