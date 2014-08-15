@@ -25,6 +25,12 @@ class Player: SKSpriteNode {
     
     convenience override init(){
         self.init(imageNamed: "Player1")
+        
+        var center = CGPointZero
+        center.y -= self.frame.height * 1/6
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.width - 10, self.frame.height * 2/3), center: center)
+        self.physicsBody.allowsRotation = false;
+        self.physicsBody.mass = 0
 
     }
     

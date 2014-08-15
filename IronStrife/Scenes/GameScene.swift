@@ -24,6 +24,9 @@ class GameScene: SKScene, UIGestureRecognizerDelegate{
         movementGesture.minimumPressDuration = 0.3
         self.view.addGestureRecognizer(movementGesture)
         
+        self.view.showsPhysics = true
+        
+        
     }
     
     func tapped (sender: UITapGestureRecognizer){

@@ -29,6 +29,9 @@ class Fireball: SKSpriteNode {
     convenience override init(){
         self.init(imageNamed: "firemagic")
         self.setScale(0.8)
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: self.frame.size)
+        self.physicsBody.allowsRotation = false
+        self.physicsBody.mass = 0
     }
     
     override init(texture: SKTexture!, color: UIColor!, size: CGSize) {
