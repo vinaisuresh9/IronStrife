@@ -10,22 +10,32 @@ import SpriteKit
 
 class TownScene: GameScene {
 
-
     
     override func didMoveToView(view: SKView) {
         self.initializeGestureRecognizers()
         
-        self.backgroundColor = UIColor.whiteColor()
+        let background = SKSpriteNode(imageNamed: "Background.png")
+        background.size = self.frame.size
+        background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+        self.addChild(background)
+        
         /* Setup your scene here */
         player.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         player.setScale(0.8)
         self.addChild(player)
+        
+        var firstEnemy = Goreblon()
+        firstEnemy.position = CGPoint(x: 10, y: CGRectGetMidY(self.frame))
+        firstEnemy.setScale(0.8)
+        self.addChild(firstEnemy)
     }
     
     
     
     override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
+        if (self.player.actionForKey(currentMovementAnimationKey) != nil){
+            checkDestination()
+        }
     }
     
 }

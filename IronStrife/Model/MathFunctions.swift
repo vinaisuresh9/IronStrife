@@ -15,7 +15,7 @@ class MathFunctions {
     }
     
     //Change to use vectors instead of points
-    class func angleToRotateFromLine(point1: CGPoint, point2: CGPoint) -> Float?{
+    class func angleFromLine(point1: CGPoint, point2: CGPoint) -> Float?{
         switch (point1,point2) {
             //Case for first quadrant
         case let (p1,p2) where point2.x >= point1.x && point2.y >= point1.y:

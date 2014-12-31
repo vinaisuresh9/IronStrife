@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		530CB266196067CF00DA905F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530CB265196067CF00DA905F /* Player.swift */; };
+		5326113A19BC22F700E0ADC1 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5326113919BC22F700E0ADC1 /* Enemy.swift */; };
 		5356187919525C17000F2086 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5356187819525C17000F2086 /* AppDelegate.swift */; };
 		5356187B19525C17000F2086 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5356187A19525C17000F2086 /* GameScene.sks */; };
 		5356187D19525C17000F2086 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5356187C19525C17000F2086 /* GameScene.swift */; };
@@ -18,7 +19,13 @@
 		536439711954C523003AD77E /* MathFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536439701954C523003AD77E /* MathFunctions.swift */; };
 		536F8A5D195FDB0F00EFBDE5 /* TownScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536F8A5C195FDB0F00EFBDE5 /* TownScene.swift */; };
 		536F8A5F195FDD9300EFBDE5 /* TownScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 536F8A5E195FDD9300EFBDE5 /* TownScene.sks */; };
+		537CC1951A4FA26A0072F6A4 /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537CC1941A4FA26A0072F6A4 /* Textures.swift */; };
+		537F53EC1A4B9D4300DBF855 /* Player.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 537F53EB1A4B9D4300DBF855 /* Player.atlas */; };
+		53AF40691A51D0F00036A274 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AF40681A51D0F00036A274 /* Projectile.swift */; };
+		53AF406B1A522C390036A274 /* Goreblon.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 53AF406A1A522C390036A274 /* Goreblon.atlas */; };
 		53BF3F4A1953E2F900E026D2 /* Fireball.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BF3F491953E2F900E026D2 /* Fireball.swift */; };
+		53CC03621A4E6635000CB921 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CC03611A4E6635000CB921 /* Character.swift */; };
+		53CC03641A4E9270000CB921 /* Goreblon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CC03631A4E9270000CB921 /* Goreblon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		530CB265196067CF00DA905F /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		5326113919BC22F700E0ADC1 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		5356187319525C16000F2086 /* IronStrife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IronStrife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5356187719525C17000F2086 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5356187819525C17000F2086 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,7 +55,13 @@
 		536439701954C523003AD77E /* MathFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathFunctions.swift; sourceTree = "<group>"; };
 		536F8A5C195FDB0F00EFBDE5 /* TownScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TownScene.swift; sourceTree = "<group>"; };
 		536F8A5E195FDD9300EFBDE5 /* TownScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TownScene.sks; sourceTree = "<group>"; };
+		537CC1941A4FA26A0072F6A4 /* Textures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
+		537F53EB1A4B9D4300DBF855 /* Player.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Player.atlas; sourceTree = "<group>"; };
+		53AF40681A51D0F00036A274 /* Projectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
+		53AF406A1A522C390036A274 /* Goreblon.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Goreblon.atlas; sourceTree = "<group>"; };
 		53BF3F491953E2F900E026D2 /* Fireball.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fireball.swift; sourceTree = "<group>"; };
+		53CC03611A4E6635000CB921 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		53CC03631A4E9270000CB921 /* Goreblon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goreblon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +82,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		53078FA71A4D8A0C00D2DE43 /* Enemies */ = {
+			isa = PBXGroup;
+			children = (
+				5326113919BC22F700E0ADC1 /* Enemy.swift */,
+				53CC03631A4E9270000CB921 /* Goreblon.swift */,
+			);
+			name = Enemies;
+			sourceTree = "<group>";
+		};
 		5356186A19525C16000F2086 = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +118,7 @@
 				5356187E19525C17000F2086 /* GameViewController.swift */,
 				5356188019525C17000F2086 /* Main.storyboard */,
 				5356188319525C17000F2086 /* Images.xcassets */,
+				537F53ED1A4B9DF500DBF855 /* Texture Atlases */,
 				5356187619525C16000F2086 /* Supporting Files */,
 			);
 			path = IronStrife;
@@ -136,12 +160,25 @@
 			path = Scenes;
 			sourceTree = "<group>";
 		};
+		537F53ED1A4B9DF500DBF855 /* Texture Atlases */ = {
+			isa = PBXGroup;
+			children = (
+				53AF406A1A522C390036A274 /* Goreblon.atlas */,
+				537F53EB1A4B9D4300DBF855 /* Player.atlas */,
+			);
+			name = "Texture Atlases";
+			path = "IronStrife/Texture Atlases";
+			sourceTree = SOURCE_ROOT;
+		};
 		53BF3F4B1953E2FE00E026D2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				537CC1941A4FA26A0072F6A4 /* Textures.swift */,
 				53BF3F4C1953E30C00E026D2 /* Spells */,
 				536439701954C523003AD77E /* MathFunctions.swift */,
 				530CB265196067CF00DA905F /* Player.swift */,
+				53078FA71A4D8A0C00D2DE43 /* Enemies */,
+				53CC03611A4E6635000CB921 /* Character.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -150,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				53BF3F491953E2F900E026D2 /* Fireball.swift */,
+				53AF40681A51D0F00036A274 /* Projectile.swift */,
 			);
 			path = Spells;
 			sourceTree = "<group>";
@@ -236,8 +274,10 @@
 			files = (
 				5356188419525C17000F2086 /* Images.xcassets in Resources */,
 				5356187B19525C17000F2086 /* GameScene.sks in Resources */,
+				537F53EC1A4B9D4300DBF855 /* Player.atlas in Resources */,
 				536F8A5F195FDD9300EFBDE5 /* TownScene.sks in Resources */,
 				5356188219525C17000F2086 /* Main.storyboard in Resources */,
+				53AF406B1A522C390036A274 /* Goreblon.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,11 +295,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53AF40691A51D0F00036A274 /* Projectile.swift in Sources */,
+				537CC1951A4FA26A0072F6A4 /* Textures.swift in Sources */,
 				5356187D19525C17000F2086 /* GameScene.swift in Sources */,
+				53CC03641A4E9270000CB921 /* Goreblon.swift in Sources */,
 				5356187F19525C17000F2086 /* GameViewController.swift in Sources */,
 				53BF3F4A1953E2F900E026D2 /* Fireball.swift in Sources */,
 				5356187919525C17000F2086 /* AppDelegate.swift in Sources */,
+				5326113A19BC22F700E0ADC1 /* Enemy.swift in Sources */,
 				530CB266196067CF00DA905F /* Player.swift in Sources */,
+				53CC03621A4E6635000CB921 /* Character.swift in Sources */,
 				536439711954C523003AD77E /* MathFunctions.swift in Sources */,
 				536F8A5D195FDB0F00EFBDE5 /* TownScene.swift in Sources */,
 			);

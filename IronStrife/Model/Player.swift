@@ -8,9 +8,10 @@
 
 import SpriteKit
 
-class Player: SKSpriteNode {
+class Player: Character {
     
-    let movespeed = Double(300)
+    var direction = "Down"
+
     
     class var sharedInstance: Player {
     struct Singleton {
@@ -18,41 +19,150 @@ class Player: SKSpriteNode {
         }
         return Singleton.instance
     }
+
     
-    required init(coder aDecoder: NSCoder!) {
-        fatalError("NSCoding not supported")
+    var currentMovementTextures: [SKTexture] = []
+
+    convenience override init(){
+        
+        self.init(texture: Textures.playerTextures.textureNamed("Down1"))
+        configurePhysicsBody()
+        initializeTextureArrays()
+        
     }
     
-    convenience override init(){
-        self.init(imageNamed: "Player1")
-        
+    override func configurePhysicsBody() {
         var center = CGPointZero
         center.y -= self.frame.height * 1/6
         self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.width - 10, self.frame.height * 2/3), center: center)
-        self.physicsBody.allowsRotation = false;
-        self.physicsBody.mass = 0
-
+        self.physicsBody?.allowsRotation = false;
+        self.physicsBody?.collisionBitMask = CollisionBitMask.Enemy.rawValue | CollisionBitMask.Other.rawValue
+        self.physicsBody?.categoryBitMask = CollisionBitMask.Player.rawValue
+        self.physicsBody?.mass = 0
+        self.physicsBody?.restitution = 0
+        self.physicsBody?.angularDamping = 0
+        self.physicsBody?.linearDamping = 0
+        self.physicsBody?.friction = 0
     }
     
-    override init(texture: SKTexture!, color: UIColor!, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
+    override func initializeTextureArrays(){
+        let atlas = Textures.playerTextures
+        
+        for (var i = 2; i < 5; i++){
+            downMovementTextures.append(atlas.textureNamed("Down\(i)"))
+            rightMovementTextures.append(atlas.textureNamed("Right\(i)"))
+            leftMovementTextures.append(atlas.textureNamed("Left\(i)"))
+            upMovementTextures.append(atlas.textureNamed("Up\(i)"))
+        }
+        
+        for (var j = 1; j < 6; j++){
+            leftAttackTextures.append(atlas.textureNamed("LeftAttack\(j)"))
+            rightAttackTextures.append(atlas.textureNamed("RightAttack\(j)"))
+            upAttackTextures.append(atlas.textureNamed("UpAttack\(j)"))
+            downAttackTextures.append(atlas.textureNamed("DownAttack\(j)"))
+        }
+        
+        leftAttackTextures.append(atlas.textureNamed("Left1"))
+        upAttackTextures.append(atlas.textureNamed("Up1"))
+        rightAttackTextures.append(atlas.textureNamed("Right1"))
+        downAttackTextures.append(atlas.textureNamed("Down1"))
+        
     }
     
     //TODO: Would check available mana before this
-    func castFireball(point: CGPoint ) -> (Fireball?,[SKAction]) {
-        let normalVector = MathFunctions.normalizedVector(self.position, point2: point)
+    func castFireball(point: CGPoint ) {
+        self.stopMoving()
+        self.setDirection(point, moving: false)
+        let fire = Fireball(direction: point, owner: self)
+        self.scene?.addChild(fire)
+    }
+    
+    
+    //MARK: Moving and Orientation
+    func setDirection(scenepoint: CGPoint, moving: Bool) {
         
-        let fire = Fireball(direction: normalVector)
-        fire.position = self.position
-        fire.zRotation = CGFloat(MathFunctions.angleToRotateFromLine(self.position, point2: point)!)
-        let endpoint = CGPointMake(fire.position.x + 2000 * fire.direction.dx, fire.position.y + 2000 * fire.direction.dy)
-        let distance = MathFunctions.calculateDistance(fire.position, point2: endpoint)
-        let actionMove = SKAction.moveTo(endpoint, duration:  (distance / fireballMoveSpeed))
-        let actionEnd = SKAction.removeFromParent()
-        var moves: [SKAction] = [actionMove,actionEnd]
+        //For the case where you have just shot a fireball
+        if (self.physicsBody?.velocity == CGVector.zeroVector){
+            self.direction = ""
+        }
+        let atlas = Textures.playerTextures
+        
+        //Not the best math here but works
+        let vector = MathFunctions.normalizedVector(self.position, point2: scenepoint)
+        let angle = asinf(Float(vector.dy)/Float(1))
+        switch(angle){
+            
+        case let a where angle >= Float(M_PI_4) && angle <= (3 * Float(M_PI_4)):
+            if (self.direction == "Up"){
+                return
+            }
+            direction = "Up"
+            self.texture = atlas.textureNamed("Up1")
+            currentMovementTextures = upMovementTextures
+            
+        case let a where angle <= Float(M_PI_4) && angle >= -Float(M_PI_4) && (scenepoint.x <= self.position.x):
+            if (self.direction == "Left"){
+                return
+            }
+            direction = "Left"
+            self.texture = atlas.textureNamed("Left1")
+            currentMovementTextures = leftMovementTextures
 
-        //Returns instantiated fireball for drawing, as well as the point to which it should move
-        return (fire, moves)
+            
+        case let a where angle <= -Float(M_PI_4) && angle >= -(3 * Float(M_PI_4)):
+            if (self.direction == "Down"){
+                return
+            }
+            direction = "Down"
+            self.texture = atlas.textureNamed("Down1")
+            currentMovementTextures = downMovementTextures
+
+
+        default:
+            if (self.direction == "Right"){
+                return
+            }
+            direction = "Right"
+            self.texture = atlas.textureNamed("Right1")
+            currentMovementTextures = rightMovementTextures
+
+        }
+        if (moving){
+            self.removeActionForKey(direction)
+            let animateAction = SKAction.animateWithTextures(self.currentMovementTextures, timePerFrame: animationMovementSpeed)
+            self.runAction(SKAction.repeatActionForever(animateAction), withKey: direction)
+        }
+        
+    }
+    
+    func reachedDestination() -> Bool{
+        if (MathFunctions.calculateDistance(self.position, point2: destination) < 10){
+            return true;
+        }
+        return false;
+    }
+    
+    //MARK: Attacking
+    /// Attack for Player
+    func attackInDirection (direction: UISwipeGestureRecognizerDirection){
+        switch (direction){
+            
+        case UISwipeGestureRecognizerDirection.Up:
+            self.meleeAttack(AttackDirection.Up)
+            
+        case UISwipeGestureRecognizerDirection.Down:
+            self.meleeAttack(AttackDirection.Down)
+            
+        case UISwipeGestureRecognizerDirection.Right:
+            self.meleeAttack(AttackDirection.Right)
+            
+        case UISwipeGestureRecognizerDirection.Left:
+            self.meleeAttack(AttackDirection.Left)
+            
+        default:
+            break
+            
+        }
     }
     
     
