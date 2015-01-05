@@ -12,7 +12,11 @@ class TownScene: GameScene {
 
     
     override func didMoveToView(view: SKView) {
+        //Do some initial setup
         self.initializeGestureRecognizers()
+        self.physicsWorld.gravity = CGVector.zeroVector
+        self.physicsWorld.contactDelegate = self
+        
         
         let background = SKSpriteNode(imageNamed: "Background.png")
         background.size = self.frame.size
@@ -34,6 +38,7 @@ class TownScene: GameScene {
     
     override func update(currentTime: CFTimeInterval) {
         if (self.player.actionForKey(currentMovementAnimationKey) != nil){
+            println("Checking")
             checkDestination()
         }
     }

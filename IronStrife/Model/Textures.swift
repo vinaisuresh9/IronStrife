@@ -17,6 +17,16 @@ class Textures {
         get{ return goreblon.goreblon}
     }
     
+    private struct meeblon { static let meeblon = SKTextureAtlas(named: "Meeblon") }
+    internal class var meeblonTextures: SKTextureAtlas{
+        get{ return meeblon.meeblon}
+    }
+    
+    private struct skelaton { static let skelaton = SKTextureAtlas(named: "Skelaton") }
+    internal class var skelatonTextures: SKTextureAtlas{
+        get{ return skelaton.skelaton}
+    }
+    
     private struct player { static let player = SKTextureAtlas(named: "Player")}
     internal class var playerTextures: SKTextureAtlas{
         get { return player.player}

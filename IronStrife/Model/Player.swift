@@ -10,8 +10,6 @@ import SpriteKit
 
 class Player: Character {
     
-    var direction = "Down"
-
     
     class var sharedInstance: Player {
     struct Singleton {
@@ -28,6 +26,10 @@ class Player: Character {
         self.init(texture: Textures.playerTextures.textureNamed("Down1"))
         configurePhysicsBody()
         initializeTextureArrays()
+        self.health = 200
+        self.mana = 100
+        self.attackStrength = 25
+        self.defense = 10
         
     }
     
@@ -37,6 +39,7 @@ class Player: Character {
         self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.width - 10, self.frame.height * 2/3), center: center)
         self.physicsBody?.allowsRotation = false;
         self.physicsBody?.collisionBitMask = CollisionBitMask.Enemy.rawValue | CollisionBitMask.Other.rawValue
+        self.physicsBody?.contactTestBitMask = CollisionBitMask.EnemyProjectile.rawValue
         self.physicsBody?.categoryBitMask = CollisionBitMask.Player.rawValue
         self.physicsBody?.mass = 0
         self.physicsBody?.restitution = 0
@@ -61,6 +64,7 @@ class Player: Character {
             upAttackTextures.append(atlas.textureNamed("UpAttack\(j)"))
             downAttackTextures.append(atlas.textureNamed("DownAttack\(j)"))
         }
+
         
         leftAttackTextures.append(atlas.textureNamed("Left1"))
         upAttackTextures.append(atlas.textureNamed("Up1"))
@@ -69,8 +73,26 @@ class Player: Character {
         
     }
     
-    //TODO: Would check available mana before this
+    //MARK: Spells
+    /**
+    Checks available mana
+
+    :param: cost current spell cost
+    :returns: true of available or false if not
+
+    */
+    func checkMana(cost: Float) -> Bool{
+        if (self.mana > cost){
+            return true
+        }
+        return false
+    }
+    
     func castFireball(point: CGPoint ) {
+        if (!checkMana(Fireball.spellCost)){
+            return
+        }
+        
         self.stopMoving()
         self.setDirection(point, moving: false)
         let fire = Fireball(direction: point, owner: self)
@@ -129,7 +151,7 @@ class Player: Character {
         }
         if (moving){
             self.removeActionForKey(direction)
-            let animateAction = SKAction.animateWithTextures(self.currentMovementTextures, timePerFrame: animationMovementSpeed)
+            let animateAction = SKAction.animateWithTextures(currentMovementTextures, timePerFrame: animationMovementSpeed, resize: true, restore: false)
             self.runAction(SKAction.repeatActionForever(animateAction), withKey: direction)
         }
         
@@ -164,6 +186,7 @@ class Player: Character {
             
         }
     }
+
     
     
     

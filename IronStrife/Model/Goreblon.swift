@@ -17,23 +17,55 @@ class Goreblon: Enemy {
     override init(texture: SKTexture!, color: UIColor!, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
         self.configurePhysicsBody()
+        self.health = 100
+        self.attackStrength = 15
+        self.defense = 5
     }
     
-    //MARK: PhysicsBody
+    //MARK: PhysicsBody and Delegate
     override func configurePhysicsBody() {
         var center = CGPointZero
         center.y -= self.frame.height * 1/6
         self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.width - 10, self.frame.height * 2/3), center: center)
         self.physicsBody!.allowsRotation = false;
-        self.physicsBody!.collisionBitMask = CollisionBitMask.Enemy.rawValue | CollisionBitMask.Other.rawValue | CollisionBitMask.Player.rawValue | CollisionBitMask.Projectile.rawValue
+        self.physicsBody!.collisionBitMask = CollisionBitMask.Enemy.rawValue | CollisionBitMask.Other.rawValue | CollisionBitMask.Player.rawValue | CollisionBitMask.PlayerProjectile.rawValue
+        self.physicsBody?.contactTestBitMask = CollisionBitMask.PlayerProjectile.rawValue | CollisionBitMask.Player.rawValue | CollisionBitMask.EnemyProjectile.rawValue
         self.physicsBody!.categoryBitMask = CollisionBitMask.Enemy.rawValue
         self.physicsBody?.mass = 0
         self.physicsBody?.restitution = 0
         self.physicsBody?.angularDamping = 0
         self.physicsBody?.linearDamping = 0
         self.physicsBody?.friction = 0
+        
+        self.physicsBody?.dynamic = false
     }
     
+    //TODO: Check collision with Player Sword
+    override func collidedWith(other: SKPhysicsBody) {
+        if (self.isDying){
+            return
+        }
+        let otherNode = other.node
+        if (otherNode is Fireball){
+            let killed = self.applyDamage(Fireball.attackDamage)
+            otherNode?.removeFromParent()
+            if (killed){
+                //TODO: Add score and EXP to player
+                self.removeFromParent()
+            }
+        }
+        
+    }
+    
+    //MARK: Death
+    override func performDeath() {
+        super.performDeath()
+        
+        //TODO: Death Animation
+        
+    }
+    
+    //MARK: Setup
     override func initializeTextureArrays(){
         let atlas = Textures.playerTextures
         
@@ -57,6 +89,8 @@ class Goreblon: Enemy {
         downAttackTextures.append(atlas.textureNamed("Down1"))
         
     }
+    
+
     
 
 }

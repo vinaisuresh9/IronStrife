@@ -22,7 +22,7 @@ enum WorldLayer: UInt32 {
     
 }
 
-class GameScene: SKScene, UIGestureRecognizerDelegate{
+class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
 
     let player = Player.sharedInstance
     var currentMovementAnimationKey = ""
@@ -85,20 +85,39 @@ class GameScene: SKScene, UIGestureRecognizerDelegate{
         
         player.setDirection(scenePoint, moving: true)
         currentMovementAnimationKey = self.player.direction
-//        player.physicsBody?.velocity = CGVectorMake(velocity.dx * player.movespeed, velocity.dy * player.movespeed)
-        var movementAction = SKAction.moveTo(scenePoint, duration: time)
-        player.runAction(movementAction)
+        player.physicsBody?.velocity = CGVectorMake(velocity.dx * player.movespeed, velocity.dy * player.movespeed)
+        //var movementAction = SKAction.moveTo(scenePoint, duration: time)
+        //player.runAction(movementAction, withKey: player.direction)
         
     }
     
-    
     func checkDestination(){
         if (self.player.reachedDestination()){
-            self.player.removeActionForKey(currentMovementAnimationKey)
+            self.player.removeAllActions()
             self.player.stopMoving()
         }
         
     }
+    
+    
+    func didBeginContact(contact: SKPhysicsContact) {
+        println("Contact")
+        //Can use contactNormal vector to decided pushback vector for gettingHit animation
+        let nodeA = contact.bodyA.node
+        if (nodeA is Character){
+            let body = nodeA as Character
+            body.collidedWith(contact.bodyB)
+        }
+        
+        let nodeB = contact.bodyA.node
+        if (nodeA is Character){
+            let body = nodeB as Character
+            body.collidedWith(contact.bodyA)
+        }
+        
+        //TODO: Need to handle projectile collisions with non-characters
+    }
+
     
     
     override func update(currentTime: NSTimeInterval) {

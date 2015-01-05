@@ -22,13 +22,13 @@ class Projectile: SKSpriteNode {
         self.physicsBody?.linearDamping = 0
         self.physicsBody?.friction = 0
         if (owner is Player){
-            self.physicsBody?.categoryBitMask = CollisionBitMask.Projectile.rawValue
-            self.physicsBody?.collisionBitMask = CollisionBitMask.Enemy.rawValue | CollisionBitMask.Other.rawValue
+            self.physicsBody?.categoryBitMask = CollisionBitMask.PlayerProjectile.rawValue
+            self.physicsBody?.collisionBitMask = CollisionBitMask.Enemy.rawValue | CollisionBitMask.Other.rawValue | CollisionBitMask.EnemyProjectile.rawValue
             self.physicsBody!.contactTestBitMask = self.physicsBody!.collisionBitMask
         }
         if (owner is Enemy){
-            self.physicsBody?.categoryBitMask = CollisionBitMask.Projectile.rawValue
-            self.physicsBody?.collisionBitMask = CollisionBitMask.Enemy.rawValue | CollisionBitMask.Other.rawValue | CollisionBitMask.Player.rawValue
+            self.physicsBody?.categoryBitMask = CollisionBitMask.EnemyProjectile.rawValue
+            self.physicsBody?.collisionBitMask = CollisionBitMask.Enemy.rawValue | CollisionBitMask.Other.rawValue | CollisionBitMask.Player.rawValue | CollisionBitMask.PlayerProjectile.rawValue
             self.physicsBody!.contactTestBitMask = self.physicsBody!.collisionBitMask
         }
     }
