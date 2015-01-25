@@ -14,22 +14,25 @@ class Goreblon: Enemy {
         self.init(texture: Textures.goreblonTextures.textureNamed("Down1"), color: UIColor.whiteColor(), size: Textures.goreblonTextures.textureNamed("Down1").size())
     }
     
-    override init(texture: SKTexture!, color: UIColor!, size: CGSize) {
+    private override init(texture: SKTexture!, color: UIColor!, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
         self.configurePhysicsBody()
+        self.initializeTextureArrays()
         self.health = 100
         self.attackStrength = 15
         self.defense = 5
+        self.colorBlendFactor = 0.5
     }
     
     //MARK: PhysicsBody and Delegate
     override func configurePhysicsBody() {
+        self.setScale(0.8)
         var center = CGPointZero
         center.y -= self.frame.height * 1/6
         self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.width - 10, self.frame.height * 2/3), center: center)
         self.physicsBody!.allowsRotation = false;
-        self.physicsBody!.collisionBitMask = CollisionBitMask.Enemy.rawValue | CollisionBitMask.Other.rawValue | CollisionBitMask.Player.rawValue | CollisionBitMask.PlayerProjectile.rawValue
-        self.physicsBody?.contactTestBitMask = CollisionBitMask.PlayerProjectile.rawValue | CollisionBitMask.Player.rawValue | CollisionBitMask.EnemyProjectile.rawValue
+        self.physicsBody!.collisionBitMask = CollisionBitMask.Enemy.rawValue | CollisionBitMask.Other.rawValue | CollisionBitMask.Player.rawValue
+        self.physicsBody?.contactTestBitMask = CollisionBitMask.Player.rawValue
         self.physicsBody!.categoryBitMask = CollisionBitMask.Enemy.rawValue
         self.physicsBody?.mass = 0
         self.physicsBody?.restitution = 0
@@ -37,7 +40,6 @@ class Goreblon: Enemy {
         self.physicsBody?.linearDamping = 0
         self.physicsBody?.friction = 0
         
-        self.physicsBody?.dynamic = false
     }
     
     //TODO: Check collision with Player Sword
@@ -51,9 +53,29 @@ class Goreblon: Enemy {
             otherNode?.removeFromParent()
             if (killed){
                 //TODO: Add score and EXP to player
-                self.removeFromParent()
             }
         }
+        else if (otherNode is IceCircle){
+            if (hitByIce){
+                return
+            }
+            let killed = self.applyDamage(IceCircle.attackDamage)
+            self.slowFactor = 1 - IceCircle.slowSpeed
+            self.colorBlendFactor = 0.5
+            self.color = UIColor.blueColor()
+            hitByIce = true
+            //Can only be hit by ice once in 10 seconds
+            //TODO: Set timer for being hit by ice
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+                Int64(5 * Double(NSEC_PER_SEC)))
+            dispatch_after(delayTime, dispatch_get_main_queue()) {
+                self.hitByIce = false
+                self.color = UIColor.whiteColor()
+                self.slowFactor = 1
+            }
+            
+        }
+        
         
     }
     
@@ -62,6 +84,9 @@ class Goreblon: Enemy {
         super.performDeath()
         
         //TODO: Death Animation
+        
+        
+        self.removeFromParent()
         
     }
     

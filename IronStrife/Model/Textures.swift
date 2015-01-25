@@ -37,4 +37,14 @@ class Textures {
         get { return fireball.fireball}
     }
     
+    private struct icespell { static let icespell = SKTextureAtlas(named: "IceCircle")}
+    internal class var iceSpellTextures: SKTextureAtlas{
+        get { return icespell.icespell}
+    }
+    
+    private struct cure { static let curespell = SKTextureAtlas(named: "Cure")}
+    internal class var cureSpellTextures: SKTextureAtlas{
+        get { return cure.curespell}
+    }
+    
 }

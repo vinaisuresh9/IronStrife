@@ -25,22 +25,25 @@ class TownScene: GameScene {
         
         /* Setup your scene here */
         player.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
-        player.setScale(0.8)
         self.addChild(player)
         
         var firstEnemy = Goreblon()
         firstEnemy.position = CGPoint(x: 10, y: CGRectGetMidY(self.frame))
-        firstEnemy.setScale(0.8)
         self.addChild(firstEnemy)
     }
     
     
     
     override func update(currentTime: CFTimeInterval) {
+        super.update(currentTime)
         if (self.player.actionForKey(currentMovementAnimationKey) != nil){
-            println("Checking")
             checkDestination()
         }
     }
+    
+//    override func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval) {
+//        //Update physics bodies for all ice spells
+//
+//    }
     
 }

@@ -15,4 +15,6 @@ enum AttackType{
 
 class Enemy: Character {
     var type: AttackType = AttackType.Melee
+    var hitByIce = false
+
 }

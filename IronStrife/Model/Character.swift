@@ -15,7 +15,8 @@ enum CollisionBitMask: UInt32 {
     PlayerProjectile = 2,
     EnemyProjectile = 4,
     Enemy = 8,
-    Other = 16
+    Other = 16,
+    Spell = 32
     
 }
 
@@ -38,6 +39,9 @@ class Character: SKSpriteNode {
     var isDying: Bool = false
     var isAttacking: Bool = false
     var isHit: Bool = false
+    
+    ///Variable that determines how much to to slow down velocity
+    var slowFactor: Float = 1
     
     let animationAttackSpeed = 0.05
     let animationMovementSpeed = 0.1
@@ -69,6 +73,10 @@ class Character: SKSpriteNode {
     
     //MARK: Update Loop
     func update(){
+    }
+    
+    func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
+        
     }
     
 //    func resolveAnimation(){
@@ -234,7 +242,7 @@ class Character: SKSpriteNode {
     func stopMoving(){
         self.physicsBody?.velocity = CGVector.zeroVector
         var scene = self.scene as GameScene
-        self.removeActionForKey(scene.currentMovementAnimationKey)
+        self.removeAllActions()
         self.destination = self.position
         
     }

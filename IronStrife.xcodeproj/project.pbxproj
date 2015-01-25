@@ -13,6 +13,8 @@
 		53510F8E1A5A18E0004FD586 /* Meeblon.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 53510F8D1A5A18E0004FD586 /* Meeblon.atlas */; };
 		53510F901A5A1933004FD586 /* Skelaton.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 53510F8F1A5A1933004FD586 /* Skelaton.atlas */; };
 		53510F921A5A1AA6004FD586 /* Meeblon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53510F911A5A1AA6004FD586 /* Meeblon.swift */; };
+		53510F941A5AEA62004FD586 /* IceCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53510F931A5AEA62004FD586 /* IceCircle.swift */; };
+		53510F9A1A5AF594004FD586 /* IceCircle.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 53510F991A5AF594004FD586 /* IceCircle.atlas */; };
 		5356187919525C17000F2086 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5356187819525C17000F2086 /* AppDelegate.swift */; };
 		5356187B19525C17000F2086 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5356187A19525C17000F2086 /* GameScene.sks */; };
 		5356187D19525C17000F2086 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5356187C19525C17000F2086 /* GameScene.swift */; };
@@ -26,9 +28,11 @@
 		537CC1951A4FA26A0072F6A4 /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537CC1941A4FA26A0072F6A4 /* Textures.swift */; };
 		53AF40691A51D0F00036A274 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AF40681A51D0F00036A274 /* Projectile.swift */; };
 		53AF406B1A522C390036A274 /* Goreblon.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 53AF406A1A522C390036A274 /* Goreblon.atlas */; };
+		53BA78261A66FE5C008BCDF7 /* Cure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BA78251A66FE5C008BCDF7 /* Cure.swift */; };
 		53BF3F4A1953E2F900E026D2 /* Fireball.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BF3F491953E2F900E026D2 /* Fireball.swift */; };
 		53CC03621A4E6635000CB921 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CC03611A4E6635000CB921 /* Character.swift */; };
 		53CC03641A4E9270000CB921 /* Goreblon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CC03631A4E9270000CB921 /* Goreblon.swift */; };
+		53E7583A1A5B55A60046F1BB /* Cure.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 53E758391A5B55A60046F1BB /* Cure.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,8 @@
 		53510F8D1A5A18E0004FD586 /* Meeblon.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Meeblon.atlas; sourceTree = "<group>"; };
 		53510F8F1A5A1933004FD586 /* Skelaton.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Skelaton.atlas; sourceTree = "<group>"; };
 		53510F911A5A1AA6004FD586 /* Meeblon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meeblon.swift; sourceTree = "<group>"; };
+		53510F931A5AEA62004FD586 /* IceCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IceCircle.swift; sourceTree = "<group>"; };
+		53510F991A5AF594004FD586 /* IceCircle.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = IceCircle.atlas; sourceTree = "<group>"; };
 		5356187319525C16000F2086 /* IronStrife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IronStrife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5356187719525C17000F2086 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5356187819525C17000F2086 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -65,9 +71,11 @@
 		537CC1941A4FA26A0072F6A4 /* Textures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
 		53AF40681A51D0F00036A274 /* Projectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
 		53AF406A1A522C390036A274 /* Goreblon.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Goreblon.atlas; sourceTree = "<group>"; };
+		53BA78251A66FE5C008BCDF7 /* Cure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cure.swift; sourceTree = "<group>"; };
 		53BF3F491953E2F900E026D2 /* Fireball.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fireball.swift; sourceTree = "<group>"; };
 		53CC03611A4E6635000CB921 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		53CC03631A4E9270000CB921 /* Goreblon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goreblon.swift; sourceTree = "<group>"; };
+		53E758391A5B55A60046F1BB /* Cure.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Cure.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +178,8 @@
 		537F53ED1A4B9DF500DBF855 /* Texture Atlases */ = {
 			isa = PBXGroup;
 			children = (
+				53E758391A5B55A60046F1BB /* Cure.atlas */,
+				53510F991A5AF594004FD586 /* IceCircle.atlas */,
 				53510F8F1A5A1933004FD586 /* Skelaton.atlas */,
 				53510F8D1A5A18E0004FD586 /* Meeblon.atlas */,
 				53510F8B1A5A1844004FD586 /* Player.atlas */,
@@ -196,7 +206,9 @@
 			isa = PBXGroup;
 			children = (
 				53BF3F491953E2F900E026D2 /* Fireball.swift */,
+				53510F931A5AEA62004FD586 /* IceCircle.swift */,
 				53AF40681A51D0F00036A274 /* Projectile.swift */,
+				53BA78251A66FE5C008BCDF7 /* Cure.swift */,
 			);
 			path = Spells;
 			sourceTree = "<group>";
@@ -285,10 +297,12 @@
 				5356187B19525C17000F2086 /* GameScene.sks in Resources */,
 				53510F901A5A1933004FD586 /* Skelaton.atlas in Resources */,
 				536F8A5F195FDD9300EFBDE5 /* TownScene.sks in Resources */,
+				53E7583A1A5B55A60046F1BB /* Cure.atlas in Resources */,
 				5356188219525C17000F2086 /* Main.storyboard in Resources */,
 				53510F8C1A5A1844004FD586 /* Player.atlas in Resources */,
 				53AF406B1A522C390036A274 /* Goreblon.atlas in Resources */,
 				53510F8E1A5A18E0004FD586 /* Meeblon.atlas in Resources */,
+				53510F9A1A5AF594004FD586 /* IceCircle.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,10 +324,12 @@
 				537CC1951A4FA26A0072F6A4 /* Textures.swift in Sources */,
 				5356187D19525C17000F2086 /* GameScene.swift in Sources */,
 				53510F921A5A1AA6004FD586 /* Meeblon.swift in Sources */,
+				53510F941A5AEA62004FD586 /* IceCircle.swift in Sources */,
 				53CC03641A4E9270000CB921 /* Goreblon.swift in Sources */,
 				5356187F19525C17000F2086 /* GameViewController.swift in Sources */,
 				53BF3F4A1953E2F900E026D2 /* Fireball.swift in Sources */,
 				5356187919525C17000F2086 /* AppDelegate.swift in Sources */,
+				53BA78261A66FE5C008BCDF7 /* Cure.swift in Sources */,
 				5326113A19BC22F700E0ADC1 /* Enemy.swift in Sources */,
 				530CB266196067CF00DA905F /* Player.swift in Sources */,
 				53CC03621A4E6635000CB921 /* Character.swift in Sources */,

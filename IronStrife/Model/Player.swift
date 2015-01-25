@@ -20,10 +20,12 @@ class Player: Character {
 
     
     var currentMovementTextures: [SKTexture] = []
-
+    
+    //MARK: Initialization 
     convenience override init(){
         
         self.init(texture: Textures.playerTextures.textureNamed("Down1"))
+        self.position = position
         configurePhysicsBody()
         initializeTextureArrays()
         self.health = 200
@@ -34,11 +36,12 @@ class Player: Character {
     }
     
     override func configurePhysicsBody() {
+        self.setScale(0.8)
         var center = CGPointZero
         center.y -= self.frame.height * 1/6
         self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.width - 10, self.frame.height * 2/3), center: center)
         self.physicsBody?.allowsRotation = false;
-        self.physicsBody?.collisionBitMask = CollisionBitMask.Enemy.rawValue | CollisionBitMask.Other.rawValue
+        self.physicsBody?.collisionBitMask = CollisionBitMask.Enemy.rawValue
         self.physicsBody?.contactTestBitMask = CollisionBitMask.EnemyProjectile.rawValue
         self.physicsBody?.categoryBitMask = CollisionBitMask.Player.rawValue
         self.physicsBody?.mass = 0
@@ -98,6 +101,30 @@ class Player: Character {
         let fire = Fireball(direction: point, owner: self)
         self.scene?.addChild(fire)
     }
+    
+    func castIceSpell(){
+        if (!checkMana(IceCircle.spellCost)){
+            return
+        }
+        
+        self.stopMoving()
+        let ice = IceCircle(owner: self)
+        ice.run()
+
+    }
+    
+    //TODO: Check max health and add healthback
+    func castCureSpell(){
+        if (!checkMana(Cure.spellCost)){
+            return
+        }
+        
+        //self.stopMoving()
+        let cure = Cure(owner: self)
+        cure.run()
+    }
+    
+    
     
     
     //MARK: Moving and Orientation
@@ -185,6 +212,18 @@ class Player: Character {
             break
             
         }
+    }
+    
+    //MARK: UpdateLoop
+    override func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval) {
+        if let sceneChildren = self.scene?.children{
+            for child in sceneChildren{
+                if (child is IceCircle || child is Cure){
+                    child.updateWithTimeSinceLastUpdate(timeSince)
+                }
+            }
+        }
+
     }
 
     

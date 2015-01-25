@@ -11,6 +11,9 @@ import UIKit
 class MathFunctions {
     
     class func calculateDistance(point1: CGPoint, point2: CGPoint) -> Double{
+        if (point1 == point2){
+            return 0
+        }
         return Double(sqrtf(Float(point1.x - point2.x) * Float(point1.x - point2.x) + Float(point1.y - point2.y) * Float(point1.y - point2.y)))
     }
     

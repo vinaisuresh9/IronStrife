@@ -19,6 +19,8 @@ class Meeblon: Enemy {
         self.health = 100
         self.attackStrength = 15
         self.defense = 5
+        self.colorBlendFactor = 0.5
+
     }
     
     //MARK: PhysicsBody and Delegate
@@ -36,6 +38,44 @@ class Meeblon: Enemy {
         self.physicsBody?.linearDamping = 0
         self.physicsBody?.friction = 0
         
-        self.physicsBody?.dynamic = false
+    }
+    
+    //TODO: Check collision with Player Sword
+    override func collidedWith(other: SKPhysicsBody) {
+        if (self.isDying){
+            return
+        }
+        let otherNode = other.node
+        if (otherNode is Fireball){
+            let killed = self.applyDamage(Fireball.attackDamage)
+            otherNode?.removeFromParent()
+            if (killed){
+                //TODO: Add score and EXP to player
+                self.removeFromParent()
+            }
+        }
+        
+    }
+    
+    //MARK: Death
+    override func performDeath() {
+        super.performDeath()
+        
+        //TODO: Death Animation
+        
+    }
+    
+    //MARK: Setup
+    override func initializeTextureArrays(){
+        let atlas = Textures.playerTextures
+        
+        for (var i = 2; i < 5; i++){
+            downMovementTextures.append(atlas.textureNamed("Down\(i)"))
+            rightMovementTextures.append(atlas.textureNamed("Right\(i)"))
+            leftMovementTextures.append(atlas.textureNamed("Left\(i)"))
+            upMovementTextures.append(atlas.textureNamed("Up\(i)"))
+        }
+
+        
     }
 }

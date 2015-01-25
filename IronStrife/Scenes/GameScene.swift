@@ -15,15 +15,16 @@ import UIKit
 
 
 enum WorldLayer: UInt32 {
-    case Player = 1,
-    Projectile = 2,
-    Enemy = 4,
-    Other = 8
+    case Background = 1,
+    Other,
+    Projectile,
+    Character
     
 }
 
 class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
 
+    var lastUpdateTimeInterval: NSTimeInterval = 0
     let player = Player.sharedInstance
     var currentMovementAnimationKey = ""
     
@@ -36,6 +37,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
         var twoFingerTapGesture = UITapGestureRecognizer(target: self, action: "tapped:")
         twoFingerTapGesture.numberOfTouchesRequired = 2
         self.view?.addGestureRecognizer(twoFingerTapGesture)
+        
+        var twoFingerLongPressGesture = UILongPressGestureRecognizer(target: self, action: "twoFingerLongPress:")
+        twoFingerLongPressGesture.numberOfTouchesRequired = 2
+        self.view?.addGestureRecognizer(twoFingerLongPressGesture)
         
         var movementGesture = UILongPressGestureRecognizer(target: self, action: "longPress:")
         movementGesture.minimumPressDuration = 0.3
@@ -68,10 +73,21 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     
     
     func tapped (sender: UITapGestureRecognizer){
-        self.player.removeAllActions()
-        let point = sender.locationInView(self.view)
-        player.castFireball(self.view!.convertPoint(point, toScene: self))
+        if (sender.numberOfTapsRequired == 1){
+            let point = sender.locationInView(self.view)
+            player.castFireball(self.view!.convertPoint(point, toScene: self))
+            return
+        }
+        else if (sender.numberOfTouchesRequired == 2){
+            player.castIceSpell()
+            return
+        }
+
         
+    }
+    
+    func twoFingerLongPress (sender: UILongPressGestureRecognizer){
+        self.player.castCureSpell()
     }
     
     func longPress (sender: UILongPressGestureRecognizer){
@@ -93,8 +109,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     
     func checkDestination(){
         if (self.player.reachedDestination()){
-            self.player.removeAllActions()
             self.player.stopMoving()
+            self.player.removeAllActions()
         }
         
     }
@@ -119,9 +135,16 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     }
 
     
-    
+    //MARK: Update Loop
     override func update(currentTime: NSTimeInterval) {
-
+        let timeSinceLast = currentTime - self.lastUpdateTimeInterval;
+        self.lastUpdateTimeInterval = currentTime;
+        self.updateWithTimeSinceLastUpdate(timeSinceLast)
+    }
+    
+    //Overridden
+    func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
+        self.player.updateWithTimeSinceLastUpdate(timeSince)
     }
 
 }
