@@ -16,5 +16,42 @@ enum AttackType{
 class Enemy: Character {
     var type: AttackType = AttackType.Melee
     var hitByIce = false
+    var hitByExplosion = false
 
+    override func collidedWith(other: SKPhysicsBody) {
+        if (self.isDying){
+            return
+        }
+        let otherNode = other.node
+        if (otherNode is Fireball){
+            let killed = self.applyDamage(Fireball.attackDamage)
+            let fireball = otherNode as Fireball
+            fireball.explode()
+            if (killed){
+                //TODO: Add score and EXP to player
+            }
+        }
+        else if (otherNode is IceCircle){
+            if (hitByIce){
+                return
+            }
+            let killed = self.applyDamage(IceCircle.attackDamage)
+            self.slowFactor = 1 - IceCircle.slowSpeed
+            self.colorBlendFactor = 0.5
+            self.color = UIColor.blueColor()
+            hitByIce = true
+            //Can only be hit by ice once in 5 seconds
+            //TODO: Set timer for being hit by ice
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+                Int64(5 * Double(NSEC_PER_SEC)))
+            dispatch_after(delayTime, dispatch_get_main_queue()) {
+                self.hitByIce = false
+                self.color = UIColor.whiteColor()
+                self.slowFactor = 1
+            }
+            
+        }
+    }
+    
+    
 }

@@ -1,61 +1,56 @@
 //
-//  IceSpell.swift
+//  Explosion.swift
 //  IronStrife
 //
-//  Created by Vinai Suresh on 1/5/15.
+//  Created by Vinai Suresh on 2/19/15.
 //  Copyright (c) 2015 Vinai Suresh. All rights reserved.
 //
 
 import SpriteKit
 
-let iceAudioName = "IceCircle.wav"
+let explosionAudioName = "Explosion.wav"
 
-class IceCircle: AoESpell {
-    private let atlas = Textures.iceSpellTextures
-    private let animationTime = 0.03
+class Explosion: AoESpell {
+    private let atlas = Textures.explosionTextures
+    private let animationTime = 0.1
     private var updateInterval: NSTimeInterval{
         get{
-            let frameRate = 1/(self.animationTime * Double(Textures.iceSpellTextures.textureNames.count))
+            let frameRate = 1/(self.animationTime * Double(Textures.explosionTextures.textureNames.count))
             return animationTime/frameRate
         }
     }
     
-    private struct attack { static var attack:Float = 10}
+    //Always half damage of the fireball
+    private struct attack {
+        static var attack:Float {
+            get {
+                return Fireball.attackDamage/2
+            }
+        }
+    }
     class var attackDamage: Float{
         get{ return attack.attack;}
-        set{ attack.attack = newValue}
     }
     
-    private struct cost { static var cost:Float = 60}
-    class var spellCost: Float{
-        get{ return cost.cost;}
-        set{ cost.cost = newValue}
-    }
-    
-    private struct slow { static var slow:Float = 40}
-    class var slowSpeed: Float{
-        get{ return slow.slow;}
-        set{ slow.slow = newValue}
-    }
-    
-    ///Initializes default IceCircle
-    convenience init(owner: Player){
+    ///Initializes default Explosion
+    convenience init(owner: Player, fireball: Fireball){
         self.init()
         self.owner = owner
         self.configurePhysicsBody()
         self.position = owner.position
         
-        for (var i = 49; i >= 1; i-=3){
-            textures.append(atlas.textureNamed("IceCircle\(i)"))
+        for (var i = 1; i < 8; i++){
+            textures.append(atlas.textureNamed("FireExplosion\(i)"))
         }
+        
         self.owner?.scene?.addChild(self)
     }
     
     
     private convenience override init(){
-        self.init(texture: Textures.iceSpellTextures.textureNamed("IceCircle49"), color: UIColor.whiteColor(), size: Textures.iceSpellTextures.textureNamed("IceCircle49").size())
-        
+        self.init(texture: Textures.explosionTextures.textureNamed("FireExplosion1"), color: UIColor.whiteColor(), size: Textures.explosionTextures.textureNamed("FireExplosion1").size())
     }
+    
     
     private override init(texture: SKTexture!, color: UIColor!, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
@@ -64,12 +59,13 @@ class IceCircle: AoESpell {
     
     func run(){
         let animation = SKAction.animateWithTextures(textures, timePerFrame: animationTime, resize: true, restore: false)
-        let sound = SKAction.playSoundFileNamed(iceAudioName, waitForCompletion: false)
+        let sound = SKAction.playSoundFileNamed(explosionAudioName, waitForCompletion: false)
         self.runAction(SKAction.group([animation, sound])
             , completion: {
             self.removeFromParent()
         })
     }
+    
     
     //MARK: Update Loop
     func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
@@ -77,5 +73,5 @@ class IceCircle: AoESpell {
             self.configurePhysicsBody()
         }
     }
-
+    
 }

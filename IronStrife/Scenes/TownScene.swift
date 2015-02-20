@@ -12,17 +12,8 @@ class TownScene: GameScene {
 
     
     override func didMoveToView(view: SKView) {
-        //Do some initial setup
-        self.initializeGestureRecognizers()
-        self.physicsWorld.gravity = CGVector.zeroVector
-        self.physicsWorld.contactDelegate = self
-        
-        
-        let background = SKSpriteNode(imageNamed: "Background.png")
-        background.size = self.frame.size
-        background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-        self.addChild(background)
-        
+        super.setupScene()
+    
         /* Setup your scene here */
         player.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         self.addChild(player)
@@ -36,9 +27,6 @@ class TownScene: GameScene {
     
     override func update(currentTime: CFTimeInterval) {
         super.update(currentTime)
-        if (self.player.actionForKey(currentMovementAnimationKey) != nil){
-            checkDestination()
-        }
     }
     
 //    override func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval) {

@@ -9,14 +9,14 @@
 import SpriteKit
 
 
-
 enum CollisionBitMask: UInt32 {
-    case Player = 1,
-    PlayerProjectile = 2,
-    EnemyProjectile = 4,
-    Enemy = 8,
-    Other = 16,
-    Spell = 32
+    case
+    Player              = 1,
+    PlayerProjectile    = 2,
+    EnemyProjectile     = 4,
+    Enemy               = 8,
+    Other               = 16,
+    Spell               = 32
     
 }
 
@@ -50,19 +50,23 @@ class Character: SKSpriteNode {
     
     var destination: CGPoint = CGPointMake(0, 0)
 
+    var currentMovementAnimationKey = ""
     var activeAnimationKey = ""
     var direction = "Down"
     
+    var attackSoundPrefix = ""
+    var numberAttackSounds:Int32 = 0
+    
     //MARK: Texture Arrays
     var downMovementTextures: [SKTexture] = []
-     var upMovementTextures: [SKTexture] = []
-     var leftMovementTextures: [SKTexture] = []
-     var rightMovementTextures: [SKTexture] = []
-    
-     var upAttackTextures: [SKTexture] = []
-     var downAttackTextures: [SKTexture] = []
-     var leftAttackTextures: [SKTexture] = []
-     var rightAttackTextures: [SKTexture] = []
+    var upMovementTextures: [SKTexture] = []
+    var leftMovementTextures: [SKTexture] = []
+    var rightMovementTextures: [SKTexture] = []
+
+    var upAttackTextures: [SKTexture] = []
+    var downAttackTextures: [SKTexture] = []
+    var leftAttackTextures: [SKTexture] = []
+    var rightAttackTextures: [SKTexture] = []
     
     var getHitAnimationFrames: [SKTexture] = []
     var deathAnimationFrames: [SKTexture] = []
@@ -71,104 +75,11 @@ class Character: SKSpriteNode {
         
     }
     
-    //MARK: Update Loop
-    func update(){
-    }
-    
     func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
-        
+        if (self.actionForKey(currentMovementAnimationKey) != nil){
+            checkDestination()
+        }
     }
-    
-//    func resolveAnimation(){
-//        var animationFrames: [SKTexture] = []
-//        var animationKey: String = ""
-//        let animationState = self.requestedAnimation
-//        
-//        switch(animationState){
-//            
-//        case AnimationState.AttackDown:
-//            animationKey = "attackDown"
-//            animationFrames = downAttackTextures
-//        
-//        case AnimationState.AttackLeft:
-//            animationKey = "attackLeft"
-//            animationFrames = leftAttackTextures
-//            
-//        case AnimationState.AttackRight:
-//            animationKey = "attackRight"
-//            animationFrames = rightAttackTextures
-//            
-//        case AnimationState.AttackUp:
-//            animationKey = "attackUp"
-//            animationFrames = upAttackTextures
-//            
-//        case AnimationState.MoveLeft:
-//            animationKey = "moveLeft"
-//            animationFrames = leftMovementTextures
-//                      
-//        case AnimationState.MoveDown:
-//            animationKey = "moveDown"
-//            animationFrames = downMovementTextures
-//            
-//        case AnimationState.MoveUp:
-//            animationKey = "moveUp"
-//            animationFrames = upMovementTextures
-//            
-//        case AnimationState.MoveRight:
-//            animationKey = "moveRight"
-//            animationFrames = rightMovementTextures
-//            
-//        case AnimationState.Death:
-//            animationKey = "death"
-//            animationFrames = deathAnimationFrames
-//            
-//            
-//        default:
-//            break
-//        }
-//        
-//        self.fireAnimation(animationState, textures: animationFrames, key: animationKey)
-//        
-//        self.requestedAnimation = self.isDying ? AnimationState.Death : AnimationState.Idle
-//
-//        
-//    }
-//    
-//    func fireAnimation (animation: AnimationState, textures: [SKTexture], key: String){
-//        var action = self.actionForKey(key)
-//        if (action != nil || textures.count < 1){
-//            return
-//        }
-//        
-//        activeAnimationKey = key
-//        self.runAction(SKAction.sequence(
-//            [SKAction.animateWithTextures(textures, timePerFrame: animationSpeed, resize: true, restore: false),
-//            SKAction.runBlock({
-//                self.animationHasCompleted(animation)
-//            })
-//            ]), withKey: key)
-//    }
-//    
-//    func animationHasCompleted(state: AnimationState){
-//
-//        if (self.isDying){
-//            
-//        }
-//        
-//        self.animationDidComplete(state)
-//        
-//        if (self.isAttacking){
-//            self.isAttacking = false
-//        }
-//        
-//        self.activeAnimationKey = ""
-//    }
-//    
-//    //Overridden
-//    func animationDidComplete(state: AnimationState){
-//        
-//    }
-    
     
     
     //MARK: Physics Bodies (Overridden)
@@ -177,7 +88,7 @@ class Character: SKSpriteNode {
     }
     
     func collidedWith (other: SKPhysicsBody){
-        
+
     }
     
     //MARK: Applying Damage
@@ -236,9 +147,102 @@ class Character: SKSpriteNode {
         self.runAction(attackAnimation, completion: {
             self.isAttacking = false
         })
+        self.runAction(SKAction.playSoundFileNamed(self.attackSoundPrefix + "\((rand() % self.numberAttackSounds) + 1).wav", waitForCompletion: false))
     }
     
-    //MARK: Movement
+    //MARK: Movement and Orientation
+    func moveTo(point:CGPoint)
+    {
+        //var movementAction = SKAction.moveTo(scenePoint, duration: time)
+        //player.runAction(movementAction, withKey: player.direction)
+        
+        let distance = MathFunctions.calculateDistance(self.position, point2: point)
+        let time = distance/Double(self.movespeed)
+        var velocity = MathFunctions.normalizedVector(self.position, point2: point)
+        
+        self.destination = point
+        
+        self.setDirection(point, moving: true)
+        currentMovementAnimationKey = self.direction
+        self.physicsBody?.velocity = CGVectorMake(velocity.dx * self.movespeed, velocity.dy * self.movespeed)
+
+    }
+    
+    
+    func reachedDestination() -> Bool{
+        if (MathFunctions.calculateDistance(self.position, point2: destination) < 10){
+            return true;
+        }
+        return false;
+    }
+    
+    
+    func checkDestination(){
+        if (self.reachedDestination()){
+            self.stopMoving()
+            self.removeAllActions()
+        }
+    }
+    
+    
+    func setDirection(scenepoint: CGPoint, moving: Bool) {
+        
+        //For the case where you have just shot a fireball
+        if (self.physicsBody?.velocity == CGVector.zeroVector){
+            self.direction = ""
+        }
+        let atlas = SKTextureAtlas(named: self.theClassName)
+        var currentMovementTextures: [SKTexture] = []
+        
+        //Not the best math here but works
+        let vector = MathFunctions.normalizedVector(self.position, point2: scenepoint)
+        let angle = asinf(Float(vector.dy)/Float(1))
+        switch(angle){
+            
+        case let a where angle >= Float(M_PI_4) && angle <= (3 * Float(M_PI_4)):
+            if (self.direction == "Up"){
+                return
+            }
+            direction = "Up"
+            self.texture = atlas.textureNamed("Up1")
+            currentMovementTextures = upMovementTextures
+            
+        case let a where angle <= Float(M_PI_4) && angle >= -Float(M_PI_4) && (scenepoint.x <= self.position.x):
+            if (self.direction == "Left"){
+                return
+            }
+            direction = "Left"
+            self.texture = atlas.textureNamed("Left1")
+            currentMovementTextures = leftMovementTextures
+            
+            
+        case let a where angle <= -Float(M_PI_4) && angle >= -(3 * Float(M_PI_4)):
+            if (self.direction == "Down"){
+                return
+            }
+            direction = "Down"
+            self.texture = atlas.textureNamed("Down1")
+            currentMovementTextures = downMovementTextures
+            
+            
+        default:
+            if (self.direction == "Right"){
+                return
+            }
+            direction = "Right"
+            self.texture = atlas.textureNamed("Right1")
+            currentMovementTextures = rightMovementTextures
+            
+        }
+        if (moving){
+            self.removeActionForKey(direction)
+            let animateAction = SKAction.animateWithTextures(currentMovementTextures, timePerFrame: animationMovementSpeed, resize: true, restore: false)
+            self.runAction(SKAction.repeatActionForever(animateAction), withKey: direction)
+        }
+        
+    }
+    
+    
     func stopMoving(){
         self.physicsBody?.velocity = CGVector.zeroVector
         var scene = self.scene as GameScene
@@ -246,8 +250,6 @@ class Character: SKSpriteNode {
         self.destination = self.position
         
     }
-    
-
     
 
 }

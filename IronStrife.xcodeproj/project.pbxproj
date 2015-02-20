@@ -22,10 +22,29 @@
 		5356188219525C17000F2086 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5356188019525C17000F2086 /* Main.storyboard */; };
 		5356188419525C17000F2086 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5356188319525C17000F2086 /* Images.xcassets */; };
 		5356189019525C17000F2086 /* IronStrifeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5356188F19525C17000F2086 /* IronStrifeTests.swift */; };
+		535FF5B41A96C428007D4C80 /* GoreblonAttack1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 535FF5B01A96C428007D4C80 /* GoreblonAttack1.wav */; };
+		535FF5B51A96C428007D4C80 /* GoreblonAttack2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 535FF5B11A96C428007D4C80 /* GoreblonAttack2.wav */; };
+		535FF5B61A96C428007D4C80 /* GoreblonAttack3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 535FF5B21A96C428007D4C80 /* GoreblonAttack3.wav */; };
+		535FF5B71A96C428007D4C80 /* GoreblonDeath.wav in Resources */ = {isa = PBXBuildFile; fileRef = 535FF5B31A96C428007D4C80 /* GoreblonDeath.wav */; };
+		535FF5B91A96DD78007D4C80 /* FireExplosion.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 535FF5B81A96DD78007D4C80 /* FireExplosion.atlas */; };
+		535FF5BB1A96E089007D4C80 /* Explosion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535FF5BA1A96E089007D4C80 /* Explosion.swift */; };
+		535FF5BE1A96EF59007D4C80 /* Explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 535FF5BD1A96EF59007D4C80 /* Explosion.wav */; };
+		535FF5C01A96F127007D4C80 /* IceCircle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 535FF5BF1A96F127007D4C80 /* IceCircle.wav */; };
+		535FF5C21A9770D5007D4C80 /* AoESpell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535FF5C11A9770D5007D4C80 /* AoESpell.swift */; };
 		536439711954C523003AD77E /* MathFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536439701954C523003AD77E /* MathFunctions.swift */; };
 		536F8A5D195FDB0F00EFBDE5 /* TownScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536F8A5C195FDB0F00EFBDE5 /* TownScene.swift */; };
 		536F8A5F195FDD9300EFBDE5 /* TownScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 536F8A5E195FDD9300EFBDE5 /* TownScene.sks */; };
 		537CC1951A4FA26A0072F6A4 /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537CC1941A4FA26A0072F6A4 /* Textures.swift */; };
+		5398B0261A96AF6A0012F7AA /* PlayerAttack10.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5398B0251A96AF6A0012F7AA /* PlayerAttack10.wav */; };
+		5398B0301A96AF9E0012F7AA /* PlayerAttack1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5398B0271A96AF9E0012F7AA /* PlayerAttack1.wav */; };
+		5398B0311A96AF9E0012F7AA /* PlayerAttack2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5398B0281A96AF9E0012F7AA /* PlayerAttack2.wav */; };
+		5398B0321A96AF9E0012F7AA /* PlayerAttack3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5398B0291A96AF9E0012F7AA /* PlayerAttack3.wav */; };
+		5398B0331A96AF9E0012F7AA /* PlayerAttack4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5398B02A1A96AF9E0012F7AA /* PlayerAttack4.wav */; };
+		5398B0341A96AF9E0012F7AA /* PlayerAttack5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5398B02B1A96AF9E0012F7AA /* PlayerAttack5.wav */; };
+		5398B0351A96AF9E0012F7AA /* PlayerAttack6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5398B02C1A96AF9E0012F7AA /* PlayerAttack6.wav */; };
+		5398B0361A96AF9E0012F7AA /* PlayerAttack7.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5398B02D1A96AF9E0012F7AA /* PlayerAttack7.wav */; };
+		5398B0371A96AF9E0012F7AA /* PlayerAttack8.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5398B02E1A96AF9E0012F7AA /* PlayerAttack8.wav */; };
+		5398B0381A96AF9E0012F7AA /* PlayerAttack9.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5398B02F1A96AF9E0012F7AA /* PlayerAttack9.wav */; };
 		53AF40691A51D0F00036A274 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AF40681A51D0F00036A274 /* Projectile.swift */; };
 		53AF406B1A522C390036A274 /* Goreblon.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 53AF406A1A522C390036A274 /* Goreblon.atlas */; };
 		53BA78261A66FE5C008BCDF7 /* Cure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BA78251A66FE5C008BCDF7 /* Cure.swift */; };
@@ -65,10 +84,29 @@
 		5356188919525C17000F2086 /* IronStrifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IronStrifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5356188E19525C17000F2086 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5356188F19525C17000F2086 /* IronStrifeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IronStrifeTests.swift; sourceTree = "<group>"; };
+		535FF5B01A96C428007D4C80 /* GoreblonAttack1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = GoreblonAttack1.wav; path = "Goreblon Sounds/GoreblonAttack1.wav"; sourceTree = "<group>"; };
+		535FF5B11A96C428007D4C80 /* GoreblonAttack2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = GoreblonAttack2.wav; path = "Goreblon Sounds/GoreblonAttack2.wav"; sourceTree = "<group>"; };
+		535FF5B21A96C428007D4C80 /* GoreblonAttack3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = GoreblonAttack3.wav; path = "Goreblon Sounds/GoreblonAttack3.wav"; sourceTree = "<group>"; };
+		535FF5B31A96C428007D4C80 /* GoreblonDeath.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = GoreblonDeath.wav; path = "Goreblon Sounds/GoreblonDeath.wav"; sourceTree = "<group>"; };
+		535FF5B81A96DD78007D4C80 /* FireExplosion.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = FireExplosion.atlas; sourceTree = "<group>"; };
+		535FF5BA1A96E089007D4C80 /* Explosion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Explosion.swift; sourceTree = "<group>"; };
+		535FF5BD1A96EF59007D4C80 /* Explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Explosion.wav; sourceTree = "<group>"; };
+		535FF5BF1A96F127007D4C80 /* IceCircle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = IceCircle.wav; sourceTree = "<group>"; };
+		535FF5C11A9770D5007D4C80 /* AoESpell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AoESpell.swift; sourceTree = "<group>"; };
 		536439701954C523003AD77E /* MathFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathFunctions.swift; sourceTree = "<group>"; };
 		536F8A5C195FDB0F00EFBDE5 /* TownScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TownScene.swift; sourceTree = "<group>"; };
 		536F8A5E195FDD9300EFBDE5 /* TownScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TownScene.sks; sourceTree = "<group>"; };
 		537CC1941A4FA26A0072F6A4 /* Textures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
+		5398B0251A96AF6A0012F7AA /* PlayerAttack10.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = PlayerAttack10.wav; sourceTree = "<group>"; };
+		5398B0271A96AF9E0012F7AA /* PlayerAttack1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = PlayerAttack1.wav; sourceTree = "<group>"; };
+		5398B0281A96AF9E0012F7AA /* PlayerAttack2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = PlayerAttack2.wav; sourceTree = "<group>"; };
+		5398B0291A96AF9E0012F7AA /* PlayerAttack3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = PlayerAttack3.wav; sourceTree = "<group>"; };
+		5398B02A1A96AF9E0012F7AA /* PlayerAttack4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = PlayerAttack4.wav; sourceTree = "<group>"; };
+		5398B02B1A96AF9E0012F7AA /* PlayerAttack5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = PlayerAttack5.wav; sourceTree = "<group>"; };
+		5398B02C1A96AF9E0012F7AA /* PlayerAttack6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = PlayerAttack6.wav; sourceTree = "<group>"; };
+		5398B02D1A96AF9E0012F7AA /* PlayerAttack7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = PlayerAttack7.wav; sourceTree = "<group>"; };
+		5398B02E1A96AF9E0012F7AA /* PlayerAttack8.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = PlayerAttack8.wav; sourceTree = "<group>"; };
+		5398B02F1A96AF9E0012F7AA /* PlayerAttack9.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = PlayerAttack9.wav; sourceTree = "<group>"; };
 		53AF40681A51D0F00036A274 /* Projectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
 		53AF406A1A522C390036A274 /* Goreblon.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Goreblon.atlas; sourceTree = "<group>"; };
 		53BA78251A66FE5C008BCDF7 /* Cure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cure.swift; sourceTree = "<group>"; };
@@ -142,6 +180,7 @@
 		5356187619525C16000F2086 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5398B0231A96AF500012F7AA /* Audio Sounds */,
 				5356187719525C17000F2086 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -164,6 +203,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		535FF5AF1A96C3CA007D4C80 /* Goreblon Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				535FF5B01A96C428007D4C80 /* GoreblonAttack1.wav */,
+				535FF5B11A96C428007D4C80 /* GoreblonAttack2.wav */,
+				535FF5B21A96C428007D4C80 /* GoreblonAttack3.wav */,
+				535FF5B31A96C428007D4C80 /* GoreblonDeath.wav */,
+			);
+			name = "Goreblon Sounds";
+			sourceTree = "<group>";
+		};
+		535FF5BC1A96EF59007D4C80 /* Spell Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				535FF5BF1A96F127007D4C80 /* IceCircle.wav */,
+				535FF5BD1A96EF59007D4C80 /* Explosion.wav */,
+			);
+			path = "Spell Sounds";
+			sourceTree = "<group>";
+		};
 		536F8A5B195FDA8A00EFBDE5 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +237,7 @@
 		537F53ED1A4B9DF500DBF855 /* Texture Atlases */ = {
 			isa = PBXGroup;
 			children = (
+				535FF5B81A96DD78007D4C80 /* FireExplosion.atlas */,
 				53E758391A5B55A60046F1BB /* Cure.atlas */,
 				53510F991A5AF594004FD586 /* IceCircle.atlas */,
 				53510F8F1A5A1933004FD586 /* Skelaton.atlas */,
@@ -187,6 +247,35 @@
 			);
 			name = "Texture Atlases";
 			path = "IronStrife/Texture Atlases";
+			sourceTree = SOURCE_ROOT;
+		};
+		5398B0231A96AF500012F7AA /* Audio Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				535FF5BC1A96EF59007D4C80 /* Spell Sounds */,
+				535FF5AF1A96C3CA007D4C80 /* Goreblon Sounds */,
+				5398B0241A96AF570012F7AA /* Player Sounds */,
+			);
+			name = "Audio Sounds";
+			path = "IronStrife/Audio Sounds";
+			sourceTree = SOURCE_ROOT;
+		};
+		5398B0241A96AF570012F7AA /* Player Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				5398B0271A96AF9E0012F7AA /* PlayerAttack1.wav */,
+				5398B0281A96AF9E0012F7AA /* PlayerAttack2.wav */,
+				5398B0291A96AF9E0012F7AA /* PlayerAttack3.wav */,
+				5398B02A1A96AF9E0012F7AA /* PlayerAttack4.wav */,
+				5398B02B1A96AF9E0012F7AA /* PlayerAttack5.wav */,
+				5398B02C1A96AF9E0012F7AA /* PlayerAttack6.wav */,
+				5398B02D1A96AF9E0012F7AA /* PlayerAttack7.wav */,
+				5398B02E1A96AF9E0012F7AA /* PlayerAttack8.wav */,
+				5398B02F1A96AF9E0012F7AA /* PlayerAttack9.wav */,
+				5398B0251A96AF6A0012F7AA /* PlayerAttack10.wav */,
+			);
+			name = "Player Sounds";
+			path = "IronStrife/Audio Sounds/Player Sounds";
 			sourceTree = SOURCE_ROOT;
 		};
 		53BF3F4B1953E2FE00E026D2 /* Model */ = {
@@ -206,7 +295,9 @@
 			isa = PBXGroup;
 			children = (
 				53BF3F491953E2F900E026D2 /* Fireball.swift */,
+				535FF5BA1A96E089007D4C80 /* Explosion.swift */,
 				53510F931A5AEA62004FD586 /* IceCircle.swift */,
+				535FF5C11A9770D5007D4C80 /* AoESpell.swift */,
 				53AF40681A51D0F00036A274 /* Projectile.swift */,
 				53BA78251A66FE5C008BCDF7 /* Cure.swift */,
 			);
@@ -262,6 +353,7 @@
 				TargetAttributes = {
 					5356187219525C16000F2086 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 935PGDMS7Y;
 					};
 					5356188819525C17000F2086 = {
 						CreatedOnToolsVersion = 6.0;
@@ -294,15 +386,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				5356188419525C17000F2086 /* Images.xcassets in Resources */,
+				535FF5B41A96C428007D4C80 /* GoreblonAttack1.wav in Resources */,
 				5356187B19525C17000F2086 /* GameScene.sks in Resources */,
+				535FF5B71A96C428007D4C80 /* GoreblonDeath.wav in Resources */,
+				535FF5BE1A96EF59007D4C80 /* Explosion.wav in Resources */,
+				535FF5C01A96F127007D4C80 /* IceCircle.wav in Resources */,
 				53510F901A5A1933004FD586 /* Skelaton.atlas in Resources */,
+				5398B0341A96AF9E0012F7AA /* PlayerAttack5.wav in Resources */,
 				536F8A5F195FDD9300EFBDE5 /* TownScene.sks in Resources */,
 				53E7583A1A5B55A60046F1BB /* Cure.atlas in Resources */,
+				535FF5B51A96C428007D4C80 /* GoreblonAttack2.wav in Resources */,
+				5398B0381A96AF9E0012F7AA /* PlayerAttack9.wav in Resources */,
 				5356188219525C17000F2086 /* Main.storyboard in Resources */,
+				5398B0311A96AF9E0012F7AA /* PlayerAttack2.wav in Resources */,
+				5398B0351A96AF9E0012F7AA /* PlayerAttack6.wav in Resources */,
 				53510F8C1A5A1844004FD586 /* Player.atlas in Resources */,
+				535FF5B91A96DD78007D4C80 /* FireExplosion.atlas in Resources */,
 				53AF406B1A522C390036A274 /* Goreblon.atlas in Resources */,
+				5398B0361A96AF9E0012F7AA /* PlayerAttack7.wav in Resources */,
+				5398B0371A96AF9E0012F7AA /* PlayerAttack8.wav in Resources */,
+				5398B0261A96AF6A0012F7AA /* PlayerAttack10.wav in Resources */,
 				53510F8E1A5A18E0004FD586 /* Meeblon.atlas in Resources */,
+				535FF5B61A96C428007D4C80 /* GoreblonAttack3.wav in Resources */,
+				5398B0331A96AF9E0012F7AA /* PlayerAttack4.wav in Resources */,
+				5398B0321A96AF9E0012F7AA /* PlayerAttack3.wav in Resources */,
 				53510F9A1A5AF594004FD586 /* IceCircle.atlas in Resources */,
+				5398B0301A96AF9E0012F7AA /* PlayerAttack1.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +439,9 @@
 				53BF3F4A1953E2F900E026D2 /* Fireball.swift in Sources */,
 				5356187919525C17000F2086 /* AppDelegate.swift in Sources */,
 				53BA78261A66FE5C008BCDF7 /* Cure.swift in Sources */,
+				535FF5C21A9770D5007D4C80 /* AoESpell.swift in Sources */,
 				5326113A19BC22F700E0ADC1 /* Enemy.swift in Sources */,
+				535FF5BB1A96E089007D4C80 /* Explosion.swift in Sources */,
 				530CB266196067CF00DA905F /* Player.swift in Sources */,
 				53CC03621A4E6635000CB921 /* Character.swift in Sources */,
 				536439711954C523003AD77E /* MathFunctions.swift in Sources */,

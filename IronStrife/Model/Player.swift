@@ -10,7 +10,6 @@ import SpriteKit
 
 class Player: Character {
     
-    
     class var sharedInstance: Player {
     struct Singleton {
         static let instance = Player()
@@ -18,9 +17,6 @@ class Player: Character {
         return Singleton.instance
     }
 
-    
-    var currentMovementTextures: [SKTexture] = []
-    
     //MARK: Initialization 
     convenience override init(){
         
@@ -32,6 +28,8 @@ class Player: Character {
         self.mana = 100
         self.attackStrength = 25
         self.defense = 10
+        self.attackSoundPrefix = "PlayerAttack"
+        self.numberAttackSounds = 10
         
     }
     
@@ -125,72 +123,6 @@ class Player: Character {
     }
     
     
-    
-    
-    //MARK: Moving and Orientation
-    func setDirection(scenepoint: CGPoint, moving: Bool) {
-        
-        //For the case where you have just shot a fireball
-        if (self.physicsBody?.velocity == CGVector.zeroVector){
-            self.direction = ""
-        }
-        let atlas = Textures.playerTextures
-        
-        //Not the best math here but works
-        let vector = MathFunctions.normalizedVector(self.position, point2: scenepoint)
-        let angle = asinf(Float(vector.dy)/Float(1))
-        switch(angle){
-            
-        case let a where angle >= Float(M_PI_4) && angle <= (3 * Float(M_PI_4)):
-            if (self.direction == "Up"){
-                return
-            }
-            direction = "Up"
-            self.texture = atlas.textureNamed("Up1")
-            currentMovementTextures = upMovementTextures
-            
-        case let a where angle <= Float(M_PI_4) && angle >= -Float(M_PI_4) && (scenepoint.x <= self.position.x):
-            if (self.direction == "Left"){
-                return
-            }
-            direction = "Left"
-            self.texture = atlas.textureNamed("Left1")
-            currentMovementTextures = leftMovementTextures
-
-            
-        case let a where angle <= -Float(M_PI_4) && angle >= -(3 * Float(M_PI_4)):
-            if (self.direction == "Down"){
-                return
-            }
-            direction = "Down"
-            self.texture = atlas.textureNamed("Down1")
-            currentMovementTextures = downMovementTextures
-
-
-        default:
-            if (self.direction == "Right"){
-                return
-            }
-            direction = "Right"
-            self.texture = atlas.textureNamed("Right1")
-            currentMovementTextures = rightMovementTextures
-
-        }
-        if (moving){
-            self.removeActionForKey(direction)
-            let animateAction = SKAction.animateWithTextures(currentMovementTextures, timePerFrame: animationMovementSpeed, resize: true, restore: false)
-            self.runAction(SKAction.repeatActionForever(animateAction), withKey: direction)
-        }
-        
-    }
-    
-    func reachedDestination() -> Bool{
-        if (MathFunctions.calculateDistance(self.position, point2: destination) < 10){
-            return true;
-        }
-        return false;
-    }
-    
     //MARK: Attacking
     /// Attack for Player
     func attackInDirection (direction: UISwipeGestureRecognizerDirection){
@@ -214,16 +146,17 @@ class Player: Character {
         }
     }
     
+    
     //MARK: UpdateLoop
     override func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval) {
+        super.updateWithTimeSinceLastUpdate(timeSince)
         if let sceneChildren = self.scene?.children{
             for child in sceneChildren{
-                if (child is IceCircle || child is Cure){
+                if (child is IceCircle || child is Cure || child is Explosion){
                     child.updateWithTimeSinceLastUpdate(timeSince)
                 }
             }
         }
-
     }
 
     

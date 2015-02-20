@@ -8,6 +8,8 @@
 
 import SpriteKit
 
+let goreblonDeathSound = "GoreblonDeath.wav"
+
 class Goreblon: Enemy {
     
     convenience override init(){
@@ -22,6 +24,8 @@ class Goreblon: Enemy {
         self.attackStrength = 15
         self.defense = 5
         self.colorBlendFactor = 0.5
+        self.attackSoundPrefix = "GoreblonAttack"
+        self.numberAttackSounds = 3
     }
     
     //MARK: PhysicsBody and Delegate
@@ -44,39 +48,7 @@ class Goreblon: Enemy {
     
     //TODO: Check collision with Player Sword
     override func collidedWith(other: SKPhysicsBody) {
-        if (self.isDying){
-            return
-        }
-        let otherNode = other.node
-        if (otherNode is Fireball){
-            let killed = self.applyDamage(Fireball.attackDamage)
-            otherNode?.removeFromParent()
-            if (killed){
-                //TODO: Add score and EXP to player
-            }
-        }
-        else if (otherNode is IceCircle){
-            if (hitByIce){
-                return
-            }
-            let killed = self.applyDamage(IceCircle.attackDamage)
-            self.slowFactor = 1 - IceCircle.slowSpeed
-            self.colorBlendFactor = 0.5
-            self.color = UIColor.blueColor()
-            hitByIce = true
-            //Can only be hit by ice once in 10 seconds
-            //TODO: Set timer for being hit by ice
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-                Int64(5 * Double(NSEC_PER_SEC)))
-            dispatch_after(delayTime, dispatch_get_main_queue()) {
-                self.hitByIce = false
-                self.color = UIColor.whiteColor()
-                self.slowFactor = 1
-            }
-            
-        }
-        
-        
+        super.collidedWith(other)
     }
     
     //MARK: Death
@@ -84,9 +56,10 @@ class Goreblon: Enemy {
         super.performDeath()
         
         //TODO: Death Animation
+        self.runAction(SKAction.playSoundFileNamed(goreblonDeathSound, waitForCompletion: false), completion: { () -> Void in
+            self.removeFromParent()
+        })
         
-        
-        self.removeFromParent()
         
     }
     

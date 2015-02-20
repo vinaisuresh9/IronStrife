@@ -8,6 +8,12 @@
 
 import UIKit
 
+extension NSObject {
+    var theClassName: String {
+        return NSStringFromClass(self.dynamicType).componentsSeparatedByString(".").last!
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             

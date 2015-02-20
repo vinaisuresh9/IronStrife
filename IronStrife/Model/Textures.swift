@@ -47,4 +47,9 @@ class Textures {
         get { return cure.curespell}
     }
     
+    private struct explosion { static let explosion = SKTextureAtlas(named: "FireExplosion")}
+    internal class var explosionTextures: SKTextureAtlas{
+        get { return explosion.explosion}
+    }
+    
 }
