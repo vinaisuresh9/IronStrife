@@ -40,7 +40,7 @@ class IceCircle: AoESpell {
     
     ///Initializes default IceCircle
     convenience init(owner: Player){
-        self.init()
+        self.init(texture: Textures.explosionTextures.textureNamed("IceCircle49"))
         self.owner = owner
         self.configurePhysicsBody()
         self.position = owner.position
@@ -49,16 +49,6 @@ class IceCircle: AoESpell {
             textures.append(atlas.textureNamed("IceCircle\(i)"))
         }
         self.owner?.scene?.addChild(self)
-    }
-    
-    
-    private convenience override init(){
-        self.init(texture: Textures.iceSpellTextures.textureNamed("IceCircle49"), color: UIColor.whiteColor(), size: Textures.iceSpellTextures.textureNamed("IceCircle49").size())
-        
-    }
-    
-    private override init(texture: SKTexture!, color: UIColor!, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
     }
     
     

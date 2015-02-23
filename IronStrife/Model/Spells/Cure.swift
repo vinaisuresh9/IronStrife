@@ -29,7 +29,7 @@ class Cure: SKSpriteNode{
 
     ///Initializes default Cure Spell
     convenience init(owner: Player){
-        self.init()
+        self.init(texture: Textures.cureSpellTextures.textureNamed("Cure1"))
         self.owner = owner
         self.position = owner.position
         
@@ -39,19 +39,6 @@ class Cure: SKSpriteNode{
         self.owner?.scene?.addChild(self)
     }
     
-    
-    private convenience override init(){
-        self.init(texture: Textures.iceSpellTextures.textureNamed("Cure1"), color: UIColor.whiteColor(), size: Textures.iceSpellTextures.textureNamed("Cure1").size())
-        
-    }
-    
-    private override init(texture: SKTexture!, color: UIColor!, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     func run(){
         let animation = SKAction.animateWithTextures(textures, timePerFrame: animationTime, resize: true, restore: false)

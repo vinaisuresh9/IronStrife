@@ -31,10 +31,10 @@ class Fireball: Projectile{
         set{ cost.cost = newValue}
     }
 
-    //MARK: Initializers
+    //MARK: Initializer
     ///Initializes default firemagic icon
     convenience init(direction: CGPoint, owner: Player){
-        self.init()
+        self.init(texture: Textures.fireballTexture)
         self.owner = owner
         self.configurePhysicsBody()
         self.direction = direction
@@ -46,20 +46,16 @@ class Fireball: Projectile{
         
     
     }
-    private convenience override init(){
-        self.init(texture: Textures.fireballTexture, color: UIColor.whiteColor(), size: Textures.fireballTexture.size())
-    }
-    
-    private override init(texture: SKTexture!, color: UIColor!, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
-    }
     
     
     //MARK:Explosion
     func explode() {
-        self.removeFromParent()
-        var explosion = Explosion(owner: self.owner as Player, fireball: self)
+        let owner: Player = self.owner?.copy() as Player
+        var explosion = Explosion(owner: owner, fireball: self)
+        println(explosion.position)
         explosion.run()
+        println(explosion.position)
+        self.removeFromParent()
     }
 
     

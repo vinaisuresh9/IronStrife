@@ -12,7 +12,7 @@ let explosionAudioName = "Explosion.wav"
 
 class Explosion: AoESpell {
     private let atlas = Textures.explosionTextures
-    private let animationTime = 0.1
+    private let animationTime = 0.03
     private var updateInterval: NSTimeInterval{
         get{
             let frameRate = 1/(self.animationTime * Double(Textures.explosionTextures.textureNames.count))
@@ -34,10 +34,10 @@ class Explosion: AoESpell {
     
     ///Initializes default Explosion
     convenience init(owner: Player, fireball: Fireball){
-        self.init()
+        self.init(texture: Textures.explosionTextures.textureNamed("FireExplosion1"))
         self.owner = owner
         self.configurePhysicsBody()
-        self.position = owner.position
+        self.position = CGPointMake(200, 200)
         
         for (var i = 1; i < 8; i++){
             textures.append(atlas.textureNamed("FireExplosion\(i)"))
@@ -47,18 +47,8 @@ class Explosion: AoESpell {
     }
     
     
-    private convenience override init(){
-        self.init(texture: Textures.explosionTextures.textureNamed("FireExplosion1"), color: UIColor.whiteColor(), size: Textures.explosionTextures.textureNamed("FireExplosion1").size())
-    }
-    
-    
-    private override init(texture: SKTexture!, color: UIColor!, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
-    }
-    
-    
     func run(){
-        let animation = SKAction.animateWithTextures(textures, timePerFrame: animationTime, resize: true, restore: false)
+        let animation = SKAction.animateWithTextures(textures, timePerFrame: animationTime, resize: false, restore: false)
         let sound = SKAction.playSoundFileNamed(explosionAudioName, waitForCompletion: false)
         self.runAction(SKAction.group([animation, sound])
             , completion: {
@@ -69,9 +59,8 @@ class Explosion: AoESpell {
     
     //MARK: Update Loop
     func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
-        if (self.updateInterval <= timeSince){
-            self.configurePhysicsBody()
-        }
+        self.configurePhysicsBody()
+        println(self.position)
     }
     
 }
