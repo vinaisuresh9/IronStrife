@@ -20,11 +20,11 @@ enum CollisionBitMask: UInt32 {
     
 }
 
-enum AttackDirection {
-    case Left,
-    Right,
-    Down,
-    Up
+enum Direction: String {
+    case Left = "Left",
+    Right = "Right",
+    Down = "Down",
+    Up = "Up"
 }
 
 
@@ -52,7 +52,7 @@ class Character: SKSpriteNode {
 
     var currentMovementAnimationKey = ""
     var activeAnimationKey = ""
-    var direction = "Down"
+    var direction = Direction.Down
     
     var attackSoundPrefix = ""
     var numberAttackSounds:Int32 = 0
@@ -62,6 +62,8 @@ class Character: SKSpriteNode {
     var upMovementTextures: [SKTexture] = []
     var leftMovementTextures: [SKTexture] = []
     var rightMovementTextures: [SKTexture] = []
+    
+    var currentMovementTextures: [SKTexture] = []
 
     var upAttackTextures: [SKTexture] = []
     var downAttackTextures: [SKTexture] = []
@@ -75,7 +77,7 @@ class Character: SKSpriteNode {
         
     }
     
-    func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
+    override func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
         if (self.actionForKey(currentMovementAnimationKey) != nil){
             checkDestination()
         }
@@ -113,7 +115,7 @@ class Character: SKSpriteNode {
     
     
     //MARK: Attacking 
-    func meleeAttack(direction: AttackDirection){
+    func meleeAttack(direction: Direction){
         if (self.isAttacking){
             return
         }
@@ -123,20 +125,20 @@ class Character: SKSpriteNode {
         var attackAnimation: SKAction
         switch (direction){
             
-        case AttackDirection.Up:
-            self.direction = "Up"
+        case .Up:
+            self.direction = .Up
             attackAnimation = SKAction.animateWithTextures(upAttackTextures, timePerFrame: self.animationAttackSpeed, resize: true, restore: false)
             
-        case AttackDirection.Down:
-            self.direction = "Down"
+        case .Down:
+            self.direction = .Down
             attackAnimation = SKAction.animateWithTextures(downAttackTextures, timePerFrame: self.animationAttackSpeed, resize: true, restore: false)
             
-        case AttackDirection.Right:
-            self.direction = "Right"
+        case .Right:
+            self.direction = .Right
             attackAnimation = SKAction.animateWithTextures(rightAttackTextures, timePerFrame: self.animationAttackSpeed, resize: true, restore: false)
             
-        case AttackDirection.Left:
-            self.direction = "Left"
+        case .Left:
+            self.direction = .Left
             attackAnimation = SKAction.animateWithTextures(leftAttackTextures, timePerFrame: self.animationAttackSpeed, resize: true, restore: false)
             
         default:
@@ -144,10 +146,11 @@ class Character: SKSpriteNode {
             
         }
         
-        self.runAction(attackAnimation, completion: {
+        let sound = SKAction.playSoundFileNamed(self.attackSoundPrefix + "\((rand() % self.numberAttackSounds) + 1).wav", waitForCompletion: false)
+        
+        self.runAction(SKAction.group([sound,attackAnimation]), completion: {
             self.isAttacking = false
         })
-        self.runAction(SKAction.playSoundFileNamed(self.attackSoundPrefix + "\((rand() % self.numberAttackSounds) + 1).wav", waitForCompletion: false))
     }
     
     //MARK: Movement and Orientation
@@ -162,10 +165,21 @@ class Character: SKSpriteNode {
         
         self.destination = point
         
-        self.setDirection(point, moving: true)
-        currentMovementAnimationKey = self.direction
+        let dir = self.directionToPoint(point)
+        if (dir != self.direction) {
+            self.setDirection(dir)
+            self.animateMovementInDirection(dir)
+        }
+        
         self.physicsBody?.velocity = CGVectorMake(velocity.dx * self.movespeed, velocity.dy * self.movespeed)
 
+    }
+    
+    func animateMovementInDirection(dir: Direction) {
+        self.removeActionForKey(currentMovementAnimationKey)
+        currentMovementAnimationKey = self.direction.rawValue
+        let animateAction = SKAction.animateWithTextures(self.currentMovementTextures, timePerFrame: self.animationMovementSpeed, resize: true, restore: false)
+        self.runAction(SKAction.repeatActionForever(animateAction), withKey: currentMovementAnimationKey)
     }
     
     
@@ -185,67 +199,99 @@ class Character: SKSpriteNode {
     }
     
     
-    func setDirection(scenepoint: CGPoint, moving: Bool) {
+    func setDirection(direction: Direction) {
         
-        //For the case where you have just shot a fireball
-        if (self.physicsBody?.velocity == CGVector.zeroVector){
-            self.direction = ""
-        }
         let atlas = SKTextureAtlas(named: self.theClassName)
-        var currentMovementTextures: [SKTexture] = []
+        
+        self.texture = atlas.textureNamed(direction.rawValue + "1")
+        switch (direction) {
+            case .Up:
+                self.direction = .Up
+                currentMovementTextures = self.upMovementTextures
+            
+            case .Down:
+                self.direction = .Down
+                currentMovementTextures = self.downMovementTextures
+
+            case .Right:
+                self.direction = .Right
+                currentMovementTextures = self.rightMovementTextures
+                
+            case .Left:
+                self.direction = .Left
+                currentMovementTextures = self.leftMovementTextures
+            
+        }
         
         //Not the best math here but works
-        let vector = MathFunctions.normalizedVector(self.position, point2: scenepoint)
-        let angle = asinf(Float(vector.dy)/Float(1))
-        switch(angle){
-            
-        case let a where angle >= Float(M_PI_4) && angle <= (3 * Float(M_PI_4)):
-            if (self.direction == "Up"){
-                return
-            }
-            direction = "Up"
-            self.texture = atlas.textureNamed("Up1")
-            currentMovementTextures = upMovementTextures
-            
-        case let a where angle <= Float(M_PI_4) && angle >= -Float(M_PI_4) && (scenepoint.x <= self.position.x):
-            if (self.direction == "Left"){
-                return
-            }
-            direction = "Left"
-            self.texture = atlas.textureNamed("Left1")
-            currentMovementTextures = leftMovementTextures
-            
-            
-        case let a where angle <= -Float(M_PI_4) && angle >= -(3 * Float(M_PI_4)):
-            if (self.direction == "Down"){
-                return
-            }
-            direction = "Down"
-            self.texture = atlas.textureNamed("Down1")
-            currentMovementTextures = downMovementTextures
-            
-            
-        default:
-            if (self.direction == "Right"){
-                return
-            }
-            direction = "Right"
-            self.texture = atlas.textureNamed("Right1")
-            currentMovementTextures = rightMovementTextures
-            
-        }
-        if (moving){
-            self.removeActionForKey(direction)
-            let animateAction = SKAction.animateWithTextures(currentMovementTextures, timePerFrame: animationMovementSpeed, resize: true, restore: false)
-            self.runAction(SKAction.repeatActionForever(animateAction), withKey: direction)
-        }
+//        let vector = MathFunctions.normalizedVector(self.position, point2: scenepoint)
+//        let angle = asinf(Float(vector.dy)/Float(1))
+//        switch(angle){
+//            
+//        case let a where angle >= Float(M_PI_4) && angle <= (3 * Float(M_PI_4)):
+//            if (self.direction == .Up){
+//                return
+//            }
+//            self.direction = .Up
+//            self.texture = atlas.textureNamed("Up1")
+//            currentMovementTextures = self.upMovementTextures
+//            
+//        case let a where angle <= Float(M_PI_4) && angle >= -Float(M_PI_4) && (scenepoint.x <= self.position.x):
+//            if (self.direction == .Left){
+//                return
+//            }
+//            self.direction = .Left
+//            self.texture = atlas.textureNamed("Left1")
+//            currentMovementTextures = self.leftMovementTextures
+//            
+//            
+//        case let a where angle <= -Float(M_PI_4) && angle >= -(3 * Float(M_PI_4)):
+//            if (self.direction == .Down){
+//                return
+//            }
+//            self.direction = .Down
+//            self.texture = atlas.textureNamed("Down1")
+//            currentMovementTextures = self.downMovementTextures
+//            
+//            
+//        default:
+//            if (self.direction == .Right){
+//                return
+//            }
+//            self.direction = .Right
+//            self.texture = atlas.textureNamed("Right1")
+//            currentMovementTextures = self.rightMovementTextures
+//            
+//        }
         
+        
+    }
+    
+    
+    func directionToPoint(point: CGPoint) -> Direction {
+        let vector = MathFunctions.normalizedVector(self.position, point2: point)
+        let angle = asinf(Float(vector.dy)/Float(1))
+        
+        switch (angle) {
+            case let a where angle >= Float(M_PI_4) && angle <= (3 * Float(M_PI_4)):
+                return Direction.Up
+            
+            case let a where angle <= Float(M_PI_4) && angle >= -Float(M_PI_4) && (point.x <= self.position.x):
+                return Direction.Left
+            
+            case let a where angle <= -Float(M_PI_4) && angle >= -(3 * Float(M_PI_4)):
+                return Direction.Down
+
+            default:
+                return Direction.Right
+        }
+
+
     }
     
     
     func stopMoving(){
         self.physicsBody?.velocity = CGVector.zeroVector
-        var scene = self.scene as GameScene
         self.removeAllActions()
         self.destination = self.position
         

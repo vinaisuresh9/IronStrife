@@ -9,10 +9,10 @@
 import SpriteKit
 
 let goreblonDeathSound = "GoreblonDeath.wav"
-
+//
 class Goreblon: Enemy {
     
-    convenience override init(){
+    convenience init(){
         self.init(texture: Textures.goreblonTextures.textureNamed("Down1"), color: UIColor.whiteColor(), size: Textures.goreblonTextures.textureNamed("Down1").size())
     }
     
@@ -20,12 +20,17 @@ class Goreblon: Enemy {
         super.init(texture: texture, color: color, size: size)
         self.configurePhysicsBody()
         self.initializeTextureArrays()
+        self.movespeed = 150
         self.health = 100
         self.attackStrength = 15
         self.defense = 5
         self.colorBlendFactor = 0.5
         self.attackSoundPrefix = "GoreblonAttack"
         self.numberAttackSounds = 3
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     //MARK: PhysicsBody and Delegate
@@ -65,7 +70,7 @@ class Goreblon: Enemy {
     
     //MARK: Setup
     override func initializeTextureArrays(){
-        let atlas = Textures.playerTextures
+        let atlas = Textures.goreblonTextures
         
         for (var i = 2; i < 5; i++){
             downMovementTextures.append(atlas.textureNamed("Down\(i)"))
@@ -74,7 +79,7 @@ class Goreblon: Enemy {
             upMovementTextures.append(atlas.textureNamed("Up\(i)"))
         }
         
-        for (var j = 1; j < 6; j++){
+        for (var j = 1; j < 5; j++){
             leftAttackTextures.append(atlas.textureNamed("LeftAttack\(j)"))
             rightAttackTextures.append(atlas.textureNamed("RightAttack\(j)"))
             upAttackTextures.append(atlas.textureNamed("UpAttack\(j)"))

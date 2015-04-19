@@ -93,7 +93,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     
     func tapped (sender: UITapGestureRecognizer){
         let point = sender.locationInView(self.view)
-        player.castFireball(self.view!.convertPoint(point, toScene: self))        
+        player.castFireball(self.view!.convertPoint(point, toScene: self))
     }
     
     
@@ -122,24 +122,24 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
         //Can use contactNormal vector to decided pushback vector for gettingHit animation
         let nodeA = contact.bodyA.node
         if (nodeA is Character){
-            let body = nodeA as Character
+            let body = nodeA as! Character
             body.collidedWith(contact.bodyB)
         }
         
         let nodeB = contact.bodyB.node
         if (nodeB is Character){
-            let body = nodeB as Character
+            let body = nodeB as! Character
             body.collidedWith(contact.bodyA)
         }
         
         //TODO: Need to handle projectile collisions with non-characters
         if (contact.bodyA.node is Fireball) {
-            let fireball = contact.bodyA.node as Fireball
+            let fireball = contact.bodyA.node as! Fireball
             fireball.explode()
         }
         
         if (contact.bodyB.node is Fireball) {
-            let fireball = contact.bodyB.node as Fireball
+            let fireball = contact.bodyB.node as! Fireball
             fireball.explode()
         }
     }
@@ -154,7 +154,12 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     
     //Overridden
     func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
-        self.player.updateWithTimeSinceLastUpdate(timeSince)
+        for node in self.children {
+            if (node is SKSpriteNode) {
+                node.updateWithTimeSinceLastUpdate(timeSince)
+            }
+        }
+        //self.player.updateWithTimeSinceLastUpdate(timeSince)
     }
 
 }

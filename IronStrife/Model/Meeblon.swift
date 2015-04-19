@@ -9,7 +9,7 @@
 import SpriteKit
 
 class Meeblon: Enemy {
-    convenience override init(){
+    convenience init(){
         self.init(texture: Textures.meeblonTextures.textureNamed("Down1"), color: UIColor.whiteColor(), size: Textures.meeblonTextures.textureNamed("Down1").size())
     }
     
@@ -21,6 +21,10 @@ class Meeblon: Enemy {
         self.defense = 5
         self.colorBlendFactor = 0.5
 
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     //MARK: PhysicsBody and Delegate
@@ -67,7 +71,7 @@ class Meeblon: Enemy {
     
     //MARK: Setup
     override func initializeTextureArrays(){
-        let atlas = Textures.playerTextures
+        let atlas = Textures.meeblonTextures
         
         for (var i = 2; i < 5; i++){
             downMovementTextures.append(atlas.textureNamed("Down\(i)"))

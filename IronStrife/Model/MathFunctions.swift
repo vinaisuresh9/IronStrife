@@ -52,6 +52,5 @@ class MathFunctions {
         return tempVector
     }
     
-    
    
 }

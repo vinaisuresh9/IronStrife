@@ -12,7 +12,7 @@ let explosionAudioName = "Explosion.wav"
 
 class Explosion: AoESpell {
     private let atlas = Textures.explosionTextures
-    private let animationTime = 0.03
+    private let animationTime = 0.09
     private var updateInterval: NSTimeInterval{
         get{
             let frameRate = 1/(self.animationTime * Double(Textures.explosionTextures.textureNames.count))
@@ -43,7 +43,7 @@ class Explosion: AoESpell {
             textures.append(atlas.textureNamed("FireExplosion\(i)"))
         }
         
-        self.owner?.scene?.addChild(self)
+        Player.sharedInstance.scene?.addChild(self)
     }
     
     
@@ -58,9 +58,8 @@ class Explosion: AoESpell {
     
     
     //MARK: Update Loop
-    func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
+    override func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
         self.configurePhysicsBody()
-        println(self.position)
     }
     
 }

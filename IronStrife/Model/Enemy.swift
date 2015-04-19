@@ -8,6 +8,8 @@
 
 import SpriteKit
 
+let enemyChaseDistance:CGFloat = 250
+
 enum AttackType{
     case Melee,
     Range
@@ -17,6 +19,7 @@ class Enemy: Character {
     var type: AttackType = AttackType.Melee
     var hitByIce = false
     var hitByExplosion = false
+    var state: AIBehavior = WanderBehavior()
 
     override func collidedWith(other: SKPhysicsBody) {
         if (self.isDying){
@@ -25,7 +28,7 @@ class Enemy: Character {
         let otherNode = other.node
         if (otherNode is Fireball){
             let killed = self.applyDamage(Fireball.attackDamage)
-            let fireball = otherNode as Fireball
+            let fireball = otherNode as! Fireball
             fireball.explode()
             if (killed){
                 //TODO: Add score and EXP to player
@@ -53,5 +56,26 @@ class Enemy: Character {
         }
     }
     
+    //MARK: Distance Functions
+    func distanceFromPlayer() -> CGFloat {
+        var distance = MathFunctions.calculateDistance(self.position, point2: Player.sharedInstance.position)
+        return CGFloat(distance)
+    }
+    
+    func directionToPlayer() -> Direction {
+        return self.directionToPoint(Player.sharedInstance.position)
+    }
+    
+    //MARK: State Switching
+    func changeState(state: AIBehavior) {
+        self.state = state
+    }
+    
+    //MARK: Update Loop
+    override func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval) {
+        super.updateWithTimeSinceLastUpdate(timeSince)
+        
+        self.state.run(self)
+    }
     
 }

@@ -43,20 +43,16 @@ class Fireball: Projectile{
         self.runAction(SKAction.sequence([SKAction.waitForDuration(3), SKAction.removeFromParent()]))
         let normalVector = MathFunctions.normalizedVector(self.position, point2: direction)
         self.physicsBody?.velocity = CGVectorMake(normalVector.dx * CGFloat(Fireball.moveSpeed), normalVector.dy * CGFloat(Fireball.moveSpeed))
-        
-    
     }
     
     
     //MARK:Explosion
     func explode() {
-        let owner: Player = self.owner?.copy() as Player
-        var explosion = Explosion(owner: owner, fireball: self)
-        println(explosion.position)
-        explosion.run()
-        println(explosion.position)
-        self.removeFromParent()
+        if let owner = self.owner as? Player {
+            var explosion = Explosion(owner: owner, fireball: self)
+            explosion.run()
+            self.removeFromParent()
+        }
     }
-
     
 }

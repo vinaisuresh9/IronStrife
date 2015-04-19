@@ -19,10 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             
     var window: UIWindow?
 
+    func applicationDidFinishLaunching(application: UIApplication) {
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
-        // Override point for customization after application launch.
-        return true
     }
 
     func applicationWillResignActive(application: UIApplication) {

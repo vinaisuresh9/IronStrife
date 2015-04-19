@@ -18,7 +18,7 @@ class Player: Character {
     }
 
     //MARK: Initialization 
-    convenience override init(){
+    convenience init(){
         
         self.init(texture: Textures.playerTextures.textureNamed("Down1"))
         self.position = position
@@ -28,6 +28,7 @@ class Player: Character {
         self.mana = 100
         self.attackStrength = 25
         self.defense = 10
+        self.movespeed = 250
         self.attackSoundPrefix = "PlayerAttack"
         self.numberAttackSounds = 10
         
@@ -39,7 +40,7 @@ class Player: Character {
         center.y -= self.frame.height * 1/6
         self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.width - 10, self.frame.height * 2/3), center: center)
         self.physicsBody?.allowsRotation = false;
-        self.physicsBody?.collisionBitMask = CollisionBitMask.Enemy.rawValue
+        self.physicsBody?.collisionBitMask = CollisionBitMask.Enemy.rawValue | CollisionBitMask.Other.rawValue
         self.physicsBody?.contactTestBitMask = CollisionBitMask.EnemyProjectile.rawValue
         self.physicsBody?.categoryBitMask = CollisionBitMask.Player.rawValue
         self.physicsBody?.mass = 0
@@ -95,7 +96,7 @@ class Player: Character {
         }
         
         self.stopMoving()
-        self.setDirection(point, moving: false)
+        self.setDirection(self.directionToPoint(point))
         let fire = Fireball(direction: point, owner: self)
         self.scene?.addChild(fire)
     }
@@ -129,16 +130,16 @@ class Player: Character {
         switch (direction){
             
         case UISwipeGestureRecognizerDirection.Up:
-            self.meleeAttack(AttackDirection.Up)
+            self.meleeAttack(.Up)
             
         case UISwipeGestureRecognizerDirection.Down:
-            self.meleeAttack(AttackDirection.Down)
+            self.meleeAttack(.Down)
             
         case UISwipeGestureRecognizerDirection.Right:
-            self.meleeAttack(AttackDirection.Right)
+            self.meleeAttack(.Right)
             
         case UISwipeGestureRecognizerDirection.Left:
-            self.meleeAttack(AttackDirection.Left)
+            self.meleeAttack(.Left)
             
         default:
             break

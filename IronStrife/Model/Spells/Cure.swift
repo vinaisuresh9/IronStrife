@@ -48,8 +48,8 @@ class Cure: SKSpriteNode{
     }
     
     //MARK: Update Loop
-    func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
-        if let owner = owner?{
+    override func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
+        if let owner = owner {
             self.position = owner.position
         }
     }

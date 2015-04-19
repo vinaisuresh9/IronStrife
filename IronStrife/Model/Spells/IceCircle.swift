@@ -43,6 +43,7 @@ class IceCircle: AoESpell {
         self.init(texture: Textures.explosionTextures.textureNamed("IceCircle49"))
         self.owner = owner
         self.configurePhysicsBody()
+        let scene = self.owner?.scene
         self.position = owner.position
         
         for (var i = 49; i >= 1; i-=3){
@@ -62,7 +63,7 @@ class IceCircle: AoESpell {
     }
     
     //MARK: Update Loop
-    func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
+    override func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
         if (self.updateInterval <= timeSince){
             self.configurePhysicsBody()
         }
