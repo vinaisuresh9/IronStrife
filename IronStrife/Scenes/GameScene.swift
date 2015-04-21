@@ -124,23 +124,27 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
         if (nodeA is Character){
             let body = nodeA as! Character
             body.collidedWith(contact.bodyB)
+            return
         }
         
         let nodeB = contact.bodyB.node
         if (nodeB is Character){
             let body = nodeB as! Character
             body.collidedWith(contact.bodyA)
+            return
         }
         
         //TODO: Need to handle projectile collisions with non-characters
         if (contact.bodyA.node is Fireball) {
             let fireball = contact.bodyA.node as! Fireball
             fireball.explode()
+            return
         }
         
         if (contact.bodyB.node is Fireball) {
             let fireball = contact.bodyB.node as! Fireball
             fireball.explode()
+            return
         }
     }
 

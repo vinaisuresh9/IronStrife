@@ -42,11 +42,15 @@ class Character: SKSpriteNode {
     
     ///Variable that determines how much to to slow down velocity
     var slowFactor: Float = 1
+    var movespeed: Float = 250
+    var effectiveMovespeed: CGFloat {
+        get {
+            return CGFloat(self.movespeed * slowFactor)
+        }
+    }
     
     let animationAttackSpeed = 0.05
     let animationMovementSpeed = 0.1
-    
-    var movespeed: CGFloat = 250
     
     var destination: CGPoint = CGPointMake(0, 0)
 
@@ -83,10 +87,23 @@ class Character: SKSpriteNode {
         }
     }
     
+    func configureStats() {
+        
+    }
+    
     
     //MARK: Physics Bodies (Overridden)
     func configurePhysicsBody(){
-        
+        var center = CGPointZero
+        center.y -= self.frame.height * 1/6
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.width - 10, self.frame.height * 2/3), center: center)
+        self.physicsBody?.mass = 0
+        self.setScale(0.8)
+        self.physicsBody!.allowsRotation = false;
+        self.physicsBody?.restitution = 0
+        self.physicsBody?.angularDamping = 0
+        self.physicsBody?.linearDamping = 0
+        self.physicsBody?.friction = 0
     }
     
     func collidedWith (other: SKPhysicsBody){
@@ -96,7 +113,7 @@ class Character: SKSpriteNode {
     //MARK: Applying Damage
     //TODO: Figure out pushback animations and how damage is applied
     func applyDamage(damage: Float) -> Bool{
-        self.health -= damage
+        self.health -= (damage - self.defense)
         
         if (self.health <= 0){
             self.performDeath()
@@ -159,19 +176,17 @@ class Character: SKSpriteNode {
         //var movementAction = SKAction.moveTo(scenePoint, duration: time)
         //player.runAction(movementAction, withKey: player.direction)
         
-        let distance = MathFunctions.calculateDistance(self.position, point2: point)
-        let time = distance/Double(self.movespeed)
-        var velocity = MathFunctions.normalizedVector(self.position, point2: point)
-        
         self.destination = point
         
         let dir = self.directionToPoint(point)
-        if (dir != self.direction) {
+        if (dir != self.direction || self.actionForKey(currentMovementAnimationKey) == nil) {
             self.setDirection(dir)
             self.animateMovementInDirection(dir)
         }
         
-        self.physicsBody?.velocity = CGVectorMake(velocity.dx * self.movespeed, velocity.dy * self.movespeed)
+        var velocityVector = MathFunctions.normalizedVector(self.position, point2: point)
+        
+        self.physicsBody?.velocity = CGVectorMake(velocityVector.dx * self.effectiveMovespeed , velocityVector.dy * self.effectiveMovespeed)
 
     }
     
@@ -222,49 +237,6 @@ class Character: SKSpriteNode {
                 currentMovementTextures = self.leftMovementTextures
             
         }
-        
-        //Not the best math here but works
-//        let vector = MathFunctions.normalizedVector(self.position, point2: scenepoint)
-//        let angle = asinf(Float(vector.dy)/Float(1))
-//        switch(angle){
-//            
-//        case let a where angle >= Float(M_PI_4) && angle <= (3 * Float(M_PI_4)):
-//            if (self.direction == .Up){
-//                return
-//            }
-//            self.direction = .Up
-//            self.texture = atlas.textureNamed("Up1")
-//            currentMovementTextures = self.upMovementTextures
-//            
-//        case let a where angle <= Float(M_PI_4) && angle >= -Float(M_PI_4) && (scenepoint.x <= self.position.x):
-//            if (self.direction == .Left){
-//                return
-//            }
-//            self.direction = .Left
-//            self.texture = atlas.textureNamed("Left1")
-//            currentMovementTextures = self.leftMovementTextures
-//            
-//            
-//        case let a where angle <= -Float(M_PI_4) && angle >= -(3 * Float(M_PI_4)):
-//            if (self.direction == .Down){
-//                return
-//            }
-//            self.direction = .Down
-//            self.texture = atlas.textureNamed("Down1")
-//            currentMovementTextures = self.downMovementTextures
-//            
-//            
-//        default:
-//            if (self.direction == .Right){
-//                return
-//            }
-//            self.direction = .Right
-//            self.texture = atlas.textureNamed("Right1")
-//            currentMovementTextures = self.rightMovementTextures
-//            
-//        }
-        
-        
     }
     
     
@@ -285,8 +257,6 @@ class Character: SKSpriteNode {
             default:
                 return Direction.Right
         }
-
-
     }
     
     

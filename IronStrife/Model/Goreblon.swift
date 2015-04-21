@@ -9,7 +9,7 @@
 import SpriteKit
 
 let goreblonDeathSound = "GoreblonDeath.wav"
-//
+
 class Goreblon: Enemy {
     
     convenience init(){
@@ -20,11 +20,7 @@ class Goreblon: Enemy {
         super.init(texture: texture, color: color, size: size)
         self.configurePhysicsBody()
         self.initializeTextureArrays()
-        self.movespeed = 150
-        self.health = 100
-        self.attackStrength = 15
-        self.defense = 5
-        self.colorBlendFactor = 0.5
+        self.configureStats()
         self.attackSoundPrefix = "GoreblonAttack"
         self.numberAttackSounds = 3
     }
@@ -33,21 +29,20 @@ class Goreblon: Enemy {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func configureStats() {
+        self.movespeed = 150
+        self.health = 100
+        self.attackStrength = 15
+        self.defense = 5
+        self.colorBlendFactor = 0.5
+    }
+    
     //MARK: PhysicsBody and Delegate
     override func configurePhysicsBody() {
-        self.setScale(0.8)
-        var center = CGPointZero
-        center.y -= self.frame.height * 1/6
-        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.width - 10, self.frame.height * 2/3), center: center)
-        self.physicsBody!.allowsRotation = false;
+        super.configurePhysicsBody()
         self.physicsBody!.collisionBitMask = CollisionBitMask.Enemy.rawValue | CollisionBitMask.Other.rawValue | CollisionBitMask.Player.rawValue
         self.physicsBody?.contactTestBitMask = CollisionBitMask.Player.rawValue
         self.physicsBody!.categoryBitMask = CollisionBitMask.Enemy.rawValue
-        self.physicsBody?.mass = 0
-        self.physicsBody?.restitution = 0
-        self.physicsBody?.angularDamping = 0
-        self.physicsBody?.linearDamping = 0
-        self.physicsBody?.friction = 0
         
     }
     
@@ -61,10 +56,12 @@ class Goreblon: Enemy {
         super.performDeath()
         
         //TODO: Death Animation
-        self.runAction(SKAction.playSoundFileNamed(goreblonDeathSound, waitForCompletion: false), completion: { () -> Void in
+        let soundAction = SKAction.playSoundFileNamed(goreblonDeathSound, waitForCompletion: false)
+        let remove = SKAction.runBlock { () -> Void in
             self.removeFromParent()
-        })
+        }
         
+        self.runAction(SKAction.sequence([soundAction, remove]))
         
     }
     

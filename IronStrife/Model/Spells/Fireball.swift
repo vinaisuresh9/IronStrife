@@ -48,11 +48,9 @@ class Fireball: Projectile{
     
     //MARK:Explosion
     func explode() {
-        if let owner = self.owner as? Player {
-            var explosion = Explosion(owner: owner, fireball: self)
-            explosion.run()
-            self.removeFromParent()
-        }
+//        var explosion = Explosion(fireball: self)
+//        explosion.run()
+        self.removeFromParent()
     }
     
 }

@@ -32,8 +32,8 @@ class IceCircle: AoESpell {
         set{ cost.cost = newValue}
     }
     
-    private struct slow { static var slow:Float = 40}
-    class var slowSpeed: Float{
+    private struct slow { static var slow:Float = 0.4}
+    class var slowFactor: Float{
         get{ return slow.slow;}
         set{ slow.slow = newValue}
     }
@@ -43,7 +43,6 @@ class IceCircle: AoESpell {
         self.init(texture: Textures.explosionTextures.textureNamed("IceCircle49"))
         self.owner = owner
         self.configurePhysicsBody()
-        let scene = self.owner?.scene
         self.position = owner.position
         
         for (var i = 49; i >= 1; i-=3){
