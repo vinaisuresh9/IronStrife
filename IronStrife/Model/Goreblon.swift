@@ -57,11 +57,10 @@ class Goreblon: Enemy {
         
         //TODO: Death Animation
         let soundAction = SKAction.playSoundFileNamed(goreblonDeathSound, waitForCompletion: false)
-        let remove = SKAction.runBlock { () -> Void in
-            self.removeFromParent()
-        }
         
-        self.runAction(SKAction.sequence([soundAction, remove]))
+        self.runAction(soundAction, completion: { () -> Void in
+            self.removeFromParent()
+        })
         
     }
     
