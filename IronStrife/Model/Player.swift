@@ -24,31 +24,29 @@ class Player: Character {
         self.position = position
         configurePhysicsBody()
         initializeTextureArrays()
-        self.health = 200
-        self.mana = 100
-        self.attackStrength = 25
-        self.defense = 10
-        self.movespeed = 250
+        self.configureStats()
         self.attackSoundPrefix = "PlayerAttack"
         self.numberAttackSounds = 10
         
     }
     
+    override func configureStats() {
+        self.health = 200
+        self.mana = 100
+        self.attackStrength = 25
+        self.defense = 10
+        self.movespeed = 250
+    }
+    
     override func configurePhysicsBody() {
-        self.setScale(0.8)
-        var center = CGPointZero
-        center.y -= self.frame.height * 1/6
-        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.width - 10, self.frame.height * 2/3), center: center)
+        super.configurePhysicsBody()
         self.physicsBody?.allowsRotation = false;
         self.physicsBody?.collisionBitMask = CollisionBitMask.Enemy.rawValue | CollisionBitMask.Other.rawValue
         self.physicsBody?.contactTestBitMask = CollisionBitMask.EnemyProjectile.rawValue
         self.physicsBody?.categoryBitMask = CollisionBitMask.Player.rawValue
-        self.physicsBody?.mass = 0
-        self.physicsBody?.restitution = 0
-        self.physicsBody?.angularDamping = 0
-        self.physicsBody?.linearDamping = 0
-        self.physicsBody?.friction = 0
     }
+    
+    
     
     override func initializeTextureArrays(){
         let atlas = Textures.playerTextures

@@ -15,6 +15,9 @@ enum AttackType{
     Range
 }
 
+let explosionHitCoolDown: Double = 2
+let iceCircleHitCoolDown: Double = 3
+
 class Enemy: Character {
     var type: AttackType = AttackType.Melee
     var hitByIce = false
@@ -38,22 +41,39 @@ class Enemy: Character {
             if (hitByIce){
                 return
             }
+            
             let killed = self.applyDamage(IceCircle.attackDamage)
-            self.slowFactor = 1 - IceCircle.slowSpeed
-            self.colorBlendFactor = 0.5
+            
+            self.slowFactor = 1 - IceCircle.slowFactor
             self.color = UIColor.blueColor()
             hitByIce = true
-            //Can only be hit by ice once in 5 seconds
-            //TODO: Set timer for being hit by ice
+            
             let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-                Int64(5 * Double(NSEC_PER_SEC)))
+                Int64(iceCircleHitCoolDown * Double(NSEC_PER_SEC)))
             dispatch_after(delayTime, dispatch_get_main_queue()) {
                 self.hitByIce = false
                 self.color = UIColor.whiteColor()
                 self.slowFactor = 1
             }
-            
         }
+        else if (otherNode is Explosion) {
+            if (hitByExplosion) {
+                return
+            }
+            
+            let killed = self.applyDamage(Explosion.attackDamage)
+            self.color = UIColor.redColor()
+            hitByExplosion = true
+            
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+                Int64(explosionHitCoolDown * Double(NSEC_PER_SEC)))
+            dispatch_after(delayTime, dispatch_get_main_queue()) {
+                self.hitByExplosion = false
+                self.color = UIColor.whiteColor()
+            }
+        }
+        
+        println(self.health)
     }
     
     //MARK: Distance Functions

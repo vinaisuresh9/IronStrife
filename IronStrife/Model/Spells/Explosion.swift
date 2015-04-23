@@ -20,6 +20,8 @@ class Explosion: AoESpell {
         }
     }
     
+    private var parentFireball: Fireball?
+    
     //Always half damage of the fireball
     private struct attack {
         static var attack:Float {
@@ -33,17 +35,17 @@ class Explosion: AoESpell {
     }
     
     ///Initializes default Explosion
-    convenience init(owner: Player, fireball: Fireball){
+    convenience init(fireball: Fireball){
         self.init(texture: Textures.explosionTextures.textureNamed("FireExplosion1"))
-        self.owner = owner
         self.configurePhysicsBody()
-        self.position = CGPointMake(200, 200)
-        
+        self.parentFireball = fireball
+        self.position = fireball.position
+    
         for (var i = 1; i < 8; i++){
-            textures.append(atlas.textureNamed("FireExplosion\(i)"))
+            self.textures.append(atlas.textureNamed("FireExplosion\(i)"))
         }
         
-        Player.sharedInstance.scene?.addChild(self)
+        self.parentFireball?.scene?.addChild(self)
     }
     
     
@@ -59,7 +61,9 @@ class Explosion: AoESpell {
     
     //MARK: Update Loop
     override func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
-        self.configurePhysicsBody()
+        if let fireballPosition = self.parentFireball?.position {
+            self.position = fireballPosition
+        }
     }
     
 }
