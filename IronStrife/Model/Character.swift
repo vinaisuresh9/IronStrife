@@ -96,7 +96,7 @@ class Character: SKSpriteNode {
     func configurePhysicsBody(){
         var center = CGPointZero
         center.y -= self.frame.height * 1/6
-        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.width - 10, self.frame.height * 2/3), center: center)
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.width - 15, self.frame.height * 2/3), center: center)
         self.physicsBody?.mass = 0
         self.setScale(0.8)
         self.physicsBody!.allowsRotation = false;

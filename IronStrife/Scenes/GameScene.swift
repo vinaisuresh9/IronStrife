@@ -159,11 +159,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     //Overridden
     func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
         for node in self.children {
-            if (node is SKSpriteNode) {
+            if (node is Character) {
                 node.updateWithTimeSinceLastUpdate(timeSince)
             }
         }
-        //self.player.updateWithTimeSinceLastUpdate(timeSince)
     }
 
 }
