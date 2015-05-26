@@ -21,17 +21,25 @@ class TownScene: GameScene {
         var firstEnemy = Goreblon()
         firstEnemy.position = CGPoint(x: 10, y: CGRectGetMidY(self.frame))
         self.addChild(firstEnemy)
+        
+        self.leftScene = Room1Scene.unarchiveFromFile("Room1Scene") as? Room1Scene
+        self.leftScene?.scaleMode = SKSceneScaleMode.AspectFill
+        
     }
     
+    override func createEdges() {
+        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: CGRectMake(10, 10, self.frame.width-20, self.frame.height-20))
+        self.physicsBody?.contactTestBitMask = CollisionBitMask.Player.rawValue
+    }
     
+    override func didBeginContact(contact: SKPhysicsContact) {
+        super.didBeginContact(contact)
+        
+        
+    }
     
     override func update(currentTime: CFTimeInterval) {
         super.update(currentTime)
     }
-    
-//    override func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval) {
-//        //Update physics bodies for all ice spells
-//
-//    }
     
 }

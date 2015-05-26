@@ -28,6 +28,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     let player = Player.sharedInstance
     var currentMovementAnimationKey = ""
     
+    var upScene: GameScene?
+    var downScene: GameScene?
+    var rightScene: GameScene?
+    var leftScene: GameScene?
     
     func setupScene()
     {
@@ -40,6 +44,11 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
         background.size = self.frame.size
         background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
         self.addChild(background)
+        
+    }
+    
+    //Overridden
+    func createEdges() {
         
     }
     
@@ -147,6 +156,26 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
             return
         }
     }
+    
+    
+    //MARK: Transitioning Scenes
+    func transitionUp (newScene: GameScene) {
+        
+    }
+    
+    func transitionRight (newScene:GameScene) {
+        let transition = SKTransition.pushWithDirection(SKTransitionDirection.Right, duration: 0.1)
+        self.view?.presentScene(newScene, transition: transition)
+
+    }
+    
+    func transitionLeft (newScene:GameScene) {
+    }
+    
+    func transitionDown(newScene:GameScene) {
+        
+    }
+    
 
     
     //MARK: Update Loop
