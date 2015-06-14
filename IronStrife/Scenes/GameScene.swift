@@ -15,10 +15,11 @@ import UIKit
 
 
 enum WorldLayer: CGFloat {
-    case Background = 1,
-    Other,
-    Projectile,
-    Character
+    case Background = 0.1,
+    Other = 0.2,
+    Shadow = 0.3,
+    Projectile = 0.4,
+    Character = 0.5
     
 }
 
@@ -44,6 +45,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
         background.size = self.frame.size
         background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
         self.addChild(background)
+        
+
         
     }
     
@@ -127,7 +130,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     
     
     func didBeginContact(contact: SKPhysicsContact) {
-        println("Contact")
         //Can use contactNormal vector to decided pushback vector for gettingHit animation
         let nodeA = contact.bodyA.node
         if (nodeA is Character){

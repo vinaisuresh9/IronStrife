@@ -11,25 +11,16 @@ import SpriteKit
 class Cure: SKSpriteNode{
     
     var textures: [SKTexture] = []
-    private let atlas = Textures.cureSpellTextures
+    private let atlas = Textures.curespellTextures
     var owner: Player?
     private let animationTime = 0.03
     
-    private struct cure  { static var cure:Float = 40}
-    class var curePercent: Float{
-        get{ return cure.cure;}
-        set{ cure.cure = newValue}
-    }
-    
-    private struct cost { static var cost:Float = 40}
-    class var spellCost: Float{
-        get{ return cost.cost;}
-        set{ cost.cost = newValue}
-    }
+    static var curePercent: Float = 40;
+    static var spellCost: Float = 40;
 
     ///Initializes default Cure Spell
     convenience init(owner: Player){
-        self.init(texture: Textures.cureSpellTextures.textureNamed("Cure1"))
+        self.init(texture: Textures.curespellTextures.textureNamed("Cure1"))
         self.owner = owner
         self.position = owner.position
         

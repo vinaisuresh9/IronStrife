@@ -16,10 +16,28 @@ class Player: Character {
         }
         return Singleton.instance
     }
+    
+    static var maxHealth: Float = 200
+    static var maxMana: Float = 100
+    
+    override var health: Float {
+        didSet {
+            if (health > Player.maxHealth) {
+                health = Player.maxHealth
+            }
+        }
+    }
+    
+    override var mana: Float {
+        didSet {
+            if (mana > Player.maxMana) {
+                mana = Player.maxMana
+            }
+        }
+    }
 
     //MARK: Initialization 
     convenience init(){
-        
         self.init(texture: Textures.playerTextures.textureNamed("Down1"))
         self.position = position
         configurePhysicsBody()
@@ -116,9 +134,11 @@ class Player: Character {
             return
         }
         
-        //self.stopMoving()
         let cure = Cure(owner: self)
         cure.run()
+        
+        self.health += (Cure.curePercent * Player.maxHealth)
+        
     }
     
     

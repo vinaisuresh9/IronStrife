@@ -12,44 +12,20 @@ class Textures {
     
 
     //This would be a class variable when supported
-    private struct goreblon { static let goreblon = SKTextureAtlas(named: "Goreblon") }
-    internal class var goreblonTextures: SKTextureAtlas{
-        get{ return goreblon.goreblon}
-    }
+    static let goreblonTextures = SKTextureAtlas(named: "Goreblon")
     
-    private struct meeblon { static let meeblon = SKTextureAtlas(named: "Meeblon") }
-    internal class var meeblonTextures: SKTextureAtlas{
-        get{ return meeblon.meeblon}
-    }
+    static let meeblonTextures = SKTextureAtlas(named: "Meeblon")
     
-    private struct skelaton { static let skelaton = SKTextureAtlas(named: "Skelaton") }
-    internal class var skelatonTextures: SKTextureAtlas{
-        get{ return skelaton.skelaton}
-    }
+    static let skelatonTextures = SKTextureAtlas(named: "Skelaton")
     
-    private struct player { static let player = SKTextureAtlas(named: "Player")}
-    internal class var playerTextures: SKTextureAtlas{
-        get { return player.player}
-    }
+    static let playerTextures = SKTextureAtlas(named: "Player")
     
-    private struct fireball { static let fireball = SKTexture(imageNamed: "firemagic")}
-    internal class var fireballTexture: SKTexture{
-        get { return fireball.fireball}
-    }
+    static let fireballTexture = SKTexture(imageNamed: "firemagic")
     
-    private struct icespell { static let icespell = SKTextureAtlas(named: "IceCircle")}
-    internal class var iceSpellTextures: SKTextureAtlas{
-        get { return icespell.icespell}
-    }
+    static let icespellTextures = SKTextureAtlas(named: "IceCircle")
     
-    private struct cure { static let curespell = SKTextureAtlas(named: "Cure")}
-    internal class var cureSpellTextures: SKTextureAtlas{
-        get { return cure.curespell}
-    }
+    static let curespellTextures = SKTextureAtlas(named: "Cure")
     
-    private struct explosion { static let explosion = SKTextureAtlas(named: "FireExplosion")}
-    internal class var explosionTextures: SKTextureAtlas{
-        get { return explosion.explosion}
-    }
+    static let explosionTextures = SKTextureAtlas(named: "FireExplosion")
     
 }

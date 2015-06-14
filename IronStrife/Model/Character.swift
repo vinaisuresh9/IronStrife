@@ -61,6 +61,8 @@ class Character: SKSpriteNode {
     var attackSoundPrefix = ""
     var numberAttackSounds:Int32 = 0
     
+    let shadowNode = SKSpriteNode(imageNamed: "Shadow")
+    
     //MARK: Texture Arrays
     var downMovementTextures: [SKTexture] = []
     var upMovementTextures: [SKTexture] = []
@@ -77,6 +79,24 @@ class Character: SKSpriteNode {
     var getHitAnimationFrames: [SKTexture] = []
     var deathAnimationFrames: [SKTexture] = []
     
+    
+    //MARK: Initialization
+    override init(texture: SKTexture!, color: UIColor!, size: CGSize) {
+        super.init(texture: texture, color: color, size: size)
+        
+        self.zPosition = WorldLayer.Character.rawValue
+        
+        self.addChild(self.shadowNode)
+        self.shadowNode.zPosition = -WorldLayer.Shadow.rawValue
+        self.shadowNode.setScale(0.8)
+        self.shadowNode.position = CGPointMake(0, -self.frame.size.height * 0.6)
+        
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func initializeTextureArrays(){
         
     }
@@ -85,6 +105,8 @@ class Character: SKSpriteNode {
         if (self.actionForKey(currentMovementAnimationKey) != nil){
             checkDestination()
         }
+        
+        self.shadowNode.position = CGPointMake(0, -self.frame.size.height * 0.6)
     }
     
     func configureStats() {
@@ -187,7 +209,6 @@ class Character: SKSpriteNode {
         var velocityVector = MathFunctions.normalizedVector(self.position, point2: point)
         
         self.physicsBody?.velocity = CGVectorMake(velocityVector.dx * self.effectiveMovespeed , velocityVector.dy * self.effectiveMovespeed)
-
     }
     
     func animateMovementInDirection(dir: Direction) {
@@ -262,7 +283,8 @@ class Character: SKSpriteNode {
     
     func stopMoving(){
         self.physicsBody?.velocity = CGVector.zeroVector
-        self.removeAllActions()
+        self.removeActionForKey(currentMovementAnimationKey)
+        currentMovementAnimationKey = ""
         self.destination = self.position
         
     }
