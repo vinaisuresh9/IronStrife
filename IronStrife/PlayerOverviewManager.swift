@@ -43,8 +43,9 @@ class PlayerOverviewManager: NSObject {
         healthBar.setScale(0.6)
         healthBar.colorBlendFactor = 1
         healthBar.color = UIColor.greenColor()
-        let height = self.currentScene?.frame.size.height
-        healthBar.position = CGPointMake(150, height!-150)
+        if let height = self.currentScene?.frame.size.height {
+            healthBar.position = CGPointMake(150, height - 150)
+        }
         self.currentScene?.addChild(healthBar)
         healthBar.zPosition = 1
         
@@ -53,8 +54,11 @@ class PlayerOverviewManager: NSObject {
         manaBar.setScale(0.6)
         manaBar.colorBlendFactor = 1
         manaBar.color = UIColor.blueColor()
-        let width = self.currentScene?.frame.size.width
-        manaBar.position = CGPointMake(width! - 150, height! - 150)
+        if let width = self.currentScene?.frame.size.width,
+            let height = self.currentScene?.frame.size.height {
+            manaBar.position = CGPointMake(width - 150, height - 150)
+
+        }
         self.currentScene?.addChild(manaBar)
         manaBar.zPosition = 1
     }

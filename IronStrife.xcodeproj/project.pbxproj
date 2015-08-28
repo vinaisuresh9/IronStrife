@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		530340C91B139F2300950675 /* Room1Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530340C81B139F2300950675 /* Room1Scene.swift */; };
+		530340CC1B13BA3000950675 /* Room1Scene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 530340CA1B139F7400950675 /* Room1Scene.sks */; };
 		530CB266196067CF00DA905F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530CB265196067CF00DA905F /* Player.swift */; };
 		5326113A19BC22F700E0ADC1 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5326113919BC22F700E0ADC1 /* Enemy.swift */; };
 		53510F8C1A5A1844004FD586 /* Player.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 53510F8B1A5A1844004FD586 /* Player.atlas */; };
@@ -70,6 +72,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		530340C81B139F2300950675 /* Room1Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room1Scene.swift; sourceTree = "<group>"; };
+		530340CA1B139F7400950675 /* Room1Scene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Room1Scene.sks; sourceTree = "<group>"; };
 		530CB265196067CF00DA905F /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		5326113919BC22F700E0ADC1 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		53510F8B1A5A1844004FD586 /* Player.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Player.atlas; sourceTree = "<group>"; };
@@ -239,8 +243,10 @@
 			children = (
 				536F8A5E195FDD9300EFBDE5 /* TownScene.sks */,
 				5356187A19525C17000F2086 /* GameScene.sks */,
+				530340CA1B139F7400950675 /* Room1Scene.sks */,
 				5356187C19525C17000F2086 /* GameScene.swift */,
 				536F8A5C195FDB0F00EFBDE5 /* TownScene.swift */,
+				530340C81B139F2300950675 /* Room1Scene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -429,6 +435,7 @@
 				5398B0361A96AF9E0012F7AA /* PlayerAttack7.wav in Resources */,
 				5398B0371A96AF9E0012F7AA /* PlayerAttack8.wav in Resources */,
 				5398B0261A96AF6A0012F7AA /* PlayerAttack10.wav in Resources */,
+				530340CC1B13BA3000950675 /* Room1Scene.sks in Resources */,
 				53510F8E1A5A18E0004FD586 /* Meeblon.atlas in Resources */,
 				535FF5B61A96C428007D4C80 /* GoreblonAttack3.wav in Resources */,
 				5398B0331A96AF9E0012F7AA /* PlayerAttack4.wav in Resources */,
@@ -467,6 +474,7 @@
 				53BA78261A66FE5C008BCDF7 /* Cure.swift in Sources */,
 				535FF5C21A9770D5007D4C80 /* AoESpell.swift in Sources */,
 				5326113A19BC22F700E0ADC1 /* Enemy.swift in Sources */,
+				530340C91B139F2300950675 /* Room1Scene.swift in Sources */,
 				539114BF1AE3F2BA00C8E00F /* ChaseBehavior.swift in Sources */,
 				535FF5BB1A96E089007D4C80 /* Explosion.swift in Sources */,
 				530CB266196067CF00DA905F /* Player.swift in Sources */,

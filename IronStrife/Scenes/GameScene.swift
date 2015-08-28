@@ -29,6 +29,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     let player = Player.sharedInstance
     var currentMovementAnimationKey = ""
     
+    var upScene: GameScene?
+    var downScene: GameScene?
+    var rightScene: GameScene?
+    var leftScene: GameScene?
     
     func setupScene()
     {
@@ -41,8 +45,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
         background.size = self.frame.size
         background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
         self.addChild(background)
-        
-
+    }
+    
+    //Overridden
+    func createEdges() {
         
     }
     
@@ -121,7 +127,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     
     
     func didBeginContact(contact: SKPhysicsContact) {
-        println("Contact")
         //Can use contactNormal vector to decided pushback vector for gettingHit animation
         let nodeA = contact.bodyA.node
         if (nodeA is Character){
@@ -150,6 +155,26 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
             return
         }
     }
+    
+    
+    //MARK: Transitioning Scenes
+    func transitionUp (newScene: GameScene) {
+        
+    }
+    
+    func transitionRight (newScene:GameScene) {
+        let transition = SKTransition.pushWithDirection(SKTransitionDirection.Right, duration: 0.1)
+        self.view?.presentScene(newScene, transition: transition)
+
+    }
+    
+    func transitionLeft (newScene:GameScene) {
+    }
+    
+    func transitionDown(newScene:GameScene) {
+        
+    }
+    
 
     
     //MARK: Update Loop
@@ -162,11 +187,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     //Overridden
     func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
         for node in self.children {
-            if (node is SKSpriteNode) {
+            if (node is Character) {
                 node.updateWithTimeSinceLastUpdate(timeSince)
             }
         }
-        //self.player.updateWithTimeSinceLastUpdate(timeSince)
     }
 
 }

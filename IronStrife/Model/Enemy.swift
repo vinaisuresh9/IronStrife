@@ -73,7 +73,6 @@ class Enemy: Character {
             }
         }
         
-        println(self.health)
     }
     
     //MARK: Distance Functions
