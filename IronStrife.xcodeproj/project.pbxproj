@@ -32,6 +32,7 @@
 		535FF5C01A96F127007D4C80 /* IceCircle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 535FF5BF1A96F127007D4C80 /* IceCircle.wav */; };
 		535FF5C21A9770D5007D4C80 /* AoESpell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535FF5C11A9770D5007D4C80 /* AoESpell.swift */; };
 		536439711954C523003AD77E /* MathFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536439701954C523003AD77E /* MathFunctions.swift */; };
+		5368C7461B055A690078B3FF /* PlayerOverviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5368C7451B055A690078B3FF /* PlayerOverviewManager.swift */; };
 		536F8A5D195FDB0F00EFBDE5 /* TownScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536F8A5C195FDB0F00EFBDE5 /* TownScene.swift */; };
 		536F8A5F195FDD9300EFBDE5 /* TownScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 536F8A5E195FDD9300EFBDE5 /* TownScene.sks */; };
 		537CC1951A4FA26A0072F6A4 /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537CC1941A4FA26A0072F6A4 /* Textures.swift */; };
@@ -98,6 +99,7 @@
 		535FF5BF1A96F127007D4C80 /* IceCircle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = IceCircle.wav; sourceTree = "<group>"; };
 		535FF5C11A9770D5007D4C80 /* AoESpell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AoESpell.swift; sourceTree = "<group>"; };
 		536439701954C523003AD77E /* MathFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathFunctions.swift; sourceTree = "<group>"; };
+		5368C7451B055A690078B3FF /* PlayerOverviewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerOverviewManager.swift; sourceTree = "<group>"; };
 		536F8A5C195FDB0F00EFBDE5 /* TownScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TownScene.swift; sourceTree = "<group>"; };
 		536F8A5E195FDD9300EFBDE5 /* TownScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TownScene.sks; sourceTree = "<group>"; };
 		537CC1941A4FA26A0072F6A4 /* Textures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			children = (
 				53BF3F4B1953E2FE00E026D2 /* Model */,
 				5356187819525C17000F2086 /* AppDelegate.swift */,
+				5368C7451B055A690078B3FF /* PlayerOverviewManager.swift */,
 				536F8A5B195FDA8A00EFBDE5 /* Scenes */,
 				5356187E19525C17000F2086 /* GameViewController.swift */,
 				5356188019525C17000F2086 /* Main.storyboard */,
@@ -468,6 +471,7 @@
 				535FF5BB1A96E089007D4C80 /* Explosion.swift in Sources */,
 				530CB266196067CF00DA905F /* Player.swift in Sources */,
 				53CC03621A4E6635000CB921 /* Character.swift in Sources */,
+				5368C7461B055A690078B3FF /* PlayerOverviewManager.swift in Sources */,
 				536439711954C523003AD77E /* MathFunctions.swift in Sources */,
 				536F8A5D195FDB0F00EFBDE5 /* TownScene.swift in Sources */,
 			);

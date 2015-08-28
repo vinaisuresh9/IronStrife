@@ -11,36 +11,24 @@ import SpriteKit
 let iceAudioName = "IceCircle.wav"
 
 class IceCircle: AoESpell {
-    private let atlas = Textures.iceSpellTextures
+    private let atlas = Textures.icespellTextures
     private let animationTime = 0.03
     private var updateInterval: NSTimeInterval{
         get{
-            let frameRate = 1/(self.animationTime * Double(Textures.iceSpellTextures.textureNames.count))
+            let frameRate = 1/(self.animationTime * Double(Textures.icespellTextures.textureNames.count))
             return animationTime/frameRate
         }
     }
     
-    private struct attack { static var attack:Float = 10}
-    class var attackDamage: Float{
-        get{ return attack.attack;}
-        set{ attack.attack = newValue}
-    }
+    static var attackDamage:Float = 10
     
-    private struct cost { static var cost:Float = 60}
-    class var spellCost: Float{
-        get{ return cost.cost;}
-        set{ cost.cost = newValue}
-    }
+    static var spellCost:Float = 60
     
-    private struct slow { static var slow:Float = 0.4}
-    class var slowFactor: Float{
-        get{ return slow.slow;}
-        set{ slow.slow = newValue}
-    }
+    static var slowFactor:Float = 0.4
     
     ///Initializes default IceCircle
     convenience init(owner: Player){
-        self.init(texture: Textures.explosionTextures.textureNamed("IceCircle49"))
+        self.init(texture: Textures.icespellTextures.textureNamed("IceCircle49"))
         self.owner = owner
         self.configurePhysicsBody()
         self.position = owner.position

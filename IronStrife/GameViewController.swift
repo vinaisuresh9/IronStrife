@@ -28,6 +28,8 @@ extension SKSpriteNode {
 }
 
 class GameViewController: UIViewController {
+    
+    let playerOverviewManager:PlayerOverviewManager = PlayerOverviewManager()
 
     override func viewWillLayoutSubviews(){
         super.viewWillLayoutSubviews()
@@ -46,7 +48,11 @@ class GameViewController: UIViewController {
             
             skView.presentScene(scene)
             
+            playerOverviewManager.currentScene = scene
+            
         }
+        
+        
     }
 
     override func shouldAutorotate() -> Bool {

@@ -8,28 +8,14 @@
 
 import SpriteKit
 
-
 class Fireball: Projectile{
     var direction = CGPointZero
     
-    //This would be a class variable when supported (need to be set in subclasses
-    private struct movespeed { static var moveSpeed:Float = 400}
-    class var moveSpeed: Float{
-        get{ return movespeed.moveSpeed;}
-        set{ movespeed.moveSpeed = newValue}
-    }
+    static var moveSpeed:Float = 400
     
-    private struct attack { static var attack:Float = 25}
-    class var attackDamage: Float{
-        get{ return attack.attack;}
-        set{ attack.attack = newValue}
-    }
+    static var attackDamage:Float = 25
     
-    private struct cost { static var cost:Float = 15}
-    class var spellCost: Float{
-        get{ return cost.cost;}
-        set{ cost.cost = newValue}
-    }
+    static var spellCost:Float = 15
 
     //MARK: Initializer
     ///Initializes default firemagic icon
