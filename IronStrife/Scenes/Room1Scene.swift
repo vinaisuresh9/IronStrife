@@ -15,6 +15,7 @@ class Room1Scene: GameScene {
         super.setupScene()
         
         /* Setup your scene here */
+        player.removeFromParent()
         player.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         self.addChild(player)
         

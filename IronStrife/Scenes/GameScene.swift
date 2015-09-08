@@ -34,12 +34,15 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     var rightScene: GameScene?
     var leftScene: GameScene?
     
+    let transitionTime: NSTimeInterval = 1
+    
     func setupScene()
     {
         //Do some initial setup
         self.initializeGestureRecognizers()
         self.physicsWorld.gravity = CGVector.zeroVector
         self.physicsWorld.contactDelegate = self
+        self.createEdges()
         
         let background = SKSpriteNode(imageNamed: "Background.png")
         background.size = self.frame.size
@@ -120,9 +123,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     
     func longPress (sender: UILongPressGestureRecognizer){
         let point = sender.locationInView(self.view)
-        let scenePoint = self.view!.convertPoint(point, toScene: self)
-        player.moveTo(scenePoint)
-        
+        if let view = self.view {
+            let scenePoint = view.convertPoint(point, fromScene: self)
+            player.moveTo(scenePoint)
+        }
     }
     
     
@@ -159,20 +163,24 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     
     //MARK: Transitioning Scenes
     func transitionUp (newScene: GameScene) {
-        
+        let transition = SKTransition.pushWithDirection(SKTransitionDirection.Down, duration: transitionTime)
+        self.view?.presentScene(newScene, transition: transition)
     }
     
     func transitionRight (newScene:GameScene) {
-        let transition = SKTransition.pushWithDirection(SKTransitionDirection.Right, duration: 0.1)
+        let transition = SKTransition.pushWithDirection(SKTransitionDirection.Left, duration: transitionTime)
         self.view?.presentScene(newScene, transition: transition)
 
     }
     
     func transitionLeft (newScene:GameScene) {
+        let transition = SKTransition.pushWithDirection(SKTransitionDirection.Right, duration: transitionTime)
+        self.view?.presentScene(newScene, transition: transition)
     }
     
     func transitionDown(newScene:GameScene) {
-        
+        let transition = SKTransition.pushWithDirection(SKTransitionDirection.Up, duration: transitionTime)
+        self.view?.presentScene(newScene, transition: transition)
     }
     
 
