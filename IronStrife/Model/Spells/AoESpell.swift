@@ -22,6 +22,7 @@ class AoESpell: SKSpriteNode {
         self.physicsBody?.linearDamping = 0
         self.physicsBody?.friction = 0
         self.physicsBody?.categoryBitMask = CollisionBitMask.Spell.rawValue
+        self.physicsBody?.collisionBitMask = CollisionBitMask.Enemy.rawValue
         self.physicsBody?.contactTestBitMask = CollisionBitMask.Enemy.rawValue
         self.physicsBody?.dynamic = false
     }

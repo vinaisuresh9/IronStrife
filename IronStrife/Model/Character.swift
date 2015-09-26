@@ -16,7 +16,8 @@ enum CollisionBitMask: UInt32 {
     EnemyProjectile     = 4,
     Enemy               = 8,
     Other               = 16,
-    Spell               = 32
+    Spell               = 32,
+    Wall                = 64
     
 }
 
