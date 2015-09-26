@@ -38,7 +38,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     {
         //Do some initial setup
         self.initializeGestureRecognizers()
-        self.physicsWorld.gravity = CGVector.zeroVector
+        self.physicsWorld.gravity = CGVector.zero
         self.physicsWorld.contactDelegate = self
         
         let background = SKSpriteNode(imageNamed: "Background.png")
@@ -54,37 +54,37 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     
     func initializeGestureRecognizers(){
         
-        var tapGesture = UITapGestureRecognizer(target: self, action: "tapped:")
+        let tapGesture = UITapGestureRecognizer(target: self, action: "tapped:")
         tapGesture.numberOfTapsRequired = 1
         self.view?.addGestureRecognizer(tapGesture)
         
-        var twoFingerTapGesture = UITapGestureRecognizer(target: self, action: "twoFingerTap:")
+        let twoFingerTapGesture = UITapGestureRecognizer(target: self, action: "twoFingerTap:")
         twoFingerTapGesture.numberOfTouchesRequired = 2
         self.view?.addGestureRecognizer(twoFingerTapGesture)
         
-        var twoFingerLongPressGesture = UILongPressGestureRecognizer(target: self, action: "twoFingerLongPress:")
+        let twoFingerLongPressGesture = UILongPressGestureRecognizer(target: self, action: "twoFingerLongPress:")
         twoFingerLongPressGesture.numberOfTouchesRequired = 2
         twoFingerLongPressGesture.minimumPressDuration = 0.1
         twoFingerLongPressGesture.allowableMovement = 5
         self.view?.addGestureRecognizer(twoFingerLongPressGesture)
         
-        var movementGesture = UILongPressGestureRecognizer(target: self, action: "longPress:")
+        let movementGesture = UILongPressGestureRecognizer(target: self, action: "longPress:")
         movementGesture.minimumPressDuration = 0.3
         self.view?.addGestureRecognizer(movementGesture)
         
-        var upSwipeGesture = UISwipeGestureRecognizer(target: self, action: "swiped:")
+        let upSwipeGesture = UISwipeGestureRecognizer(target: self, action: "swiped:")
         upSwipeGesture.direction = UISwipeGestureRecognizerDirection.Up
         self.view?.addGestureRecognizer(upSwipeGesture)
         
-        var rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: "swiped:")
+        let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: "swiped:")
         rightSwipeGesture.direction = UISwipeGestureRecognizerDirection.Right
         self.view?.addGestureRecognizer(rightSwipeGesture)
         
-        var downSwipeGesture = UISwipeGestureRecognizer(target: self, action: "swiped:")
+        let downSwipeGesture = UISwipeGestureRecognizer(target: self, action: "swiped:")
         downSwipeGesture.direction = UISwipeGestureRecognizerDirection.Down
         self.view?.addGestureRecognizer(downSwipeGesture)
         
-        var leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: "swiped:")
+        let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: "swiped:")
         leftSwipeGesture.direction = UISwipeGestureRecognizerDirection.Left
         self.view?.addGestureRecognizer(leftSwipeGesture)
         
@@ -185,7 +185,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     }
     
     //Overridden
-    func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
+    override func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
         for node in self.children {
             if (node is Character) {
                 node.updateWithTimeSinceLastUpdate(timeSince)

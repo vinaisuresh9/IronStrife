@@ -18,7 +18,7 @@ class TownScene: GameScene {
         player.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         self.addChild(player)
         
-        var firstEnemy = Goreblon()
+        let firstEnemy = Goreblon()
         firstEnemy.position = CGPoint(x: 10, y: CGRectGetMidY(self.frame))
         self.addChild(firstEnemy)
         

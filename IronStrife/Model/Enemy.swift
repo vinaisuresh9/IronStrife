@@ -77,7 +77,7 @@ class Enemy: Character {
     
     //MARK: Distance Functions
     func distanceFromPlayer() -> CGFloat {
-        var distance = MathFunctions.calculateDistance(self.position, point2: Player.sharedInstance.position)
+        let distance = MathFunctions.calculateDistance(self.position, point2: Player.sharedInstance.position)
         return CGFloat(distance)
     }
     

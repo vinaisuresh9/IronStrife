@@ -23,7 +23,6 @@
 		5356187F19525C17000F2086 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5356187E19525C17000F2086 /* GameViewController.swift */; };
 		5356188219525C17000F2086 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5356188019525C17000F2086 /* Main.storyboard */; };
 		5356188419525C17000F2086 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5356188319525C17000F2086 /* Images.xcassets */; };
-		5356189019525C17000F2086 /* IronStrifeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5356188F19525C17000F2086 /* IronStrifeTests.swift */; };
 		535FF5B41A96C428007D4C80 /* GoreblonAttack1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 535FF5B01A96C428007D4C80 /* GoreblonAttack1.wav */; };
 		535FF5B51A96C428007D4C80 /* GoreblonAttack2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 535FF5B11A96C428007D4C80 /* GoreblonAttack2.wav */; };
 		535FF5B61A96C428007D4C80 /* GoreblonAttack3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 535FF5B21A96C428007D4C80 /* GoreblonAttack3.wav */; };
@@ -91,8 +90,6 @@
 		5356188119525C17000F2086 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5356188319525C17000F2086 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5356188919525C17000F2086 /* IronStrifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IronStrifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5356188E19525C17000F2086 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5356188F19525C17000F2086 /* IronStrifeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IronStrifeTests.swift; sourceTree = "<group>"; };
 		535FF5B01A96C428007D4C80 /* GoreblonAttack1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = GoreblonAttack1.wav; path = "Goreblon Sounds/GoreblonAttack1.wav"; sourceTree = "<group>"; };
 		535FF5B11A96C428007D4C80 /* GoreblonAttack2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = GoreblonAttack2.wav; path = "Goreblon Sounds/GoreblonAttack2.wav"; sourceTree = "<group>"; };
 		535FF5B21A96C428007D4C80 /* GoreblonAttack3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = GoreblonAttack3.wav; path = "Goreblon Sounds/GoreblonAttack3.wav"; sourceTree = "<group>"; };
@@ -162,7 +159,6 @@
 			isa = PBXGroup;
 			children = (
 				5356187519525C16000F2086 /* IronStrife */,
-				5356188C19525C17000F2086 /* IronStrifeTests */,
 				5356187419525C16000F2086 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -197,23 +193,6 @@
 			children = (
 				5398B0231A96AF500012F7AA /* Audio Sounds */,
 				5356187719525C17000F2086 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		5356188C19525C17000F2086 /* IronStrifeTests */ = {
-			isa = PBXGroup;
-			children = (
-				5356188F19525C17000F2086 /* IronStrifeTests.swift */,
-				5356188D19525C17000F2086 /* Supporting Files */,
-			);
-			path = IronStrifeTests;
-			sourceTree = "<group>";
-		};
-		5356188D19525C17000F2086 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				5356188E19525C17000F2086 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -377,6 +356,8 @@
 		5356186B19525C16000F2086 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Vinai Suresh";
 				TargetAttributes = {
@@ -489,7 +470,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5356189019525C17000F2086 /* IronStrifeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
