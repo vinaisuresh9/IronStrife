@@ -43,7 +43,6 @@ class MathFunctions {
         default:
             return nil
         }
-        
     }
     
     //Normalize Vector Method!!!
@@ -56,6 +55,4 @@ class MathFunctions {
         
         return tempVector
     }
-    
-   
 }

@@ -28,6 +28,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     var lastUpdateTimeInterval: NSTimeInterval = 0
     let player = Player.sharedInstance
     var currentMovementAnimationKey = ""
+    var startPoint:CGPoint = CGPointZero
     
     var upScene: GameScene?
     var downScene: GameScene?
