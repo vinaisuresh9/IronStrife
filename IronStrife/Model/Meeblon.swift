@@ -13,7 +13,7 @@ class Meeblon: Enemy {
         self.init(texture: Textures.meeblonTextures.textureNamed("Down1"), color: UIColor.whiteColor(), size: Textures.meeblonTextures.textureNamed("Down1").size())
     }
     
-    override init(texture: SKTexture!, color: UIColor!, size: CGSize) {
+    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
         self.configurePhysicsBody()
         self.configureStats()

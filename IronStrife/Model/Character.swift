@@ -82,7 +82,7 @@ class Character: SKSpriteNode {
     
     
     //MARK: Initialization
-    override init(texture: SKTexture!, color: UIColor!, size: CGSize) {
+    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
         
         self.zPosition = WorldLayer.Character.rawValue
@@ -207,7 +207,7 @@ class Character: SKSpriteNode {
             self.animateMovementInDirection(dir)
         }
         
-        var velocityVector = MathFunctions.normalizedVector(self.position, point2: point)
+        let velocityVector = MathFunctions.normalizedVector(self.position, point2: point)
         
         self.physicsBody?.velocity = CGVectorMake(velocityVector.dx * self.effectiveMovespeed , velocityVector.dy * self.effectiveMovespeed)
     }
@@ -267,13 +267,13 @@ class Character: SKSpriteNode {
         let angle = asinf(Float(vector.dy)/Float(1))
         
         switch (angle) {
-            case let a where angle >= Float(M_PI_4) && angle <= (3 * Float(M_PI_4)):
+            case _ where angle >= Float(M_PI_4) && angle <= (3 * Float(M_PI_4)):
                 return Direction.Up
             
-            case let a where angle <= Float(M_PI_4) && angle >= -Float(M_PI_4) && (point.x <= self.position.x):
+            case _ where angle <= Float(M_PI_4) && angle >= -Float(M_PI_4) && (point.x <= self.position.x):
                 return Direction.Left
             
-            case let a where angle <= -Float(M_PI_4) && angle >= -(3 * Float(M_PI_4)):
+            case _ where angle <= -Float(M_PI_4) && angle >= -(3 * Float(M_PI_4)):
                 return Direction.Down
 
             default:
@@ -283,7 +283,7 @@ class Character: SKSpriteNode {
     
     
     func stopMoving(){
-        self.physicsBody?.velocity = CGVector.zeroVector
+        self.physicsBody?.velocity = CGVector.zero
         self.removeActionForKey(currentMovementAnimationKey)
         currentMovementAnimationKey = ""
         self.destination = self.position

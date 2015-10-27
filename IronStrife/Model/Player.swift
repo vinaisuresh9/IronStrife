@@ -95,8 +95,8 @@ class Player: Character {
     /**
     Checks available mana
 
-    :param: cost current spell cost
-    :returns: true of available or false if not
+    - parameter cost: current spell cost
+    - returns: true of available or false if not
 
     */
     func checkMana(cost: Float) -> Bool{

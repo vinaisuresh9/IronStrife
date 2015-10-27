@@ -14,7 +14,12 @@ class MathFunctions {
         if (point1 == point2){
             return 0
         }
-        return Double(sqrtf(Float(point1.x - point2.x) * Float(point1.x - point2.x) + Float(point1.y - point2.y) * Float(point1.y - point2.y)))
+        
+        let squareX = Float(point1.x - point2.x) * Float(point1.x - point2.x)
+        let squareY = Float(point1.y - point2.y) * Float(point1.y - point2.y)
+        
+        let squareRoot = sqrtf(squareX + squareY)
+        return Double(squareRoot)
     }
     
     //Change to use vectors instead of points

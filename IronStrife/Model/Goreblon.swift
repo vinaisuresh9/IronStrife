@@ -16,7 +16,7 @@ class Goreblon: Enemy {
         self.init(texture: Textures.goreblonTextures.textureNamed("Down1"), color: UIColor.whiteColor(), size: Textures.goreblonTextures.textureNamed("Down1").size())
     }
     
-    private override init(texture: SKTexture!, color: UIColor!, size: CGSize) {
+    private override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
         self.configurePhysicsBody()
         self.initializeTextureArrays()

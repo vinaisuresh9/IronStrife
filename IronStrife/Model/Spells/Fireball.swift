@@ -34,7 +34,7 @@ class Fireball: Projectile{
     
     //MARK:Explosion
     func explode() {
-        var explosion = Explosion(fireball: self)
+        let explosion = Explosion(fireball: self)
         explosion.run()
         self.removeFromParent()
     }
