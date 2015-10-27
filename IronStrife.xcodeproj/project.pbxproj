@@ -60,16 +60,6 @@
 		53F3831F1AD0A5C500BE489E /* AIBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F3831E1AD0A5C500BE489E /* AIBehavior.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		5356188A19525C17000F2086 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5356186B19525C16000F2086 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5356187219525C16000F2086;
-			remoteInfo = IronStrife;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		530340C81B139F2300950675 /* Room1Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room1Scene.swift; sourceTree = "<group>"; };
 		530340CA1B139F7400950675 /* Room1Scene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Room1Scene.sks; sourceTree = "<group>"; };
@@ -89,7 +79,6 @@
 		5356187E19525C17000F2086 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		5356188119525C17000F2086 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5356188319525C17000F2086 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		5356188919525C17000F2086 /* IronStrifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IronStrifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		535FF5B01A96C428007D4C80 /* GoreblonAttack1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = GoreblonAttack1.wav; path = "Goreblon Sounds/GoreblonAttack1.wav"; sourceTree = "<group>"; };
 		535FF5B11A96C428007D4C80 /* GoreblonAttack2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = GoreblonAttack2.wav; path = "Goreblon Sounds/GoreblonAttack2.wav"; sourceTree = "<group>"; };
 		535FF5B21A96C428007D4C80 /* GoreblonAttack3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = GoreblonAttack3.wav; path = "Goreblon Sounds/GoreblonAttack3.wav"; sourceTree = "<group>"; };
@@ -135,13 +124,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5356188619525C17000F2086 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -167,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				5356187319525C16000F2086 /* IronStrife.app */,
-				5356188919525C17000F2086 /* IronStrifeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -332,24 +313,6 @@
 			productReference = 5356187319525C16000F2086 /* IronStrife.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5356188819525C17000F2086 /* IronStrifeTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5356189619525C17000F2086 /* Build configuration list for PBXNativeTarget "IronStrifeTests" */;
-			buildPhases = (
-				5356188519525C17000F2086 /* Sources */,
-				5356188619525C17000F2086 /* Frameworks */,
-				5356188719525C17000F2086 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5356188B19525C17000F2086 /* PBXTargetDependency */,
-			);
-			name = IronStrifeTests;
-			productName = IronStrifeTests;
-			productReference = 5356188919525C17000F2086 /* IronStrifeTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -364,10 +327,6 @@
 					5356187219525C16000F2086 = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = 935PGDMS7Y;
-					};
-					5356188819525C17000F2086 = {
-						CreatedOnToolsVersion = 6.0;
-						TestTargetID = 5356187219525C16000F2086;
 					};
 				};
 			};
@@ -385,7 +344,6 @@
 			projectRoot = "";
 			targets = (
 				5356187219525C16000F2086 /* IronStrife */,
-				5356188819525C17000F2086 /* IronStrifeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -426,13 +384,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5356188719525C17000F2086 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -466,22 +417,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5356188519525C17000F2086 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		5356188B19525C17000F2086 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5356187219525C16000F2086 /* IronStrife */;
-			targetProxy = 5356188A19525C17000F2086 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5356188019525C17000F2086 /* Main.storyboard */ = {
@@ -605,42 +541,6 @@
 			};
 			name = Release;
 		};
-		5356189719525C17000F2086 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/IronStrife.app/IronStrife";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = IronStrifeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				METAL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-			};
-			name = Debug;
-		};
-		5356189819525C17000F2086 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/IronStrife.app/IronStrife";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = IronStrifeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				METAL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -658,15 +558,6 @@
 			buildConfigurations = (
 				5356189419525C17000F2086 /* Debug */,
 				5356189519525C17000F2086 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5356189619525C17000F2086 /* Build configuration list for PBXNativeTarget "IronStrifeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5356189719525C17000F2086 /* Debug */,
-				5356189819525C17000F2086 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
