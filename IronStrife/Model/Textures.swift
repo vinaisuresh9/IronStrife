@@ -22,6 +22,8 @@ class Textures {
     
     static let fireballTexture = SKTexture(imageNamed: "firemagic")
     
+    static let treeTexture = SKTexture(imageNamed: "Tree")
+    
     static let icespellTextures = SKTextureAtlas(named: "IceCircle")
     
     static let curespellTextures = SKTextureAtlas(named: "Cure")

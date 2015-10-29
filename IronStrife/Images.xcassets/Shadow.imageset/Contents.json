@@ -2,8 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "Shadow.png"
+      "filename" : "Shadow.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",

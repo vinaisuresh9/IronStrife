@@ -12,7 +12,7 @@ class AoESpell: SKSpriteNode {
     var owner: Player?
     var textures: [SKTexture] = []
     
-    func configurePhysicsBody(){
+    override func configurePhysicsBody(){
         self.setScale(0.8)
         self.physicsBody = SKPhysicsBody(circleOfRadius: self.frame.width/2)
         self.physicsBody?.allowsRotation = false

@@ -98,7 +98,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
         
     }
     
-    
     func swiped (sender: UISwipeGestureRecognizer){
         player.attackInDirection(sender.direction)
     }
@@ -125,7 +124,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     func longPress (sender: UILongPressGestureRecognizer){
         let point = sender.locationInView(self.view)
         if let view = self.view {
-            let scenePoint = view.convertPoint(point, fromScene: self)
+            let scenePoint = view.convertPoint(point, toScene: self)
             player.moveTo(scenePoint)
         }
     }

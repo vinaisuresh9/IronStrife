@@ -42,7 +42,7 @@ class Enemy: Character {
                 return
             }
             
-            let killed = self.applyDamage(IceCircle.attackDamage)
+            _ = self.applyDamage(IceCircle.attackDamage)
             
             self.slowFactor = 1 - IceCircle.slowFactor
             self.color = UIColor.blueColor()

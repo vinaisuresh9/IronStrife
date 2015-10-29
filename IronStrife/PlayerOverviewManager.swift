@@ -36,7 +36,7 @@ class PlayerOverviewManager: NSObject {
     
     
     func configureOverlay() {
-        let border = SKShapeNode()
+        _ = SKShapeNode()
         //border.path = UIBezierPath.
         
         let healthBar = SKSpriteNode(imageNamed: "HealthBar.png")

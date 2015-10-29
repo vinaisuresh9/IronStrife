@@ -8,9 +8,6 @@
 
 import SpriteKit
 
-let explosionSound = SKAction.playSoundFileNamed("Explosion.wav", waitForCompletion: false)
-
-
 class Explosion: AoESpell {
     private let atlas = Textures.explosionTextures
     private let animationTime = 0.09
@@ -53,7 +50,7 @@ class Explosion: AoESpell {
     
     func run(){
         let animation = SKAction.animateWithTextures(textures, timePerFrame: animationTime, resize: false, restore: false)
-        self.runAction(SKAction.group([animation, explosionSound])
+        self.runAction(SKAction.group([animation, Sounds.explosionSound])
             , completion: {
             self.removeFromParent()
         })

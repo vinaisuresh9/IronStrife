@@ -95,7 +95,7 @@ class Character: SKSpriteNode {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     func initializeTextureArrays(){
@@ -116,18 +116,6 @@ class Character: SKSpriteNode {
     
     
     //MARK: Physics Bodies (Overridden)
-    func configurePhysicsBody(){
-        var center = CGPointZero
-        center.y -= self.frame.height * 1/6
-        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.width - 15, self.frame.height * 2/3), center: center)
-        self.physicsBody?.mass = 0
-        self.setScale(0.8)
-        self.physicsBody!.allowsRotation = false;
-        self.physicsBody?.restitution = 0
-        self.physicsBody?.angularDamping = 0
-        self.physicsBody?.linearDamping = 0
-        self.physicsBody?.friction = 0
-    }
     
     func collidedWith (other: SKPhysicsBody){
 
@@ -180,9 +168,6 @@ class Character: SKSpriteNode {
         case .Left:
             self.direction = .Left
             attackAnimation = SKAction.animateWithTextures(leftAttackTextures, timePerFrame: self.animationAttackSpeed, resize: true, restore: false)
-            
-        default:
-            break
             
         }
         
