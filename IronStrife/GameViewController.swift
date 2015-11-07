@@ -32,30 +32,30 @@ extension SKNode {
 
 class GameViewController: UIViewController {
     
-    let playerOverviewManager:PlayerOverviewManager = PlayerOverviewManager()
-
     override func viewWillLayoutSubviews(){
         super.viewWillLayoutSubviews()
-
-        if let scene = TownScene.unarchiveFromFile("TownScene") as? TownScene {
-            // Configure the view.
-            let skView = self.view as! SKView
-            skView.showsFPS = true
-            skView.showsNodeCount = true
-            
-            /* Sprite Kit applies additional optimizations to improve rendering performance */
-            skView.ignoresSiblingOrder = true
-            
-            /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = .AspectFill
-            
-            skView.presentScene(scene)
-            
-            playerOverviewManager.currentScene = scene
-            
-        }
         
-        
+        SKTextureAtlas.preloadTextureAtlases(Textures.allTextureAtlases, withCompletionHandler: { () -> Void in
+            SKTexture.preloadTextures(Textures.allTextures, withCompletionHandler: { () -> Void in
+                if let scene = TownScene.unarchiveFromFile("TownScene") as? TownScene {
+                    // Configure the view.
+                    let skView = self.view as! SKView
+                    skView.showsFPS = true
+                    skView.showsNodeCount = true
+                    
+                    /* Sprite Kit applies additional optimizations to improve rendering performance */
+                    skView.ignoresSiblingOrder = true
+                    
+                    /* Set the scale mode to scale to fit the window */
+                    scene.scaleMode = .AspectFill
+                    
+                    skView.presentScene(scene)
+                    
+                    PlayerOverviewManager.sharedInstance.currentScene = scene
+                    
+                }
+            })
+        })
     }
 
     override func shouldAutorotate() -> Bool {
@@ -72,11 +72,6 @@ class GameViewController: UIViewController {
     
     func transitionScenes(){
         
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
     }
     
 }

@@ -54,6 +54,7 @@ class TownScene: GameScene {
                 let contactPoint = contact.contactPoint
                 let screenWidth = UIScreen.mainScreen().bounds.width
                 leftScene.startPoint = CGPointMake(screenWidth - contactPoint.x, contactPoint.y)
+                PlayerOverviewManager.sharedInstance.currentScene = leftScene
                 self.transitionLeft(leftScene)
             }
         }

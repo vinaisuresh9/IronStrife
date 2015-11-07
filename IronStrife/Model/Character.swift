@@ -62,7 +62,7 @@ class Character: SKSpriteNode {
     var attackSoundPrefix = ""
     var numberAttackSounds:Int32 = 0
     
-    let shadowNode = SKSpriteNode(imageNamed: "Shadow")
+    let shadowNode = SKSpriteNode(imageNamed: "Shadow.png")
     
     //MARK: Texture Arrays
     var downMovementTextures: [SKTexture] = []

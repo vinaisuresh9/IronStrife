@@ -16,6 +16,8 @@ let playerManaIncreasedNotification = "playerManaIncreasedNotification"
 
 class PlayerOverviewManager: NSObject {
     
+    static let sharedInstance = PlayerOverviewManager()
+    
     var currentScene: GameScene? {
         didSet {
             self.configureOverlay()

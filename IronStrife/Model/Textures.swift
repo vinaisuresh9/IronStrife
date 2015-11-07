@@ -10,8 +10,11 @@ import SpriteKit
 
 class Textures {
     
+    static let allTextureAtlases = [Textures.goreblonTextures, Textures.meeblonTextures, Textures.skelatonTextures, Textures.playerTextures, Textures.icespellTextures, Textures.curespellTextures, Textures.explosionTextures]
+    
+    static let allTextures = [Textures.fireballTexture]
 
-    //This would be a class variable when supported
+    //MARK: Texture Atlases
     static let goreblonTextures = SKTextureAtlas(named: "Goreblon")
     
     static let meeblonTextures = SKTextureAtlas(named: "Meeblon")
@@ -20,14 +23,14 @@ class Textures {
     
     static let playerTextures = SKTextureAtlas(named: "Player")
     
-    static let fireballTexture = SKTexture(imageNamed: "firemagic")
-    
-    static let treeTexture = SKTexture(imageNamed: "Tree")
-    
     static let icespellTextures = SKTextureAtlas(named: "IceCircle")
     
     static let curespellTextures = SKTextureAtlas(named: "Cure")
     
     static let explosionTextures = SKTextureAtlas(named: "FireExplosion")
+    
+    //MARK: Textures
+    
+    static let fireballTexture = SKTexture(imageNamed: "firemagic.png")
     
 }
