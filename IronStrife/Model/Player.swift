@@ -59,9 +59,9 @@ class Player: Character {
     override func configurePhysicsBody() {
         super.configurePhysicsBody()
         self.physicsBody?.allowsRotation = false;
-        self.physicsBody?.collisionBitMask = CollisionBitMask.Enemy.rawValue | CollisionBitMask.Other.rawValue
-        self.physicsBody?.contactTestBitMask = CollisionBitMask.EnemyProjectile.rawValue
-        self.physicsBody?.categoryBitMask = CollisionBitMask.Player.rawValue
+        self.physicsBody?.collisionBitMask = CollisionBitMask.enemy.rawValue | CollisionBitMask.other.rawValue
+        self.physicsBody?.contactTestBitMask = CollisionBitMask.enemyProjectile.rawValue
+        self.physicsBody?.categoryBitMask = CollisionBitMask.player.rawValue
     }
     
     
@@ -69,14 +69,14 @@ class Player: Character {
     override func initializeTextureArrays(){
         let atlas = Textures.playerTextures
         
-        for (var i = 2; i < 5; i++){
+        for i in 2..<5 {
             downMovementTextures.append(atlas.textureNamed("Down\(i)"))
             rightMovementTextures.append(atlas.textureNamed("Right\(i)"))
             leftMovementTextures.append(atlas.textureNamed("Left\(i)"))
             upMovementTextures.append(atlas.textureNamed("Up\(i)"))
         }
         
-        for (var j = 1; j < 6; j++){
+        for j in 1..<6 {
             leftAttackTextures.append(atlas.textureNamed("LeftAttack\(j)"))
             rightAttackTextures.append(atlas.textureNamed("RightAttack\(j)"))
             upAttackTextures.append(atlas.textureNamed("UpAttack\(j)"))
@@ -99,14 +99,14 @@ class Player: Character {
     - returns: true of available or false if not
 
     */
-    func checkMana(cost: Float) -> Bool{
+    func checkMana(_ cost: Float) -> Bool{
         if (self.mana > cost){
             return true
         }
         return false
     }
     
-    func castFireball(point: CGPoint ) {
+    func castFireball(_ point: CGPoint ) {
         if (!checkMana(Fireball.spellCost)){
             return
         }
@@ -144,19 +144,19 @@ class Player: Character {
     
     //MARK: Attacking
     /// Attack for Player
-    func attackInDirection (direction: UISwipeGestureRecognizerDirection){
+    func attackInDirection (_ direction: UISwipeGestureRecognizerDirection){
         switch (direction){
             
-        case UISwipeGestureRecognizerDirection.Up:
+        case UISwipeGestureRecognizerDirection.up:
             self.meleeAttack(.Up)
             
-        case UISwipeGestureRecognizerDirection.Down:
+        case UISwipeGestureRecognizerDirection.down:
             self.meleeAttack(.Down)
             
-        case UISwipeGestureRecognizerDirection.Right:
+        case UISwipeGestureRecognizerDirection.right:
             self.meleeAttack(.Right)
             
-        case UISwipeGestureRecognizerDirection.Left:
+        case UISwipeGestureRecognizerDirection.left:
             self.meleeAttack(.Left)
             
         default:
@@ -167,7 +167,7 @@ class Player: Character {
     
     
     //MARK: UpdateLoop
-    override func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval) {
+    override func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval) {
         super.updateWithTimeSinceLastUpdate(timeSince)
         if let sceneChildren = self.scene?.children{
             for child in sceneChildren{

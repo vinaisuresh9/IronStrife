@@ -11,13 +11,13 @@ import SpriteKit
 
 enum CollisionBitMask: UInt32 {
     case
-    Player              = 1,
-    PlayerProjectile    = 2,
-    EnemyProjectile     = 4,
-    Enemy               = 8,
-    Other               = 16,
-    Spell               = 32,
-    Wall                = 64
+    player              = 1,
+    playerProjectile    = 2,
+    enemyProjectile     = 4,
+    enemy               = 8,
+    other               = 16,
+    spell               = 32,
+    wall                = 64
     
 }
 
@@ -53,7 +53,7 @@ class Character: SKSpriteNode {
     let animationAttackSpeed = 0.05
     let animationMovementSpeed = 0.1
     
-    var destination: CGPoint = CGPointMake(0, 0)
+    var destination: CGPoint = CGPoint(x: 0, y: 0)
 
     var currentMovementAnimationKey = ""
     var activeAnimationKey = ""
@@ -85,12 +85,12 @@ class Character: SKSpriteNode {
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
         
-        self.zPosition = WorldLayer.Character.rawValue
+        self.zPosition = WorldLayer.character.rawValue
         
         self.addChild(self.shadowNode)
-        self.shadowNode.zPosition = -WorldLayer.Shadow.rawValue
+        self.shadowNode.zPosition = -WorldLayer.shadow.rawValue
         self.shadowNode.setScale(0.8)
-        self.shadowNode.position = CGPointMake(0, -self.frame.size.height * 0.6)
+        self.shadowNode.position = CGPoint(x: 0, y: -self.frame.size.height * 0.6)
         
     }
 
@@ -102,12 +102,12 @@ class Character: SKSpriteNode {
         
     }
     
-    override func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
-        if (self.actionForKey(currentMovementAnimationKey) != nil){
+    override func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval){
+        if (self.action(forKey: currentMovementAnimationKey) != nil){
             checkDestination()
         }
         
-        self.shadowNode.position = CGPointMake(0, -self.frame.size.height * 0.6)
+        self.shadowNode.position = CGPoint(x: 0, y: -self.frame.size.height * 0.6)
     }
     
     func configureStats() {
@@ -117,13 +117,13 @@ class Character: SKSpriteNode {
     
     //MARK: Physics Bodies (Overridden)
     
-    func collidedWith (other: SKPhysicsBody){
+    func collidedWith (_ other: SKPhysicsBody){
 
     }
     
     //MARK: Applying Damage
     //TODO: Figure out pushback animations and how damage is applied
-    func applyDamage(damage: Float) -> Bool{
+    func applyDamage(_ damage: Float) -> Bool{
         self.health -= (damage - self.defense)
         
         if (self.health <= 0){
@@ -143,7 +143,7 @@ class Character: SKSpriteNode {
     
     
     //MARK: Attacking 
-    func meleeAttack(direction: Direction){
+    func meleeAttack(_ direction: Direction){
         if (self.isAttacking){
             return
         }
@@ -155,31 +155,31 @@ class Character: SKSpriteNode {
             
         case .Up:
             self.direction = .Up
-            attackAnimation = SKAction.animateWithTextures(upAttackTextures, timePerFrame: self.animationAttackSpeed, resize: true, restore: false)
+            attackAnimation = SKAction.animate(with: upAttackTextures, timePerFrame: self.animationAttackSpeed, resize: true, restore: false)
             
         case .Down:
             self.direction = .Down
-            attackAnimation = SKAction.animateWithTextures(downAttackTextures, timePerFrame: self.animationAttackSpeed, resize: true, restore: false)
+            attackAnimation = SKAction.animate(with: downAttackTextures, timePerFrame: self.animationAttackSpeed, resize: true, restore: false)
             
         case .Right:
             self.direction = .Right
-            attackAnimation = SKAction.animateWithTextures(rightAttackTextures, timePerFrame: self.animationAttackSpeed, resize: true, restore: false)
+            attackAnimation = SKAction.animate(with: rightAttackTextures, timePerFrame: self.animationAttackSpeed, resize: true, restore: false)
             
         case .Left:
             self.direction = .Left
-            attackAnimation = SKAction.animateWithTextures(leftAttackTextures, timePerFrame: self.animationAttackSpeed, resize: true, restore: false)
+            attackAnimation = SKAction.animate(with: leftAttackTextures, timePerFrame: self.animationAttackSpeed, resize: true, restore: false)
             
         }
         
-        let sound = SKAction.playSoundFileNamed(self.attackSoundPrefix + "\((rand() % self.numberAttackSounds) + 1).wav", waitForCompletion: false)
+        let sound = SKAction.playSoundFileNamed(self.attackSoundPrefix + "\((Int32(arc4random()) % self.numberAttackSounds) + 1).wav", waitForCompletion: false)
         
-        self.runAction(SKAction.group([sound,attackAnimation]), completion: {
+        self.run(SKAction.group([sound,attackAnimation]), completion: {
             self.isAttacking = false
         })
     }
     
     //MARK: Movement and Orientation
-    func moveTo(point:CGPoint)
+    func moveTo(_ point:CGPoint)
     {
         //var movementAction = SKAction.moveTo(scenePoint, duration: time)
         //player.runAction(movementAction, withKey: player.direction)
@@ -187,21 +187,21 @@ class Character: SKSpriteNode {
         self.destination = point
         
         let dir = self.directionToPoint(point)
-        if (dir != self.direction || self.actionForKey(currentMovementAnimationKey) == nil) {
+        if (dir != self.direction || self.action(forKey: currentMovementAnimationKey) == nil) {
             self.setDirection(dir)
             self.animateMovementInDirection(dir)
         }
         
         let velocityVector = MathFunctions.normalizedVector(self.position, point2: point)
         
-        self.physicsBody?.velocity = CGVectorMake(velocityVector.dx * self.effectiveMovespeed , velocityVector.dy * self.effectiveMovespeed)
+        self.physicsBody?.velocity = CGVector(dx: velocityVector.dx * self.effectiveMovespeed , dy: velocityVector.dy * self.effectiveMovespeed)
     }
     
-    func animateMovementInDirection(dir: Direction) {
-        self.removeActionForKey(currentMovementAnimationKey)
+    func animateMovementInDirection(_ dir: Direction) {
+        self.removeAction(forKey: currentMovementAnimationKey)
         currentMovementAnimationKey = self.direction.rawValue
-        let animateAction = SKAction.animateWithTextures(self.currentMovementTextures, timePerFrame: self.animationMovementSpeed, resize: true, restore: false)
-        self.runAction(SKAction.repeatActionForever(animateAction), withKey: currentMovementAnimationKey)
+        let animateAction = SKAction.animate(with: self.currentMovementTextures, timePerFrame: self.animationMovementSpeed, resize: true, restore: false)
+        self.run(SKAction.repeatForever(animateAction), withKey: currentMovementAnimationKey)
     }
     
     
@@ -221,7 +221,7 @@ class Character: SKSpriteNode {
     }
     
     
-    func setDirection(direction: Direction) {
+    func setDirection(_ direction: Direction) {
         
         let atlas = SKTextureAtlas(named: self.theClassName)
         
@@ -247,7 +247,7 @@ class Character: SKSpriteNode {
     }
     
     
-    func directionToPoint(point: CGPoint) -> Direction {
+    func directionToPoint(_ point: CGPoint) -> Direction {
         let vector = MathFunctions.normalizedVector(self.position, point2: point)
         let angle = asinf(Float(vector.dy)/Float(1))
         
@@ -269,7 +269,7 @@ class Character: SKSpriteNode {
     
     func stopMoving(){
         self.physicsBody?.velocity = CGVector.zero
-        self.removeActionForKey(currentMovementAnimationKey)
+        self.removeAction(forKey: currentMovementAnimationKey)
         currentMovementAnimationKey = ""
         self.destination = self.position
         

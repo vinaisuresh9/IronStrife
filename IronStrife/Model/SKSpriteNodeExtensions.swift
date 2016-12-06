@@ -10,9 +10,9 @@ import SpriteKit
 
 extension SKSpriteNode  {
     func configurePhysicsBody() {
-        var center = CGPointZero
+        var center = CGPoint.zero
         center.y -= self.frame.height * 1/6
-        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.width - 15, self.frame.height * 2/3), center: center)
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.width - 15, height: self.frame.height * 2/3), center: center)
         self.physicsBody?.mass = 0
         self.setScale(0.8)
         self.physicsBody!.allowsRotation = false;

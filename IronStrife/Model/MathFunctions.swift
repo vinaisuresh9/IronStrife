@@ -10,7 +10,7 @@ import UIKit
 
 class MathFunctions {
     
-    class func calculateDistance(point1: CGPoint, point2: CGPoint) -> Double{
+    class func calculateDistance(_ point1: CGPoint, point2: CGPoint) -> Double{
         if (point1 == point2){
             return 0
         }
@@ -23,7 +23,7 @@ class MathFunctions {
     }
     
     //Change to use vectors instead of points
-    class func angleFromLine(point1: CGPoint, point2: CGPoint) -> Float?{
+    class func angleFromLine(_ point1: CGPoint, point2: CGPoint) -> Float?{
         switch (point1,point2) {
             //Case for first quadrant
         case let (p1,p2) where point2.x >= point1.x && point2.y >= point1.y:
@@ -46,10 +46,10 @@ class MathFunctions {
     }
     
     //Normalize Vector Method!!!
-    class func normalizedVector(point1: CGPoint, point2: CGPoint) -> CGVector{
+    class func normalizedVector(_ point1: CGPoint, point2: CGPoint) -> CGVector{
         let distance = MathFunctions.calculateDistance(point1, point2: point2)
         
-        var tempVector = CGVectorMake(point2.x - point1.x, point2.y - point1.y)
+        var tempVector = CGVector(dx: point2.x - point1.x, dy: point2.y - point1.y)
         tempVector.dx /= CGFloat(distance)
         tempVector.dy /= CGFloat(distance)
         

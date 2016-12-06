@@ -11,7 +11,7 @@ import Foundation
 class WanderBehavior: AIBehavior {
     var player = Player.sharedInstance
     
-    func run(enemy: Enemy) {
+    func run(_ enemy: Enemy) {
         enemy.stopMoving()
         
         if (ChaseBehavior.checkPreconditions(enemy)) {
@@ -19,7 +19,7 @@ class WanderBehavior: AIBehavior {
         }
     }
     
-    static func checkPreconditions(enemy: Enemy) -> Bool {
+    static func checkPreconditions(_ enemy: Enemy) -> Bool {
         if (enemy.distanceFromPlayer() > enemyChaseDistance) {
             return true
         }

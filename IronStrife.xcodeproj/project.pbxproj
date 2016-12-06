@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5302A5C31BE2487F0012B951 /* SKSpriteNodeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5302A5C21BE2487F0012B951 /* SKSpriteNodeExtensions.swift */; settings = {ASSET_TAGS = (); }; };
-		5302A5C51BE248960012B951 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5302A5C41BE248960012B951 /* Sounds.swift */; settings = {ASSET_TAGS = (); }; };
-		5302A5C81BE24A330012B951 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5302A5C71BE24A330012B951 /* Tree.swift */; settings = {ASSET_TAGS = (); }; };
+		5302A5C31BE2487F0012B951 /* SKSpriteNodeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5302A5C21BE2487F0012B951 /* SKSpriteNodeExtensions.swift */; };
+		5302A5C51BE248960012B951 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5302A5C41BE248960012B951 /* Sounds.swift */; };
+		5302A5C81BE24A330012B951 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5302A5C71BE24A330012B951 /* Tree.swift */; };
 		530340C91B139F2300950675 /* Room1Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530340C81B139F2300950675 /* Room1Scene.swift */; };
 		530340CC1B13BA3000950675 /* Room1Scene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 530340CA1B139F7400950675 /* Room1Scene.sks */; };
 		530CB266196067CF00DA905F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530CB265196067CF00DA905F /* Player.swift */; };
@@ -346,12 +346,13 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Vinai Suresh";
 				TargetAttributes = {
 					5356187219525C16000F2086 = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = 935PGDMS7Y;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -472,15 +473,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -514,8 +519,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -523,6 +530,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -532,6 +540,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -546,10 +555,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = IronStrife/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Vinai.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -563,9 +574,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = IronStrife/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Vinai.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

@@ -11,9 +11,9 @@ import SpriteKit
 class Cure: SKSpriteNode{
     
     var textures: [SKTexture] = []
-    private let atlas = Textures.curespellTextures
+    fileprivate let atlas = Textures.curespellTextures
     var owner: Player?
-    private let animationTime = 0.03
+    fileprivate let animationTime = 0.03
     
     static var curePercent: Float = 40;
     static var spellCost: Float = 40;
@@ -24,22 +24,24 @@ class Cure: SKSpriteNode{
         self.owner = owner
         self.position = owner.position
         
-        for (var i = 1; i <= 17; i++){
+        for i in stride(from:1, through:17, by:1) {
             textures.append(atlas.textureNamed("Cure\(i)"))
+
         }
+
         self.owner?.scene?.addChild(self)
     }
     
     
     func run(){
-        let animation = SKAction.animateWithTextures(textures, timePerFrame: animationTime, resize: true, restore: false)
-        self.runAction(animation, completion: {
+        let animation = SKAction.animate(with: textures, timePerFrame: animationTime, resize: true, restore: false)
+        self.run(animation, completion: {
             self.removeFromParent()
         })
     }
     
     //MARK: Update Loop
-    override func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
+    override func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval){
         if let owner = owner {
             self.position = owner.position
         }

@@ -11,7 +11,7 @@ import SpriteKit
 class Room1Scene: GameScene {
    
     
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         super.setupScene()
         
         /* Setup your scene here */
@@ -23,7 +23,7 @@ class Room1Scene: GameScene {
     
     
     
-    override func update(currentTime: CFTimeInterval) {
+    override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)
     }
     

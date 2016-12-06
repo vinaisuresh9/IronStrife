@@ -11,9 +11,9 @@ import SpriteKit
 let iceAudioName = "IceCircle.wav"
 
 class IceCircle: AoESpell {
-    private let atlas = Textures.icespellTextures
-    private let animationTime = 0.03
-    private var updateInterval: NSTimeInterval{
+    fileprivate let atlas = Textures.icespellTextures
+    fileprivate let animationTime = 0.03
+    fileprivate var updateInterval: TimeInterval{
         get{
             let frameRate = 1/(self.animationTime * Double(Textures.icespellTextures.textureNames.count))
             return animationTime/frameRate
@@ -33,24 +33,26 @@ class IceCircle: AoESpell {
         self.configurePhysicsBody()
         self.position = owner.position
         
-        for (var i = 49; i >= 1; i-=3){
+        for i in stride(from:49, through:1, by: -3) {
             textures.append(atlas.textureNamed("IceCircle\(i)"))
+
         }
+        
         self.owner?.scene?.addChild(self)
     }
     
     
     func run(){
-        let animation = SKAction.animateWithTextures(textures, timePerFrame: animationTime, resize: true, restore: false)
+        let animation = SKAction.animate(with: textures, timePerFrame: animationTime, resize: true, restore: false)
         let sound = SKAction.playSoundFileNamed(iceAudioName, waitForCompletion: false)
-        self.runAction(SKAction.group([animation, sound])
+        self.run(SKAction.group([animation, sound])
             , completion: {
             self.removeFromParent()
         })
     }
     
     //MARK: Update Loop
-    override func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
+    override func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval){
         if (self.updateInterval <= timeSince){
             self.configurePhysicsBody()
         }

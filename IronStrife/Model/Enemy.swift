@@ -11,20 +11,20 @@ import SpriteKit
 let enemyChaseDistance:CGFloat = 250
 
 enum AttackType{
-    case Melee,
-    Range
+    case melee,
+    range
 }
 
 let explosionHitCoolDown: Double = 2
 let iceCircleHitCoolDown: Double = 3
 
 class Enemy: Character {
-    var type: AttackType = AttackType.Melee
+    var type: AttackType = AttackType.melee
     var hitByIce = false
     var hitByExplosion = false
     var state: AIBehavior = WanderBehavior()
 
-    override func collidedWith(other: SKPhysicsBody) {
+    override func collidedWith(_ other: SKPhysicsBody) {
         if (self.isDying){
             return
         }
@@ -45,14 +45,13 @@ class Enemy: Character {
             _ = self.applyDamage(IceCircle.attackDamage)
             
             self.slowFactor = 1 - IceCircle.slowFactor
-            self.color = UIColor.blueColor()
+            self.color = UIColor.blue
             hitByIce = true
             
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-                Int64(iceCircleHitCoolDown * Double(NSEC_PER_SEC)))
-            dispatch_after(delayTime, dispatch_get_main_queue()) {
+            let delayTime = DispatchTime.now() + Double(Int64(iceCircleHitCoolDown * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+            DispatchQueue.main.asyncAfter(deadline: delayTime) {
                 self.hitByIce = false
-                self.color = UIColor.whiteColor()
+                self.color = UIColor.white
                 self.slowFactor = 1
             }
         }
@@ -62,14 +61,13 @@ class Enemy: Character {
             }
             
             let killed = self.applyDamage(Explosion.attackDamage)
-            self.color = UIColor.redColor()
+            self.color = UIColor.red
             hitByExplosion = true
             
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-                Int64(explosionHitCoolDown * Double(NSEC_PER_SEC)))
-            dispatch_after(delayTime, dispatch_get_main_queue()) {
+            let delayTime = DispatchTime.now() + Double(Int64(explosionHitCoolDown * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+            DispatchQueue.main.asyncAfter(deadline: delayTime) {
                 self.hitByExplosion = false
-                self.color = UIColor.whiteColor()
+                self.color = UIColor.white
             }
         }
         
@@ -86,12 +84,12 @@ class Enemy: Character {
     }
     
     //MARK: State Switching
-    func changeState(state: AIBehavior) {
+    func changeState(_ state: AIBehavior) {
         self.state = state
     }
     
     //MARK: Update Loop
-    override func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval) {
+    override func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval) {
         super.updateWithTimeSinceLastUpdate(timeSince)
         
         self.state.run(self)

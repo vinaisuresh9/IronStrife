@@ -9,7 +9,7 @@
 import SpriteKit
 
 class Fireball: Projectile{
-    var direction = CGPointZero
+    var direction = CGPoint.zero
     
     static var moveSpeed:Float = 400
     
@@ -26,9 +26,9 @@ class Fireball: Projectile{
         self.direction = direction
         self.position = owner.position
         self.zRotation = CGFloat(MathFunctions.angleFromLine(self.position, point2: direction)!)
-        self.runAction(SKAction.sequence([SKAction.waitForDuration(3), SKAction.removeFromParent()]))
+        self.run(SKAction.sequence([SKAction.wait(forDuration: 3), SKAction.removeFromParent()]))
         let normalVector = MathFunctions.normalizedVector(self.position, point2: direction)
-        self.physicsBody?.velocity = CGVectorMake(normalVector.dx * CGFloat(Fireball.moveSpeed), normalVector.dy * CGFloat(Fireball.moveSpeed))
+        self.physicsBody?.velocity = CGVector(dx: normalVector.dx * CGFloat(Fireball.moveSpeed), dy: normalVector.dy * CGFloat(Fireball.moveSpeed))
     }
     
     

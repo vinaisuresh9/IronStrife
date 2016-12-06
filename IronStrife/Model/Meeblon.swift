@@ -10,7 +10,7 @@ import SpriteKit
 
 class Meeblon: Enemy {
     convenience init(){
-        self.init(texture: Textures.meeblonTextures.textureNamed("Down1"), color: UIColor.whiteColor(), size: Textures.meeblonTextures.textureNamed("Down1").size())
+        self.init(texture: Textures.meeblonTextures.textureNamed("Down1"), color: UIColor.white, size: Textures.meeblonTextures.textureNamed("Down1").size())
     }
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
@@ -27,7 +27,7 @@ class Meeblon: Enemy {
     
     override func configureStats() {
         self.health = 100
-        self.type = AttackType.Range
+        self.type = AttackType.range
         self.attackStrength = 15
         self.defense = 5
         self.colorBlendFactor = 0.5
@@ -36,14 +36,14 @@ class Meeblon: Enemy {
     //MARK: PhysicsBody and Delegate
     override func configurePhysicsBody() {
         super.configurePhysicsBody()
-        self.physicsBody!.collisionBitMask = CollisionBitMask.Enemy.rawValue | CollisionBitMask.Other.rawValue | CollisionBitMask.Player.rawValue | CollisionBitMask.PlayerProjectile.rawValue
-        self.physicsBody?.contactTestBitMask = CollisionBitMask.PlayerProjectile.rawValue | CollisionBitMask.Player.rawValue | CollisionBitMask.EnemyProjectile.rawValue
-        self.physicsBody!.categoryBitMask = CollisionBitMask.Enemy.rawValue
+        self.physicsBody!.collisionBitMask = CollisionBitMask.enemy.rawValue | CollisionBitMask.other.rawValue | CollisionBitMask.player.rawValue | CollisionBitMask.playerProjectile.rawValue
+        self.physicsBody?.contactTestBitMask = CollisionBitMask.playerProjectile.rawValue | CollisionBitMask.player.rawValue | CollisionBitMask.enemyProjectile.rawValue
+        self.physicsBody!.categoryBitMask = CollisionBitMask.enemy.rawValue
         
     }
     
     //TODO: Check collision with Player Sword
-    override func collidedWith(other: SKPhysicsBody) {
+    override func collidedWith(_ other: SKPhysicsBody) {
         if (self.isDying){
             return
         }
@@ -71,7 +71,7 @@ class Meeblon: Enemy {
     override func initializeTextureArrays(){
         let atlas = Textures.meeblonTextures
         
-        for (var i = 2; i < 5; i++){
+        for i in 2..<5 {
             downMovementTextures.append(atlas.textureNamed("Down\(i)"))
             rightMovementTextures.append(atlas.textureNamed("Right\(i)"))
             leftMovementTextures.append(atlas.textureNamed("Left\(i)"))

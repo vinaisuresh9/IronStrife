@@ -13,10 +13,10 @@ let goreblonDeathSound = "GoreblonDeath.wav"
 class Goreblon: Enemy {
     
     convenience init(){
-        self.init(texture: Textures.goreblonTextures.textureNamed("Down1"), color: UIColor.whiteColor(), size: Textures.goreblonTextures.textureNamed("Down1").size())
+        self.init(texture: Textures.goreblonTextures.textureNamed("Down1"), color: UIColor.white, size: Textures.goreblonTextures.textureNamed("Down1").size())
     }
     
-    private override init(texture: SKTexture?, color: UIColor, size: CGSize) {
+    fileprivate override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
         self.configurePhysicsBody()
         self.initializeTextureArrays()
@@ -40,14 +40,14 @@ class Goreblon: Enemy {
     //MARK: PhysicsBody and Delegate
     override func configurePhysicsBody() {
         super.configurePhysicsBody()
-        self.physicsBody!.collisionBitMask = CollisionBitMask.Enemy.rawValue | CollisionBitMask.Other.rawValue | CollisionBitMask.Player.rawValue
-        self.physicsBody?.contactTestBitMask = CollisionBitMask.Player.rawValue
-        self.physicsBody!.categoryBitMask = CollisionBitMask.Enemy.rawValue
+        self.physicsBody!.collisionBitMask = CollisionBitMask.enemy.rawValue | CollisionBitMask.other.rawValue | CollisionBitMask.player.rawValue
+        self.physicsBody?.contactTestBitMask = CollisionBitMask.player.rawValue
+        self.physicsBody!.categoryBitMask = CollisionBitMask.enemy.rawValue
         
     }
     
     //TODO: Check collision with Player Sword
-    override func collidedWith(other: SKPhysicsBody) {
+    override func collidedWith(_ other: SKPhysicsBody) {
         super.collidedWith(other)
     }
     
@@ -58,7 +58,7 @@ class Goreblon: Enemy {
         //TODO: Death Animation
         let soundAction = SKAction.playSoundFileNamed(goreblonDeathSound, waitForCompletion: false)
         
-        self.runAction(soundAction, completion: { () -> Void in
+        self.run(soundAction, completion: { () -> Void in
             self.removeFromParent()
         })
         
@@ -68,14 +68,14 @@ class Goreblon: Enemy {
     override func initializeTextureArrays(){
         let atlas = Textures.goreblonTextures
         
-        for (var i = 2; i < 5; i++){
+        for i in 2..<5 {
             downMovementTextures.append(atlas.textureNamed("Down\(i)"))
             rightMovementTextures.append(atlas.textureNamed("Right\(i)"))
             leftMovementTextures.append(atlas.textureNamed("Left\(i)"))
             upMovementTextures.append(atlas.textureNamed("Up\(i)"))
         }
         
-        for (var j = 1; j < 5; j++){
+        for j in 1..<5 {
             leftAttackTextures.append(atlas.textureNamed("LeftAttack\(j)"))
             rightAttackTextures.append(atlas.textureNamed("RightAttack\(j)"))
             upAttackTextures.append(atlas.textureNamed("UpAttack\(j)"))

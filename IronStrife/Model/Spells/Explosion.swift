@@ -9,9 +9,9 @@
 import SpriteKit
 
 class Explosion: AoESpell {
-    private let atlas = Textures.explosionTextures
-    private let animationTime = 0.09
-    private var updateInterval: NSTimeInterval{
+    fileprivate let atlas = Textures.explosionTextures
+    fileprivate let animationTime = 0.09
+    fileprivate var updateInterval: TimeInterval{
         get{
             let frameRate = 1/(self.animationTime * Double(Textures.explosionTextures.textureNames.count))
             return animationTime/frameRate
@@ -19,10 +19,10 @@ class Explosion: AoESpell {
     }
 
     
-    private var parentFireball: Fireball?
+    fileprivate var parentFireball: Fireball?
     
     //Always half damage of the fireball
-    private struct attack {
+    fileprivate struct attack {
         static var attack:Float {
             get {
                 return Fireball.attackDamage/2
@@ -40,7 +40,7 @@ class Explosion: AoESpell {
         self.parentFireball = fireball
         self.position = fireball.position
     
-        for (var i = 1; i < 8; i++){
+        for i in 1..<8{
             self.textures.append(atlas.textureNamed("FireExplosion\(i)"))
         }
         
@@ -49,8 +49,8 @@ class Explosion: AoESpell {
     
     
     func run(){
-        let animation = SKAction.animateWithTextures(textures, timePerFrame: animationTime, resize: false, restore: false)
-        self.runAction(SKAction.group([animation, Sounds.explosionSound])
+        let animation = SKAction.animate(with: textures, timePerFrame: animationTime, resize: false, restore: false)
+        self.run(SKAction.group([animation, Sounds.explosionSound])
             , completion: {
             self.removeFromParent()
         })
@@ -58,7 +58,7 @@ class Explosion: AoESpell {
     
     
     //MARK: Update Loop
-    override func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
+    override func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval){
         if let fireballPosition = self.parentFireball?.position {
             self.position = fireballPosition
         }

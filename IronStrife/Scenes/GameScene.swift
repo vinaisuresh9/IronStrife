@@ -15,27 +15,27 @@ import UIKit
 
 
 enum WorldLayer: CGFloat {
-    case Background = 0.1,
-    Other = 0.2,
-    Shadow = 0.3,
-    Projectile = 0.4,
-    Character = 0.5
+    case background = 0.1,
+    other = 0.2,
+    shadow = 0.3,
+    projectile = 0.4,
+    character = 0.5
     
 }
 
 class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
 
-    var lastUpdateTimeInterval: NSTimeInterval = 0
+    var lastUpdateTimeInterval: TimeInterval = 0
     let player = Player.sharedInstance
     var currentMovementAnimationKey = ""
-    var startPoint:CGPoint = CGPointZero
+    var startPoint:CGPoint = CGPoint.zero
     
     var upScene: GameScene?
     var downScene: GameScene?
     var rightScene: GameScene?
     var leftScene: GameScene?
     
-    let transitionTime: NSTimeInterval = 1
+    let transitionTime: TimeInterval = 1
     
     func setupScene()
     {
@@ -47,7 +47,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
         
         let background = SKSpriteNode(imageNamed: "Background.png")
         background.size = self.frame.size
-        background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+        background.position = CGPoint(x: self.frame.midX, y: self.frame.midY);
         self.addChild(background)
     }
     
@@ -58,38 +58,38 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     
     func initializeGestureRecognizers(){
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: "tapped:")
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(GameScene.tapped(_:)))
         tapGesture.numberOfTapsRequired = 1
         self.view?.addGestureRecognizer(tapGesture)
         
-        let twoFingerTapGesture = UITapGestureRecognizer(target: self, action: "twoFingerTap:")
+        let twoFingerTapGesture = UITapGestureRecognizer(target: self, action: #selector(GameScene.twoFingerTap(_:)))
         twoFingerTapGesture.numberOfTouchesRequired = 2
         self.view?.addGestureRecognizer(twoFingerTapGesture)
         
-        let twoFingerLongPressGesture = UILongPressGestureRecognizer(target: self, action: "twoFingerLongPress:")
+        let twoFingerLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.twoFingerLongPress(_:)))
         twoFingerLongPressGesture.numberOfTouchesRequired = 2
         twoFingerLongPressGesture.minimumPressDuration = 0.1
         twoFingerLongPressGesture.allowableMovement = 5
         self.view?.addGestureRecognizer(twoFingerLongPressGesture)
         
-        let movementGesture = UILongPressGestureRecognizer(target: self, action: "longPress:")
+        let movementGesture = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.longPress(_:)))
         movementGesture.minimumPressDuration = 0.3
         self.view?.addGestureRecognizer(movementGesture)
         
-        let upSwipeGesture = UISwipeGestureRecognizer(target: self, action: "swiped:")
-        upSwipeGesture.direction = UISwipeGestureRecognizerDirection.Up
+        let upSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swiped(_:)))
+        upSwipeGesture.direction = UISwipeGestureRecognizerDirection.up
         self.view?.addGestureRecognizer(upSwipeGesture)
         
-        let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: "swiped:")
-        rightSwipeGesture.direction = UISwipeGestureRecognizerDirection.Right
+        let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swiped(_:)))
+        rightSwipeGesture.direction = UISwipeGestureRecognizerDirection.right
         self.view?.addGestureRecognizer(rightSwipeGesture)
         
-        let downSwipeGesture = UISwipeGestureRecognizer(target: self, action: "swiped:")
-        downSwipeGesture.direction = UISwipeGestureRecognizerDirection.Down
+        let downSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swiped(_:)))
+        downSwipeGesture.direction = UISwipeGestureRecognizerDirection.down
         self.view?.addGestureRecognizer(downSwipeGesture)
         
-        let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: "swiped:")
-        leftSwipeGesture.direction = UISwipeGestureRecognizerDirection.Left
+        let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swiped(_:)))
+        leftSwipeGesture.direction = UISwipeGestureRecognizerDirection.left
         self.view?.addGestureRecognizer(leftSwipeGesture)
         
 
@@ -98,39 +98,39 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
         
     }
     
-    func swiped (sender: UISwipeGestureRecognizer){
+    func swiped (_ sender: UISwipeGestureRecognizer){
         player.attackInDirection(sender.direction)
     }
     
     
-    func tapped (sender: UITapGestureRecognizer){
-        let point = sender.locationInView(self.view)
-        player.castFireball(self.view!.convertPoint(point, toScene: self))
+    func tapped (_ sender: UITapGestureRecognizer){
+        let point = sender.location(in: self.view)
+        player.castFireball(self.view!.convert(point, to: self))
     }
     
     
-    func twoFingerTap (sender: UITapGestureRecognizer) {
+    func twoFingerTap (_ sender: UITapGestureRecognizer) {
         player.castIceSpell()
     }
     
     
-    func twoFingerLongPress (sender: UILongPressGestureRecognizer){
-        if (sender.state == UIGestureRecognizerState.Began) {
+    func twoFingerLongPress (_ sender: UILongPressGestureRecognizer){
+        if (sender.state == UIGestureRecognizerState.began) {
             self.player.castCureSpell()
         }
     }
     
     
-    func longPress (sender: UILongPressGestureRecognizer){
-        let point = sender.locationInView(self.view)
+    func longPress (_ sender: UILongPressGestureRecognizer){
+        let point = sender.location(in: self.view)
         if let view = self.view {
-            let scenePoint = view.convertPoint(point, toScene: self)
+            let scenePoint = view.convert(point, to: self)
             player.moveTo(scenePoint)
         }
     }
     
     
-    func didBeginContact(contact: SKPhysicsContact) {
+    func didBegin(_ contact: SKPhysicsContact) {
         //Can use contactNormal vector to decided pushback vector for gettingHit animation
         let nodeA = contact.bodyA.node
         if (nodeA is Character){
@@ -162,38 +162,38 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     
     
     //MARK: Transitioning Scenes
-    func transitionUp (newScene: GameScene) {
-        let transition = SKTransition.pushWithDirection(SKTransitionDirection.Down, duration: transitionTime)
+    func transitionUp (_ newScene: GameScene) {
+        let transition = SKTransition.push(with: SKTransitionDirection.down, duration: transitionTime)
         self.view?.presentScene(newScene, transition: transition)
     }
     
-    func transitionRight (newScene:GameScene) {
-        let transition = SKTransition.pushWithDirection(SKTransitionDirection.Left, duration: transitionTime)
+    func transitionRight (_ newScene:GameScene) {
+        let transition = SKTransition.push(with: SKTransitionDirection.left, duration: transitionTime)
         self.view?.presentScene(newScene, transition: transition)
 
     }
     
-    func transitionLeft (newScene:GameScene) {
-        let transition = SKTransition.pushWithDirection(SKTransitionDirection.Right, duration: transitionTime)
+    func transitionLeft (_ newScene:GameScene) {
+        let transition = SKTransition.push(with: SKTransitionDirection.right, duration: transitionTime)
         self.view?.presentScene(newScene, transition: transition)
     }
     
-    func transitionDown(newScene:GameScene) {
-        let transition = SKTransition.pushWithDirection(SKTransitionDirection.Up, duration: transitionTime)
+    func transitionDown(_ newScene:GameScene) {
+        let transition = SKTransition.push(with: SKTransitionDirection.up, duration: transitionTime)
         self.view?.presentScene(newScene, transition: transition)
     }
     
 
     
     //MARK: Update Loop
-    override func update(currentTime: NSTimeInterval) {
+    override func update(_ currentTime: TimeInterval) {
         let timeSinceLast = currentTime - self.lastUpdateTimeInterval;
         self.lastUpdateTimeInterval = currentTime;
         self.updateWithTimeSinceLastUpdate(timeSinceLast)
     }
     
     //Overridden
-    override func updateWithTimeSinceLastUpdate(timeSince: NSTimeInterval){
+    override func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval){
         for node in self.children {
             if (node is Character) {
                 node.updateWithTimeSinceLastUpdate(timeSince)

@@ -8,8 +8,8 @@
 
 protocol AIBehavior {
     var player: Player {get}
-    func run(enemy: Enemy)
+    func run(_ enemy: Enemy)
     
-    static func checkPreconditions(enemy: Enemy) -> Bool
+    static func checkPreconditions(_ enemy: Enemy) -> Bool
     
 }

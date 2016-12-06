@@ -26,14 +26,14 @@ class PlayerOverviewManager: NSObject {
     
     override init() {
         super.init()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "healthDecreased", name: playerHealthDecreasedNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "healthIncreased", name: playerHealthIncreasedNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "manaDecreased", name: playerManaDecreasedNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "manaIncreased", name: playerManaIncreasedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(healthDecreased), name: NSNotification.Name(rawValue: playerHealthDecreasedNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(healthIncreased), name: NSNotification.Name(rawValue: playerHealthIncreasedNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(manaDecreased), name: NSNotification.Name(rawValue: playerManaDecreasedNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(manaIncreased), name: NSNotification.Name(rawValue: playerManaIncreasedNotification), object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -44,9 +44,9 @@ class PlayerOverviewManager: NSObject {
         let healthBar = SKSpriteNode(imageNamed: "HealthBar.png")
         healthBar.setScale(0.6)
         healthBar.colorBlendFactor = 1
-        healthBar.color = UIColor.greenColor()
+        healthBar.color = UIColor.green
         if let height = self.currentScene?.frame.size.height {
-            healthBar.position = CGPointMake(150, height - 150)
+            healthBar.position = CGPoint(x: 150, y: height - 150)
         }
         self.currentScene?.addChild(healthBar)
         healthBar.zPosition = 1
@@ -55,29 +55,29 @@ class PlayerOverviewManager: NSObject {
         let manaBar = SKSpriteNode(imageNamed: "HealthBar.png")
         manaBar.setScale(0.6)
         manaBar.colorBlendFactor = 1
-        manaBar.color = UIColor.blueColor()
+        manaBar.color = UIColor.blue
         if let width = self.currentScene?.frame.size.width,
             let height = self.currentScene?.frame.size.height {
-            manaBar.position = CGPointMake(width - 150, height - 150)
+            manaBar.position = CGPoint(x: width - 150, y: height - 150)
 
         }
         self.currentScene?.addChild(manaBar)
         manaBar.zPosition = 1
     }
     
-    func healthIncreased(notification:NSNotification) {
+    func healthIncreased(_ notification:Notification) {
         
     }
     
-    func healthDecreased(notification:NSNotification) {
+    func healthDecreased(_ notification:Notification) {
         
     }
     
-    func manaIncreased(notification:NSNotification) {
+    func manaIncreased(_ notification:Notification) {
         
     }
     
-    func manaDecreased(notification:NSNotification) {
+    func manaDecreased(_ notification:Notification) {
         
     }
     

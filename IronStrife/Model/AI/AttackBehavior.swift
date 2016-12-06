@@ -12,7 +12,7 @@ class AttackBehavior: AIBehavior {
     var player = Player.sharedInstance
     
     
-    func run(enemy: Enemy) {
+    func run(_ enemy: Enemy) {
         if (enemy is Goreblon) {
             enemy.meleeAttack(enemy.directionToPlayer())
         }
@@ -23,7 +23,7 @@ class AttackBehavior: AIBehavior {
     }
     
     //TODO: Finish up precondition check
-    static func checkPreconditions(enemy: Enemy) -> Bool {
+    static func checkPreconditions(_ enemy: Enemy) -> Bool {
         if (enemy.distanceFromPlayer() < 70) {
             return true
         }
