@@ -9,8 +9,7 @@
 import Foundation
 
 class AttackBehavior: AIBehavior {
-    var player = Player.sharedInstance
-    
+    var player = Player.sharedInstance    
     
     func run(_ enemy: Enemy) {
         if (enemy is Goreblon) {

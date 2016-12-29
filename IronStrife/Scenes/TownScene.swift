@@ -20,7 +20,7 @@ class TownScene: GameScene {
         self.addChild(player)
         
         let firstEnemy = Goreblon()
-        firstEnemy.position = CGPoint(x: 10, y: self.frame.midY)
+        firstEnemy.position = CGPoint(x: 40, y: self.frame.midY)
         self.addChild(firstEnemy)
         
         self.leftScene = Room1Scene.unarchiveFromFile("Room1Scene") as? Room1Scene
@@ -41,8 +41,9 @@ class TownScene: GameScene {
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: 10, y: 10, width: self.frame.width-20, height: self.frame.height-20))
         self.physicsBody?.isDynamic = false
         self.physicsBody?.categoryBitMask = CollisionBitMask.wall.rawValue
+        self.physicsBody?.collisionBitMask = CollisionBitMask.enemy.rawValue
         self.physicsBody?.contactTestBitMask = CollisionBitMask.player.rawValue
-        self.physicsBody?.contactTestBitMask = CollisionBitMask.player.rawValue
+        
     }
     
     override func didBegin(_ contact: SKPhysicsContact) {

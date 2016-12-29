@@ -8,8 +8,6 @@
 
 import SpriteKit
 
-let enemyChaseDistance:CGFloat = 250
-
 enum AttackType{
     case melee,
     range
@@ -19,6 +17,8 @@ let explosionHitCoolDown: Double = 2
 let iceCircleHitCoolDown: Double = 3
 
 class Enemy: Character {
+    let enemyChaseDistance:CGFloat = 250
+    
     var type: AttackType = AttackType.melee
     var hitByIce = false
     var hitByExplosion = false
@@ -69,6 +69,8 @@ class Enemy: Character {
                 self.hitByExplosion = false
                 self.color = UIColor.white
             }
+        } else if (other.categoryBitMask == CollisionBitMask.wall.rawValue) {
+            stopMoving()
         }
         
     }

@@ -45,6 +45,7 @@ class Player: Character {
         self.configureStats()
         self.attackSoundPrefix = "PlayerAttack"
         self.numberAttackSounds = 10
+        preloadSounds()
         
     }
     

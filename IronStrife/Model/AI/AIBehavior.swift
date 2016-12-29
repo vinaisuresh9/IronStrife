@@ -7,7 +7,6 @@
 //
 
 protocol AIBehavior {
-    var player: Player {get}
     func run(_ enemy: Enemy)
     
     static func checkPreconditions(_ enemy: Enemy) -> Bool

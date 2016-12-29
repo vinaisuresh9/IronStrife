@@ -35,11 +35,12 @@ class GameViewController: UIViewController {
     override func viewWillLayoutSubviews(){
         super.viewWillLayoutSubviews()
         
-        SKTextureAtlas.preloadTextureAtlases(Textures.allTextureAtlases, withCompletionHandler: { () -> Void in
+        SKTextureAtlas.preloadTextureAtlases(Textures.allTextureAtlases, withCompletionHandler: {[weak self] () -> Void in
             SKTexture.preload(Textures.allTextures, withCompletionHandler: { () -> Void in
+                guard let strongSelf = self else { return }
                 if let scene = TownScene.unarchiveFromFile("TownScene") as? TownScene {
                     // Configure the view.
-                    let skView = self.view as! SKView
+                    let skView = strongSelf.view as! SKView
                     skView.showsFPS = true
                     skView.showsNodeCount = true
                     

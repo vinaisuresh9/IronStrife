@@ -23,6 +23,7 @@ class Goreblon: Enemy {
         self.configureStats()
         self.attackSoundPrefix = "GoreblonAttack"
         self.numberAttackSounds = 3
+        preloadSounds()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -40,7 +41,7 @@ class Goreblon: Enemy {
     //MARK: PhysicsBody and Delegate
     override func configurePhysicsBody() {
         super.configurePhysicsBody()
-        self.physicsBody!.collisionBitMask = CollisionBitMask.enemy.rawValue | CollisionBitMask.other.rawValue | CollisionBitMask.player.rawValue
+        self.physicsBody!.collisionBitMask = CollisionBitMask.enemy.rawValue | CollisionBitMask.other.rawValue | CollisionBitMask.player.rawValue | CollisionBitMask.wall.rawValue
         self.physicsBody?.contactTestBitMask = CollisionBitMask.player.rawValue
         self.physicsBody!.categoryBitMask = CollisionBitMask.enemy.rawValue
         
@@ -88,8 +89,5 @@ class Goreblon: Enemy {
         downAttackTextures.append(atlas.textureNamed("Down1"))
         
     }
-    
-
-    
 
 }

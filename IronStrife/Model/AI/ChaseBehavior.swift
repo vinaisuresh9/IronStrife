@@ -9,21 +9,22 @@
 import Foundation
 
 class ChaseBehavior: AIBehavior {
-    var player = Player.sharedInstance
     
     func run(_ enemy: Enemy) {
+        let player = Player.sharedInstance
         enemy.moveTo(player.position)
         
         if (AttackBehavior.checkPreconditions(enemy)) {
             enemy.changeState(AttackBehavior())
         }
         if (WanderBehavior.checkPreconditions(enemy)) {
+            enemy.stopMoving()
             enemy.changeState(WanderBehavior())
         }
     }
     
     static func checkPreconditions(_ enemy: Enemy) -> Bool {
-        if (enemy.distanceFromPlayer() < enemyChaseDistance && enemy.distanceFromPlayer() > 70) {
+        if (enemy.distanceFromPlayer() < enemy.enemyChaseDistance && enemy.distanceFromPlayer() > 70) {
             return true
         }
         

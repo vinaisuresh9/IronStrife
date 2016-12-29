@@ -131,7 +131,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
     
     
     func didBegin(_ contact: SKPhysicsContact) {
-        //Can use contactNormal vector to decided pushback vector for gettingHit animation
+        //TODO: Can use contactNormal vector to decided pushback vector for gettingHit animation
         let nodeA = contact.bodyA.node
         if (nodeA is Character){
             let body = nodeA as! Character
