@@ -359,8 +359,8 @@
 				TargetAttributes = {
 					5356187219525C16000F2086 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = 935PGDMS7Y;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -561,6 +561,7 @@
 				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = IronStrife/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vinai.${PRODUCT_NAME:rfc1034identifier}";
@@ -580,6 +581,7 @@
 				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = IronStrife/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vinai.${PRODUCT_NAME:rfc1034identifier}";
