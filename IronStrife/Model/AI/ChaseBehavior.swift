@@ -7,27 +7,31 @@
 //
 
 import Foundation
+import UIKit
 
 class ChaseBehavior: AIBehavior {
+    fileprivate static var chaseThreshold: CGFloat = 50
     
-    func run(_ enemy: Enemy) {
+    func run(_ ai: AI) {
+        guard let moveableAI = ai as? MoveableAI else { return }
         let player = Player.sharedInstance
-        enemy.moveTo(player.position)
+        moveableAI.moveTo(position: player.position)
         
-        if (AttackBehavior.checkPreconditions(enemy)) {
-            enemy.changeState(AttackBehavior())
+        if (AttackBehavior.checkPreconditions(ai)) {
+            ai.changeBehavior(behavior: AttackBehavior())
         }
-        if (WanderBehavior.checkPreconditions(enemy)) {
-            enemy.stopMoving()
-            enemy.changeState(WanderBehavior())
+        if (WanderBehavior.checkPreconditions(ai)) {
+            moveableAI.stopMoving()
+            ai.changeBehavior(behavior: WanderBehavior())
         }
     }
     
-    static func checkPreconditions(_ enemy: Enemy) -> Bool {
-        if (enemy.distanceFromPlayer() < enemy.enemyChaseDistance && enemy.distanceFromPlayer() > 70) {
-            return true
+    static func checkPreconditions(_ ai: AI) -> Bool {
+        switch ai {
+        case let enemy as EnemyAI:
+            return enemy.distanceFromPlayer() < enemy.chaseDistance && enemy.distanceFromPlayer() > chaseThreshold
+        default:
+            return false
         }
-        
-        return false
     }
 }

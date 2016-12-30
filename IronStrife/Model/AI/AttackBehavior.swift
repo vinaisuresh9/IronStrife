@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import UIKit
 
 class AttackBehavior: AIBehavior {
-    var player = Player.sharedInstance    
+    fileprivate static var attackThreshold: CGFloat = 70
     
-    func run(_ enemy: Enemy) {
+    func run(_ ai: AI) {
         if (enemy is Goreblon) {
             enemy.meleeAttack(enemy.directionToPlayer())
         }
@@ -22,8 +23,8 @@ class AttackBehavior: AIBehavior {
     }
     
     //TODO: Finish up precondition check
-    static func checkPreconditions(_ enemy: Enemy) -> Bool {
-        if (enemy.distanceFromPlayer() < 70) {
+    static func checkPreconditions(_ ai: AI) -> Bool {
+        if (enemy.distanceFromPlayer() < attackThreshold) {
             return true
         }
         

@@ -85,10 +85,10 @@ class Character: SKSpriteNode {
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
         
-        zPosition = WorldLayer.character.rawValue
+        zPosition = WorldLayer.character
         
         addChild(shadowNode)
-        shadowNode.zPosition = -WorldLayer.shadow.rawValue
+        shadowNode.zPosition = WorldLayer.shadow
         shadowNode.setScale(0.8)
         shadowNode.position = CGPoint(x: 0, y: -frame.size.height * 0.6)
         
@@ -284,8 +284,5 @@ class Character: SKSpriteNode {
         destination = position
         
     }
-    
-    
-    
 
 }

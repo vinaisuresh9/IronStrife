@@ -15,7 +15,7 @@ class IceCircle: AoESpell {
     fileprivate let animationTime = 0.03
     fileprivate var updateInterval: TimeInterval{
         get{
-            let frameRate = 1/(self.animationTime * Double(Textures.icespellTextures.textureNames.count))
+            let frameRate = 1/(animationTime * Double(Textures.icespellTextures.textureNames.count))
             return animationTime/frameRate
         }
     }
@@ -30,8 +30,8 @@ class IceCircle: AoESpell {
     convenience init(owner: Player){
         self.init(texture: Textures.icespellTextures.textureNamed("IceCircle49"))
         self.owner = owner
-        self.configurePhysicsBody()
-        self.position = owner.position
+        configurePhysicsBody()
+        position = owner.position
         
         for i in stride(from:49, through:1, by: -3) {
             textures.append(atlas.textureNamed("IceCircle\(i)"))
@@ -45,7 +45,7 @@ class IceCircle: AoESpell {
     func run(){
         let animation = SKAction.animate(with: textures, timePerFrame: animationTime, resize: true, restore: false)
         let sound = SKAction.playSoundFileNamed(iceAudioName, waitForCompletion: false)
-        self.run(SKAction.group([animation, sound])
+        run(SKAction.group([animation, sound])
             , completion: {
             self.removeFromParent()
         })
@@ -53,8 +53,8 @@ class IceCircle: AoESpell {
     
     //MARK: Update Loop
     override func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval){
-        if (self.updateInterval <= timeSince){
-            self.configurePhysicsBody()
+        if (updateInterval <= timeSince){
+            configurePhysicsBody()
         }
     }
 

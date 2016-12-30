@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class Cure: SKSpriteNode{
+class Cure: SKSpriteNode {
     
     var textures: [SKTexture] = []
     fileprivate let atlas = Textures.curespellTextures
@@ -22,7 +22,8 @@ class Cure: SKSpriteNode{
     convenience init(owner: Player){
         self.init(texture: Textures.curespellTextures.textureNamed("Cure1"))
         self.owner = owner
-        self.position = owner.position
+        position = owner.position
+        zPosition = WorldLayer.projectile
         
         for i in stride(from:1, through:17, by:1) {
             textures.append(atlas.textureNamed("Cure\(i)"))
@@ -35,7 +36,7 @@ class Cure: SKSpriteNode{
     
     func run(){
         let animation = SKAction.animate(with: textures, timePerFrame: animationTime, resize: true, restore: false)
-        self.run(animation, completion: {
+        run(animation, completion: {
             self.removeFromParent()
         })
     }
@@ -43,7 +44,7 @@ class Cure: SKSpriteNode{
     //MARK: Update Loop
     override func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval){
         if let owner = owner {
-            self.position = owner.position
+            position = owner.position
         }
     }
     

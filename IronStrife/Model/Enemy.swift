@@ -17,12 +17,13 @@ let explosionHitCoolDown: Double = 2
 let iceCircleHitCoolDown: Double = 3
 
 class Enemy: Character {
-    let enemyChaseDistance:CGFloat = 250
+    let chaseDistance: CGFloat = 250
     
     var type: AttackType = AttackType.melee
     var hitByIce = false
     var hitByExplosion = false
-    var state: AIBehavior = WanderBehavior()
+    // AI
+    var behavior: AIBehavior = WanderBehavior()
 
     override func collidedWith(_ other: SKPhysicsBody) {
         if (self.isDying){
@@ -76,25 +77,24 @@ class Enemy: Character {
     }
     
     //MARK: Distance Functions
-    func distanceFromPlayer() -> CGFloat {
-        let distance = MathFunctions.calculateDistance(self.position, point2: Player.sharedInstance.position)
-        return CGFloat(distance)
-    }
     
     func directionToPlayer() -> Direction {
         return self.directionToPoint(Player.sharedInstance.position)
-    }
-    
-    //MARK: State Switching
-    func changeState(_ state: AIBehavior) {
-        self.state = state
     }
     
     //MARK: Update Loop
     override func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval) {
         super.updateWithTimeSinceLastUpdate(timeSince)
         
-        self.state.run(self)
+        behavior.run(self)
     }
-    
 }
+
+// MARK: - AI
+extension Enemy: AI {}
+
+// MARK: - EnemyAI
+extension Enemy: EnemyAI {}
+
+// MARK: - MoveableAI
+extension Enemy: MoveableAI {}

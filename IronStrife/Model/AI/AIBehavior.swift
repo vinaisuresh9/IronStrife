@@ -7,8 +7,8 @@
 //
 
 protocol AIBehavior {
-    func run(_ enemy: Enemy)
+    func run(_ ai: AI)
     
-    static func checkPreconditions(_ enemy: Enemy) -> Bool
+    static func checkPreconditions(_ ai: AI) -> Bool
     
 }

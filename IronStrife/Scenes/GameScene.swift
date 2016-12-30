@@ -14,13 +14,12 @@ import SpriteKit
 import UIKit
 
 
-enum WorldLayer: CGFloat {
-    case background = 0.1,
-    other = 0.2,
-    shadow = 0.3,
-    projectile = 0.4,
-    character = 0.5
-    
+struct WorldLayer {
+    static let background: CGFloat = -1
+    static let other: CGFloat = 0.2
+    static let shadow: CGFloat = 0.3
+    static let projectile: CGFloat = 0.4
+    static let character: CGFloat = 0.5
 }
 
 class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
@@ -45,8 +44,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
         self.physicsWorld.contactDelegate = self
         self.createEdges()
         
+        
         let background = SKSpriteNode(imageNamed: "Background.png")
         background.size = self.frame.size
+        background.zPosition = WorldLayer.background
         background.position = CGPoint(x: self.frame.midX, y: self.frame.midY);
         self.addChild(background)
     }

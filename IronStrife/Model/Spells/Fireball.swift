@@ -22,13 +22,13 @@ class Fireball: Projectile{
     convenience init(direction: CGPoint, owner: Player){
         self.init(texture: Textures.fireballTexture)
         self.owner = owner
-        self.configurePhysicsBody()
+        configurePhysicsBody()
         self.direction = direction
-        self.position = owner.position
-        self.zRotation = CGFloat(MathFunctions.angleFromLine(self.position, point2: direction)!)
-        self.run(SKAction.sequence([SKAction.wait(forDuration: 3), SKAction.removeFromParent()]))
-        let normalVector = MathFunctions.normalizedVector(self.position, point2: direction)
-        self.physicsBody?.velocity = CGVector(dx: normalVector.dx * CGFloat(Fireball.moveSpeed), dy: normalVector.dy * CGFloat(Fireball.moveSpeed))
+        position = owner.position
+        zRotation = CGFloat(MathFunctions.angleFromLine(position, point2: direction)!)
+        run(SKAction.sequence([SKAction.wait(forDuration: 3), SKAction.removeFromParent()]))
+        let normalVector = MathFunctions.normalizedVector(position, point2: direction)
+        physicsBody?.velocity = CGVector(dx: normalVector.dx * CGFloat(Fireball.moveSpeed), dy: normalVector.dy * CGFloat(Fireball.moveSpeed))
     }
     
     
@@ -36,7 +36,7 @@ class Fireball: Projectile{
     func explode() {
         let explosion = Explosion(fireball: self)
         explosion.run()
-        self.removeFromParent()
+        removeFromParent()
     }
     
 }

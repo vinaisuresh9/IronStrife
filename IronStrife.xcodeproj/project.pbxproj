@@ -40,6 +40,7 @@
 		536F8A5D195FDB0F00EFBDE5 /* TownScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536F8A5C195FDB0F00EFBDE5 /* TownScene.swift */; };
 		536F8A5F195FDD9300EFBDE5 /* TownScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 536F8A5E195FDD9300EFBDE5 /* TownScene.sks */; };
 		537CC1951A4FA26A0072F6A4 /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537CC1941A4FA26A0072F6A4 /* Textures.swift */; };
+		538AFEC11E16C75000680BA2 /* AI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538AFEC01E16C75000680BA2 /* AI.swift */; };
 		539114BF1AE3F2BA00C8E00F /* ChaseBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539114BE1AE3F2BA00C8E00F /* ChaseBehavior.swift */; };
 		539114C11AE3F5B200C8E00F /* WanderBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539114C01AE3F5B200C8E00F /* WanderBehavior.swift */; };
 		539114C31AE4267A00C8E00F /* AttackBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539114C21AE4267A00C8E00F /* AttackBehavior.swift */; };
@@ -99,6 +100,7 @@
 		536F8A5C195FDB0F00EFBDE5 /* TownScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TownScene.swift; sourceTree = "<group>"; };
 		536F8A5E195FDD9300EFBDE5 /* TownScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TownScene.sks; sourceTree = "<group>"; };
 		537CC1941A4FA26A0072F6A4 /* Textures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
+		538AFEC01E16C75000680BA2 /* AI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AI.swift; sourceTree = "<group>"; };
 		539114BE1AE3F2BA00C8E00F /* ChaseBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChaseBehavior.swift; sourceTree = "<group>"; };
 		539114C01AE3F5B200C8E00F /* WanderBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WanderBehavior.swift; sourceTree = "<group>"; };
 		539114C21AE4267A00C8E00F /* AttackBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttackBehavior.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		53152C221E159D8B00D07D32 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				538AFEC01E16C75000680BA2 /* AI.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				53BF3F4A1953E2F900E026D2 /* Fireball.swift in Sources */,
 				5356187919525C17000F2086 /* AppDelegate.swift in Sources */,
 				53BA78261A66FE5C008BCDF7 /* Cure.swift in Sources */,
+				538AFEC11E16C75000680BA2 /* AI.swift in Sources */,
 				535FF5C21A9770D5007D4C80 /* AoESpell.swift in Sources */,
 				5326113A19BC22F700E0ADC1 /* Enemy.swift in Sources */,
 				530340C91B139F2300950675 /* Room1Scene.swift in Sources */,
