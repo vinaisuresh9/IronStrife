@@ -188,7 +188,7 @@ class Character: SKSpriteNode {
     }
     
     //MARK: Movement and Orientation
-    func moveTo(_ point:CGPoint)
+    func moveTo(position point:CGPoint)
     {
         //var movementAction = SKAction.moveTo(scenePoint, duration: time)
         //player.runAction(movementAction, withKey: player.direction)

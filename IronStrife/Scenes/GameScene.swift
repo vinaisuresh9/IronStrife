@@ -126,7 +126,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
         let point = sender.location(in: self.view)
         if let view = self.view {
             let scenePoint = view.convert(point, to: self)
-            player.moveTo(scenePoint)
+            player.moveTo(position: scenePoint)
         }
     }
     

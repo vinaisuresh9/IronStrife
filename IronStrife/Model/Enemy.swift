@@ -78,8 +78,8 @@ class Enemy: Character {
     
     //MARK: Distance Functions
     
-    func directionToPlayer() -> Direction {
-        return self.directionToPoint(Player.sharedInstance.position)
+    fileprivate func directionToPlayer() -> Direction {
+        return directionToPoint(Player.sharedInstance.position)
     }
     
     //MARK: Update Loop
@@ -94,7 +94,17 @@ class Enemy: Character {
 extension Enemy: AI {}
 
 // MARK: - EnemyAI
-extension Enemy: EnemyAI {}
+extension Enemy: EnemyAI {
+    func attack() {
+        switch type {
+        case .melee:
+            meleeAttack(directionToPlayer())
+        case .range:
+            // TODO: Support ranged attacking
+            break
+        }
+    }
+}
 
 // MARK: - MoveableAI
 extension Enemy: MoveableAI {}

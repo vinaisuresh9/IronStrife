@@ -13,21 +13,25 @@ class AttackBehavior: AIBehavior {
     fileprivate static var attackThreshold: CGFloat = 70
     
     func run(_ ai: AI) {
-        if (enemy is Goreblon) {
-            enemy.meleeAttack(enemy.directionToPlayer())
+        switch ai {
+        case let enemy as EnemyAI:
+            enemy.attack()
+        default:
+            break
         }
         
-        if (ChaseBehavior.checkPreconditions(enemy)) {
-            enemy.changeState(ChaseBehavior())
+        if (ChaseBehavior.checkPreconditions(ai)) {
+            ai.changeBehavior(behavior: ChaseBehavior())
         }
     }
     
     //TODO: Finish up precondition check
     static func checkPreconditions(_ ai: AI) -> Bool {
-        if (enemy.distanceFromPlayer() < attackThreshold) {
-            return true
+        switch ai {
+        case let enemy as EnemyAI:
+            return enemy.distanceFromPlayer() < attackThreshold
+        default:
+            return false
         }
-        
-        return false
     }
 }

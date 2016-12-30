@@ -25,6 +25,7 @@ extension AI {
 protocol EnemyAI: AI {
     var chaseDistance: CGFloat { get }
     func distanceFromPlayer() -> CGFloat
+    func attack()
 }
 
 extension EnemyAI where Self: Enemy {
