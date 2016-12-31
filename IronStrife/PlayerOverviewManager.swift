@@ -32,10 +32,6 @@ class PlayerOverviewManager: NSObject {
         NotificationCenter.default.addObserver(self, selector: #selector(manaIncreased), name: NSNotification.Name(rawValue: playerManaIncreasedNotification), object: nil)
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     
     func configureOverlay() {
         _ = SKShapeNode()

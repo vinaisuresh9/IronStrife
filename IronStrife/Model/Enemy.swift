@@ -26,12 +26,12 @@ class Enemy: Character {
     var behavior: AIBehavior = WanderBehavior()
 
     override func collidedWith(_ other: SKPhysicsBody) {
-        if (self.isDying){
+        if (isDying){
             return
         }
         let otherNode = other.node
         if (otherNode is Fireball){
-            let killed = self.applyDamage(Fireball.attackDamage)
+            let killed = applyDamage(Fireball.attackDamage)
             let fireball = otherNode as! Fireball
             fireball.explode()
             if (killed){
@@ -45,8 +45,8 @@ class Enemy: Character {
             
             _ = self.applyDamage(IceCircle.attackDamage)
             
-            self.slowFactor = 1 - IceCircle.slowFactor
-            self.color = UIColor.blue
+            slowFactor = 1 - IceCircle.slowFactor
+            color = UIColor.blue
             hitByIce = true
             
             let delayTime = DispatchTime.now() + Double(Int64(iceCircleHitCoolDown * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
@@ -61,8 +61,8 @@ class Enemy: Character {
                 return
             }
             
-            let killed = self.applyDamage(Explosion.attackDamage)
-            self.color = UIColor.red
+            let killed = applyDamage(Explosion.attackDamage)
+            color = UIColor.red
             hitByExplosion = true
             
             let delayTime = DispatchTime.now() + Double(Int64(explosionHitCoolDown * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
@@ -89,9 +89,6 @@ class Enemy: Character {
         behavior.run(self)
     }
 }
-
-// MARK: - AI
-extension Enemy: AI {}
 
 // MARK: - EnemyAI
 extension Enemy: EnemyAI {
