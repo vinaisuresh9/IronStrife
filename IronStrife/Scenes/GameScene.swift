@@ -22,20 +22,15 @@ struct WorldLayer {
     static let character: CGFloat = 0.5
 }
 
-class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
+
+
+class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate {
 
     var lastUpdateTimeInterval: TimeInterval = 0
     let player = Player.sharedInstance
     var currentMovementAnimationKey = ""
     var startPoint:CGPoint = CGPoint.zero
-    
-    var upScene: GameScene?
-    var downScene: GameScene?
-    var rightScene: GameScene?
-    var leftScene: GameScene?
-    
-    let transitionTime: TimeInterval = 1
-    
+        
     func setupScene()
     {
         //Do some initial setup
@@ -99,30 +94,30 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
         
     }
     
-    func swiped (_ sender: UISwipeGestureRecognizer){
+    @objc func swiped (_ sender: UISwipeGestureRecognizer){
         player.attackInDirection(sender.direction)
     }
     
     
-    func tapped (_ sender: UITapGestureRecognizer){
+    @objc func tapped (_ sender: UITapGestureRecognizer){
         let point = sender.location(in: self.view)
         player.castFireball(self.view!.convert(point, to: self))
     }
     
     
-    func twoFingerTap (_ sender: UITapGestureRecognizer) {
+    @objc func twoFingerTap (_ sender: UITapGestureRecognizer) {
         player.castIceSpell()
     }
     
     
-    func twoFingerLongPress (_ sender: UILongPressGestureRecognizer){
+    @objc func twoFingerLongPress (_ sender: UILongPressGestureRecognizer){
         if (sender.state == UIGestureRecognizerState.began) {
             self.player.castCureSpell()
         }
     }
     
     
-    func longPress (_ sender: UILongPressGestureRecognizer){
+    @objc func longPress (_ sender: UILongPressGestureRecognizer){
         let point = sender.location(in: self.view)
         if let view = self.view {
             let scenePoint = view.convert(point, to: self)
@@ -160,31 +155,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate{
             return
         }
     }
-    
-    
-    //MARK: Transitioning Scenes
-    func transitionUp (_ newScene: GameScene) {
-        let transition = SKTransition.push(with: SKTransitionDirection.down, duration: transitionTime)
-        self.view?.presentScene(newScene, transition: transition)
-    }
-    
-    func transitionRight (_ newScene:GameScene) {
-        let transition = SKTransition.push(with: SKTransitionDirection.left, duration: transitionTime)
-        self.view?.presentScene(newScene, transition: transition)
-
-    }
-    
-    func transitionLeft (_ newScene:GameScene) {
-        let transition = SKTransition.push(with: SKTransitionDirection.right, duration: transitionTime)
-        self.view?.presentScene(newScene, transition: transition)
-    }
-    
-    func transitionDown(_ newScene:GameScene) {
-        let transition = SKTransition.push(with: SKTransitionDirection.up, duration: transitionTime)
-        self.view?.presentScene(newScene, transition: transition)
-    }
-    
-
     
     //MARK: Update Loop
     override func update(_ currentTime: TimeInterval) {

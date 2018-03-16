@@ -8,8 +8,13 @@
 
 import SpriteKit
 
-class Room1Scene: GameScene {
-   
+class Room1Scene: GameScene, SceneTransitioning {
+
+    // MARK: - SceneTransitioning
+    var leftScene: GameScene? = Room1Scene.unarchiveFromFile("Room1Scene") as? Room1Scene
+    var rightScene: GameScene?
+    var upScene: GameScene?
+    var downScene: GameScene?
     
     override func didMove(to view: SKView) {
         super.setupScene()

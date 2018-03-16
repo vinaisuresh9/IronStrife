@@ -10,7 +10,7 @@ import UIKit
 
 class MathFunctions {
     
-    static func calculateDistance(_ point1: CGPoint, point2: CGPoint) -> Double{
+    static func calculateDistance(_ point1: CGPoint, point2: CGPoint) -> Double {
         if (point1 == point2){
             return 0
         }
@@ -23,7 +23,7 @@ class MathFunctions {
     }
     
     //Change to use vectors instead of points
-    static func angleFromLine(_ point1: CGPoint, point2: CGPoint) -> Float?{
+    static func angleFromLine(_ point1: CGPoint, point2: CGPoint) -> Float? {
         switch (point1,point2) {
             //Case for first quadrant
         case let (p1,p2) where point2.x >= point1.x && point2.y >= point1.y:
@@ -31,11 +31,11 @@ class MathFunctions {
         
             //Second Quadrant
         case let (p1,p2) where point2.x < point1.x && point2.y >= point1.y:
-            return Float(M_PI) - atanf(Float(p2.y - p1.y)/Float(p1.x - p2.x))
+            return Float(Double.pi) - atanf(Float(p2.y - p1.y)/Float(p1.x - p2.x))
             
             //Third Quadrant
         case let (p1,p2) where point2.x < point1.x && point2.y < point1.y:
-            return Float(M_PI) + atanf(Float(p1.y - p2.y)/Float(p1.x - p2.x))
+            return Float(Double.pi) + atanf(Float(p1.y - p2.y)/Float(p1.x - p2.x))
             
             //Invert points to get negative fourth quadrant
         case let (p1,p2) where point2.x >= point1.x && point2.y < point1.y:
@@ -46,7 +46,7 @@ class MathFunctions {
     }
     
     //Normalize Vector Method!!!
-    static func normalizedVector(_ point1: CGPoint, point2: CGPoint) -> CGVector{
+    static func normalizedVector(_ point1: CGPoint, point2: CGPoint) -> CGVector {
         let distance = MathFunctions.calculateDistance(point1, point2: point2)
         
         var tempVector = CGVector(dx: point2.x - point1.x, dy: point2.y - point1.y)
@@ -58,25 +58,25 @@ class MathFunctions {
     
     static func point(withOrigin origin: CGPoint, distance: CGFloat, angle: Double) -> CGPoint? {
         // Won't accept angles not within 0 - 2PI
-        guard angle <= 2 * M_PI else { return nil }
+        guard angle <= 2 * Double.pi else { return nil }
         switch angle {
             //First Quadrant
-        case let angle where angle >= 0 && angle <= M_PI_2:
+        case let angle where angle >= 0 && angle <= Double.pi / 2:
             let dy = distance * CGFloat(sin(angle))
             let dx = distance * CGFloat(cos(angle))
             return CGPoint(x: origin.x + dx, y: origin.y + dy)
             // Second Quadrant
-        case let angle where angle >= M_PI_2 && angle < M_PI:
+        case let angle where angle >= Double.pi / 2 && angle < Double.pi:
             let dx = distance * CGFloat(sin(angle))
             let dy = distance * CGFloat(cos(angle))
             return CGPoint(x: origin.x + dx, y: origin.y + dy)
             // Third Quadrant
-        case let angle where angle >= M_PI && angle <= (3 * M_PI_2):
+        case let angle where angle >= Double.pi && angle <= (3 * Double.pi / 2):
             let dy = distance * CGFloat(sin(angle))
             let dx = distance * CGFloat(cos(angle))
             return CGPoint(x: origin.x + dx, y: origin.y + dy)
             // Fourth Quadrant
-        case let angle where angle >= (3 * M_PI_2) && angle < (2 * M_PI):
+        case let angle where angle >= (3 * Double.pi / 2) && angle < (2 * Double.pi):
             let dx = distance * CGFloat(sin(angle))
             let dy = distance * CGFloat(cos(angle))
             return CGPoint(x: origin.x + dx, y: origin.y + dy)

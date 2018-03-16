@@ -61,19 +61,19 @@ class PlayerOverviewManager: NSObject {
         manaBar.zPosition = 1
     }
     
-    func healthIncreased(_ notification:Notification) {
+    @objc func healthIncreased(_ notification:Notification) {
         
     }
     
-    func healthDecreased(_ notification:Notification) {
+    @objc func healthDecreased(_ notification:Notification) {
         
     }
     
-    func manaIncreased(_ notification:Notification) {
+    @objc func manaIncreased(_ notification:Notification) {
         
     }
     
-    func manaDecreased(_ notification:Notification) {
+    @objc func manaDecreased(_ notification:Notification) {
         
     }
     

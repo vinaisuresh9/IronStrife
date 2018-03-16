@@ -262,13 +262,13 @@ class Character: SKSpriteNode {
         let angle = asinf(Float(vector.dy)/Float(1))
         
         switch (angle) {
-            case _ where angle >= Float(M_PI_4) && angle <= (3 * Float(M_PI_4)):
+            case _ where angle >= Float(Double.pi / 4) && angle <= (3 * Float(Double.pi / 4)):
                 return Direction.Up
             
-            case _ where angle <= Float(M_PI_4) && angle >= -Float(M_PI_4) && (point.x <= position.x):
+            case _ where angle <= Float(Double.pi / 4) && angle >= -Float(Double.pi / 4) && (point.x <= position.x):
                 return Direction.Left
             
-            case _ where angle <= -Float(M_PI_4) && angle >= -(3 * Float(M_PI_4)):
+            case _ where angle <= -Float(Double.pi / 4) && angle >= -(3 * Float(Double.pi / 4)):
                 return Direction.Down
 
             default:

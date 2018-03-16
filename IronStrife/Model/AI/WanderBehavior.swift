@@ -15,7 +15,7 @@ class WanderBehavior: AIBehavior {
          if let character = ai as? Character, character.action(forKey: character.currentMovementAnimationKey) == nil {
             let randomVariable = arc4random()
             let percentage: CGFloat = CGFloat(randomVariable % 100) / 100
-            let randomAngle = Double(percentage) * 2 * M_PI
+            let randomAngle = Double(percentage) * 2 * .pi
             if let destinationPoint = MathFunctions.point(withOrigin: character.position, distance: maxWanderDistance, angle: randomAngle) {
                 character.moveTo(position: destinationPoint)
             }
