@@ -11,7 +11,7 @@ import SpriteKit
 class Room1Scene: GameScene, SceneTransitioning {
 
     // MARK: - SceneTransitioning
-    var leftScene: GameScene? = Room1Scene.unarchiveFromFile("Room1Scene") as? Room1Scene
+    var leftScene: GameScene?
     var rightScene: GameScene?
     var upScene: GameScene?
     var downScene: GameScene?
@@ -19,14 +19,9 @@ class Room1Scene: GameScene, SceneTransitioning {
     override func didMove(to view: SKView) {
         super.setupScene()
         
-        /* Setup your scene here */
-        player.removeFromParent()
-        player.position = self.startPoint
-        self.addChild(player)
-        
+        rightScene = Room1Scene.unarchiveFromFile() as? Room1Scene
+        rightScene?.scaleMode = SKSceneScaleMode.aspectFill
     }
-    
-    
     
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)

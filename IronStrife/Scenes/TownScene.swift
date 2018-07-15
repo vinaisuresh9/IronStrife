@@ -11,26 +11,26 @@ import SpriteKit
 class TownScene: GameScene, SceneTransitioning {
 
     // MARK: - SceneTransitioning
-    var leftScene: GameScene? = Room1Scene.unarchiveFromFile("Room1Scene") as? Room1Scene
+    var leftScene: GameScene?
     var rightScene: GameScene?
     var upScene: GameScene?
     var downScene: GameScene?
 
     override func didMove(to view: SKView) {
+        startPoint = CGPoint(x:self.frame.midX, y:self.frame.midY)
         super.setupScene()
     
         /* Setup your scene here */
         player.removeFromParent()
-        player.position = CGPoint(x:self.frame.midX, y:self.frame.midY);
-        self.addChild(player)
+        player.position = CGPoint(x:self.frame.midX, y:self.frame.midY)
+        addChild(player)
         
         let firstEnemy = Goreblon()
         firstEnemy.position = CGPoint(x: 40, y: self.frame.midY)
-        self.addChild(firstEnemy)
+        addChild(firstEnemy)
         
-        self.leftScene = Room1Scene.unarchiveFromFile("Room1Scene") as? Room1Scene
-        self.leftScene?.scaleMode = SKSceneScaleMode.aspectFill
-                
+        leftScene = Room1Scene.unarchiveFromFile() as? Room1Scene
+        leftScene?.scaleMode = SKSceneScaleMode.aspectFill
     }
     
     override func willMove(from view: SKView) {

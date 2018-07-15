@@ -10,8 +10,8 @@ import UIKit
 import SpriteKit
 
 extension SKNode {
-    class func unarchiveFromFile(_ file : NSString) -> SKNode? {
-        
+    class func unarchiveFromFile(_ file : String = String(describing: self)) -> SKNode? {
+
         let path = Bundle.main.path(forResource: file as String, ofType: "sks")
         var sceneData: Data?
         do {

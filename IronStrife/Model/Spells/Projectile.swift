@@ -12,7 +12,7 @@ import SpriteKit
 class Projectile: SKSpriteNode {
     var owner: Character?
     
-    override func configurePhysicsBody(){
+    func configurePhysicsBody(){
         setScale(0.8)
         physicsBody = SKPhysicsBody(rectangleOf: frame.size)
         physicsBody?.allowsRotation = false

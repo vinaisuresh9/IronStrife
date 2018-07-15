@@ -39,8 +39,8 @@ class Goreblon: Enemy {
     }
     
     //MARK: PhysicsBody and Delegate
-    override func configurePhysicsBody() {
-        super.configurePhysicsBody()
+    func configurePhysicsBody() {
+        super.configureDefaultPhysicsBody()
         self.physicsBody!.collisionBitMask = CollisionBitMask.enemy.rawValue | CollisionBitMask.other.rawValue | CollisionBitMask.player.rawValue | CollisionBitMask.wall.rawValue
         self.physicsBody?.contactTestBitMask = CollisionBitMask.player.rawValue | CollisionBitMask.wall.rawValue
         self.physicsBody!.categoryBitMask = CollisionBitMask.enemy.rawValue

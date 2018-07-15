@@ -9,16 +9,16 @@
 import SpriteKit
 
 extension SKSpriteNode  {
-    func configurePhysicsBody() {
+    func configureDefaultPhysicsBody() {
         var center = CGPoint.zero
         center.y -= self.frame.height * 1/6
-        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.width - 15, height: self.frame.height * 2/3), center: center)
-        self.physicsBody?.mass = 0
-        self.setScale(0.8)
-        self.physicsBody!.allowsRotation = false;
-        self.physicsBody?.restitution = 0
-        self.physicsBody?.angularDamping = 0
-        self.physicsBody?.linearDamping = 0
-        self.physicsBody?.friction = 0
+        physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.width - 15, height: self.frame.height * 2/3), center: center)
+        physicsBody?.mass = 0
+        setScale(0.8)
+        physicsBody?.allowsRotation = false;
+        physicsBody?.restitution = 0
+        physicsBody?.angularDamping = 0
+        physicsBody?.linearDamping = 0
+        physicsBody?.friction = 0
     }
 }

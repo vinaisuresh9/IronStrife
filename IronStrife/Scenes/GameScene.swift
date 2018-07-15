@@ -22,14 +22,12 @@ struct WorldLayer {
     static let character: CGFloat = 0.5
 }
 
-
-
 class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate {
 
     var lastUpdateTimeInterval: TimeInterval = 0
     let player = Player.sharedInstance
     var currentMovementAnimationKey = ""
-    var startPoint:CGPoint = CGPoint.zero
+    var startPoint: CGPoint = .zero
         
     func setupScene()
     {
@@ -38,13 +36,16 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         self.physicsWorld.gravity = CGVector.zero
         self.physicsWorld.contactDelegate = self
         self.createEdges()
-        
-        
+
         let background = SKSpriteNode(imageNamed: "Background.png")
         background.size = self.frame.size
         background.zPosition = WorldLayer.background
         background.position = CGPoint(x: self.frame.midX, y: self.frame.midY);
         self.addChild(background)
+
+        player.removeFromParent()
+        player.position = startPoint
+        addChild(player)
     }
     
     //Overridden
@@ -53,45 +54,43 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     }
     
     func initializeGestureRecognizers(){
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(GameScene.tapped(_:)))
-        tapGesture.numberOfTapsRequired = 1
-        self.view?.addGestureRecognizer(tapGesture)
-        
-        let twoFingerTapGesture = UITapGestureRecognizer(target: self, action: #selector(GameScene.twoFingerTap(_:)))
-        twoFingerTapGesture.numberOfTouchesRequired = 2
-        self.view?.addGestureRecognizer(twoFingerTapGesture)
-        
-        let twoFingerLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.twoFingerLongPress(_:)))
-        twoFingerLongPressGesture.numberOfTouchesRequired = 2
-        twoFingerLongPressGesture.minimumPressDuration = 0.1
-        twoFingerLongPressGesture.allowableMovement = 5
-        self.view?.addGestureRecognizer(twoFingerLongPressGesture)
-        
-        let movementGesture = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.longPress(_:)))
-        movementGesture.minimumPressDuration = 0.3
-        self.view?.addGestureRecognizer(movementGesture)
-        
-        let upSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swiped(_:)))
-        upSwipeGesture.direction = UISwipeGestureRecognizerDirection.up
-        self.view?.addGestureRecognizer(upSwipeGesture)
-        
-        let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swiped(_:)))
-        rightSwipeGesture.direction = UISwipeGestureRecognizerDirection.right
-        self.view?.addGestureRecognizer(rightSwipeGesture)
-        
-        let downSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swiped(_:)))
-        downSwipeGesture.direction = UISwipeGestureRecognizerDirection.down
-        self.view?.addGestureRecognizer(downSwipeGesture)
-        
-        let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swiped(_:)))
-        leftSwipeGesture.direction = UISwipeGestureRecognizerDirection.left
-        self.view?.addGestureRecognizer(leftSwipeGesture)
-        
+        DispatchQueue.main.async {
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(GameScene.tapped(_:)))
+            tapGesture.numberOfTapsRequired = 1
+            self.view?.addGestureRecognizer(tapGesture)
 
-        self.view?.showsPhysics = true
-        
-        
+            let twoFingerTapGesture = UITapGestureRecognizer(target: self, action: #selector(GameScene.twoFingerTap(_:)))
+            twoFingerTapGesture.numberOfTouchesRequired = 2
+            self.view?.addGestureRecognizer(twoFingerTapGesture)
+
+            let twoFingerLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.twoFingerLongPress(_:)))
+            twoFingerLongPressGesture.numberOfTouchesRequired = 2
+            twoFingerLongPressGesture.minimumPressDuration = 0.1
+            twoFingerLongPressGesture.allowableMovement = 5
+            self.view?.addGestureRecognizer(twoFingerLongPressGesture)
+
+            let movementGesture = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.longPress(_:)))
+            movementGesture.minimumPressDuration = 0.3
+            self.view?.addGestureRecognizer(movementGesture)
+
+            let upSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swiped(_:)))
+            upSwipeGesture.direction = UISwipeGestureRecognizerDirection.up
+            self.view?.addGestureRecognizer(upSwipeGesture)
+
+            let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swiped(_:)))
+            rightSwipeGesture.direction = UISwipeGestureRecognizerDirection.right
+            self.view?.addGestureRecognizer(rightSwipeGesture)
+
+            let downSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swiped(_:)))
+            downSwipeGesture.direction = UISwipeGestureRecognizerDirection.down
+            self.view?.addGestureRecognizer(downSwipeGesture)
+
+            let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swiped(_:)))
+            leftSwipeGesture.direction = UISwipeGestureRecognizerDirection.left
+            self.view?.addGestureRecognizer(leftSwipeGesture)
+
+            self.view?.showsPhysics = true
+        }
     }
     
     @objc func swiped (_ sender: UISwipeGestureRecognizer){

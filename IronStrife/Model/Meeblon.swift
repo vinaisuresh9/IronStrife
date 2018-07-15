@@ -26,19 +26,19 @@ class Meeblon: Enemy {
     }
     
     override func configureStats() {
-        self.health = 100
-        self.type = AttackType.range
-        self.attackStrength = 15
-        self.defense = 5
-        self.colorBlendFactor = 0.5
+        health = 100
+        type = AttackType.range
+        attackStrength = 15
+        defense = 5
+        colorBlendFactor = 0.5
     }
     
     //MARK: PhysicsBody and Delegate
-    override func configurePhysicsBody() {
-        super.configurePhysicsBody()
-        self.physicsBody!.collisionBitMask = CollisionBitMask.enemy.rawValue | CollisionBitMask.other.rawValue | CollisionBitMask.player.rawValue | CollisionBitMask.playerProjectile.rawValue
-        self.physicsBody?.contactTestBitMask = CollisionBitMask.playerProjectile.rawValue | CollisionBitMask.player.rawValue | CollisionBitMask.enemyProjectile.rawValue
-        self.physicsBody!.categoryBitMask = CollisionBitMask.enemy.rawValue
+    func configurePhysicsBody() {
+        super.configureDefaultPhysicsBody()
+        physicsBody!.collisionBitMask = CollisionBitMask.enemy.rawValue | CollisionBitMask.other.rawValue | CollisionBitMask.player.rawValue | CollisionBitMask.playerProjectile.rawValue
+        physicsBody?.contactTestBitMask = CollisionBitMask.playerProjectile.rawValue | CollisionBitMask.player.rawValue | CollisionBitMask.enemyProjectile.rawValue
+        physicsBody!.categoryBitMask = CollisionBitMask.enemy.rawValue
         
     }
     

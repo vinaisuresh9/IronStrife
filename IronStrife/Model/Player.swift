@@ -39,9 +39,10 @@ class Player: Character {
     //MARK: Initialization 
     convenience init(){
         self.init(texture: Textures.playerTextures.textureNamed("Down1"))
-        self.position = position
+
         configurePhysicsBody()
         initializeTextureArrays()
+
         self.configureStats()
         self.attackSoundPrefix = "PlayerAttack"
         self.numberAttackSounds = 10
@@ -57,8 +58,8 @@ class Player: Character {
         self.movespeed = 250
     }
     
-    override func configurePhysicsBody() {
-        super.configurePhysicsBody()
+    func configurePhysicsBody() {
+        super.configureDefaultPhysicsBody()
         self.physicsBody?.allowsRotation = false;
         self.physicsBody?.collisionBitMask = CollisionBitMask.enemy.rawValue | CollisionBitMask.other.rawValue
         self.physicsBody?.contactTestBitMask = CollisionBitMask.enemyProjectile.rawValue
