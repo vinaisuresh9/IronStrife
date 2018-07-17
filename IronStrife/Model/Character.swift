@@ -8,7 +8,6 @@
 
 import SpriteKit
 
-
 enum CollisionBitMask: UInt32 {
     case
     player              = 1,
@@ -18,7 +17,6 @@ enum CollisionBitMask: UInt32 {
     other               = 16,
     spell               = 32,
     wall                = 64
-    
 }
 
 enum Direction: String {
@@ -100,14 +98,6 @@ class Character: SKSpriteNode {
     
     func initializeTextureArrays(){
         
-    }
-    
-    override func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval){
-        if (action(forKey: currentMovementAnimationKey) != nil){
-            checkDestination()
-        }
-        
-        shadowNode.position = CGPoint(x: 0, y: -frame.size.height * 0.6)
     }
     
     func configureStats() {
@@ -285,4 +275,14 @@ class Character: SKSpriteNode {
         
     }
 
+}
+
+extension Character: FrameUpdatable {
+    func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval){
+        if (action(forKey: currentMovementAnimationKey) != nil){
+            checkDestination()
+        }
+
+        shadowNode.position = CGPoint(x: 0, y: -frame.size.height * 0.6)
+    }
 }

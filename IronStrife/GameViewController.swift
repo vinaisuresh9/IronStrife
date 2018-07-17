@@ -10,8 +10,9 @@ import UIKit
 import SpriteKit
 
 extension SKNode {
-    class func unarchiveFromFile(_ file : String = String(describing: self)) -> SKNode? {
+    class func unarchiveFromFile() -> SKNode? {
 
+        let file = String(describing: self)
         let path = Bundle.main.path(forResource: file as String, ofType: "sks")
         var sceneData: Data?
         do {
@@ -26,19 +27,16 @@ extension SKNode {
         archiver.finishDecoding()
         return scene
     }
-    
-    func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval){}
 }
 
 class GameViewController: UIViewController {
     
     override func viewWillLayoutSubviews(){
         super.viewWillLayoutSubviews()
-        
         SKTextureAtlas.preloadTextureAtlases(Textures.allTextureAtlases, withCompletionHandler: {[weak self] () -> Void in
             SKTexture.preload(Textures.allTextures, withCompletionHandler: { () -> Void in
                 guard let strongSelf = self else { return }
-                if let scene = TownScene.unarchiveFromFile("TownScene") as? TownScene {
+                if let scene = TownScene.unarchiveFromFile() as? TownScene {
                     // Configure the view.
                     let skView = strongSelf.view as! SKView
                     skView.showsFPS = true
@@ -69,10 +67,6 @@ class GameViewController: UIViewController {
         } else {
             return UIInterfaceOrientationMask.all
         }
-    }
-    
-    func transitionScenes(){
-        
     }
     
 }

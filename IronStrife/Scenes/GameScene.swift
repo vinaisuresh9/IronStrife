@@ -50,7 +50,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     
     //Overridden
     func createEdges() {
-        
+        assertionFailure("subclass must override")
     }
     
     func initializeGestureRecognizers(){
@@ -161,15 +161,11 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         self.lastUpdateTimeInterval = currentTime;
         self.updateWithTimeSinceLastUpdate(timeSinceLast)
     }
-    
-    //Overridden
-    override func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval){
-        for node in self.children {
-            if (node is Character) {
-                node.updateWithTimeSinceLastUpdate(timeSince)
-            }
-        }
-    }
+}
 
+extension GameScene: ChildFrameUpdating {
+    var updateableChildren: [SKNode & FrameUpdatable] {
+        return (children.filter{ $0 is Character } as? [SKNode & FrameUpdatable]) ?? []
+    }
 }
 

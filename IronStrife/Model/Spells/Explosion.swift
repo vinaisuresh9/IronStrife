@@ -54,14 +54,13 @@ class Explosion: AoESpell {
             , completion: {
             self.removeFromParent()
         })
-    }
-    
-    
-    //MARK: Update Loop
-    override func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval){
+    }  
+}
+
+extension Explosion: FrameUpdatable {
+    func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval){
         if let fireballPosition = self.parentFireball?.position {
             self.position = fireballPosition
         }
     }
-    
 }

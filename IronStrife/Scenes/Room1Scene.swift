@@ -19,13 +19,11 @@ class Room1Scene: GameScene, SceneTransitioning {
     override func didMove(to view: SKView) {
         super.setupScene()
         
-        rightScene = Room1Scene.unarchiveFromFile() as? Room1Scene
-        rightScene?.scaleMode = SKSceneScaleMode.aspectFill
+        rightScene = TownScene.unarchiveFromFile() as! TownScene
+        rightScene?.scaleMode = SKSceneScaleMode.fill
     }
     
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)
     }
-    
-    
 }

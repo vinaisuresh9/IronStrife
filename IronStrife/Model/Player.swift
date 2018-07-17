@@ -166,22 +166,18 @@ class Player: Character {
             
         }
     }
-    
-    
-    //MARK: UpdateLoop
-    override func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval) {
-        super.updateWithTimeSinceLastUpdate(timeSince)
-        if let sceneChildren = self.scene?.children{
-            for child in sceneChildren{
-                if (child is IceCircle || child is Cure || child is Explosion){
-                    child.updateWithTimeSinceLastUpdate(timeSince)
-                }
-            }
-        }
+}
+
+extension Player: ChildFrameUpdating {
+    var updateableChildren: [SKNode & FrameUpdatable] {
+        let sceneChildren = scene?.children
+        return (sceneChildren?.filter{ $0 is IceCircle || $0 is Cure || $0 is Fireball } as? [SKNode & FrameUpdatable]) ?? []
     }
 
-    
-    
-    
-    
+    override func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval) {
+        super.updateWithTimeSinceLastUpdate(timeSince)
+        for child in updateableChildren {
+            child.updateWithTimeSinceLastUpdate(timeSince)
+        }
+    }
 }

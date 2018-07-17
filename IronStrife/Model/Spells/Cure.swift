@@ -40,13 +40,12 @@ class Cure: SKSpriteNode {
             self.removeFromParent()
         })
     }
-    
-    //MARK: Update Loop
-    override func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval){
+}
+
+extension Cure: FrameUpdatable {
+    func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval){
         if let owner = owner {
             position = owner.position
         }
     }
-    
-    
 }

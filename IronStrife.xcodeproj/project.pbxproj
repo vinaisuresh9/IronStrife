@@ -63,6 +63,7 @@
 		53CC03641A4E9270000CB921 /* Goreblon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CC03631A4E9270000CB921 /* Goreblon.swift */; };
 		53E7583A1A5B55A60046F1BB /* Cure.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 53E758391A5B55A60046F1BB /* Cure.atlas */; };
 		53F3831F1AD0A5C500BE489E /* AIBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F3831E1AD0A5C500BE489E /* AIBehavior.swift */; };
+		A03E10A320FD84FF003EE774 /* FrameUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03E10A220FD84FF003EE774 /* FrameUpdatable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +125,7 @@
 		53CC03631A4E9270000CB921 /* Goreblon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goreblon.swift; sourceTree = "<group>"; };
 		53E758391A5B55A60046F1BB /* Cure.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Cure.atlas; sourceTree = "<group>"; };
 		53F3831E1AD0A5C500BE489E /* AIBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIBehavior.swift; sourceTree = "<group>"; };
+		A03E10A220FD84FF003EE774 /* FrameUpdatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameUpdatable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				53055C8E205B616F009AEBCC /* SceneTransitioning.swift */,
+				A03E10A220FD84FF003EE774 /* FrameUpdatable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 				5368C7461B055A690078B3FF /* PlayerOverviewManager.swift in Sources */,
 				536439711954C523003AD77E /* MathFunctions.swift in Sources */,
 				536F8A5D195FDB0F00EFBDE5 /* TownScene.swift in Sources */,
+				A03E10A320FD84FF003EE774 /* FrameUpdatable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,7 +585,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};

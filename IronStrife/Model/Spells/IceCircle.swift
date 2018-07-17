@@ -50,12 +50,12 @@ class IceCircle: AoESpell {
             self.removeFromParent()
         })
     }
-    
-    //MARK: Update Loop
-    override func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval){
+}
+
+extension IceCircle: FrameUpdatable {
+    func updateWithTimeSinceLastUpdate(_ timeSince: TimeInterval){
         if (updateInterval <= timeSince){
             configurePhysicsBody()
         }
     }
-
 }
