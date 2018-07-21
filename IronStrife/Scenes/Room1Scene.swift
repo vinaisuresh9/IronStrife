@@ -8,19 +8,15 @@
 
 import SpriteKit
 
-class Room1Scene: GameScene, SceneTransitioning {
+class Room1Scene: GameScene {
 
-    // MARK: - SceneTransitioning
-    var leftScene: GameScene?
-    var rightScene: GameScene?
-    var upScene: GameScene?
-    var downScene: GameScene?
-    
-    override func didMove(to view: SKView) {
+    override func sceneDidLoad() {
+        super.sceneDidLoad()
+
         super.setupScene()
-        
-        rightScene = TownScene.unarchiveFromFile() as! TownScene
-        rightScene?.scaleMode = SKSceneScaleMode.fill
+
+        rightScene = SceneManager.sharedInstance.scene(TownScene.self)
+        rightScene?.scaleMode = SKSceneScaleMode.aspectFill
     }
     
     override func update(_ currentTime: TimeInterval) {

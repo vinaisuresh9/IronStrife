@@ -64,6 +64,9 @@
 		53E7583A1A5B55A60046F1BB /* Cure.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 53E758391A5B55A60046F1BB /* Cure.atlas */; };
 		53F3831F1AD0A5C500BE489E /* AIBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F3831E1AD0A5C500BE489E /* AIBehavior.swift */; };
 		A03E10A320FD84FF003EE774 /* FrameUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03E10A220FD84FF003EE774 /* FrameUpdatable.swift */; };
+		A063A4A621038E2000D1D82D /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A063A4A521038E2000D1D82D /* NotificationNameExtension.swift */; };
+		A063A4A82103908800D1D82D /* SKTransitionDirectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A063A4A72103908800D1D82D /* SKTransitionDirectionExtension.swift */; };
+		A063A4AA2103983100D1D82D /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A063A4A92103983100D1D82D /* SceneManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +129,9 @@
 		53E758391A5B55A60046F1BB /* Cure.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Cure.atlas; sourceTree = "<group>"; };
 		53F3831E1AD0A5C500BE489E /* AIBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIBehavior.swift; sourceTree = "<group>"; };
 		A03E10A220FD84FF003EE774 /* FrameUpdatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameUpdatable.swift; sourceTree = "<group>"; };
+		A063A4A521038E2000D1D82D /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
+		A063A4A72103908800D1D82D /* SKTransitionDirectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKTransitionDirectionExtension.swift; sourceTree = "<group>"; };
+		A063A4A92103983100D1D82D /* SceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				5302A5C21BE2487F0012B951 /* SKSpriteNodeExtensions.swift */,
+				A063A4A521038E2000D1D82D /* NotificationNameExtension.swift */,
+				A063A4A72103908800D1D82D /* SKTransitionDirectionExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -315,6 +323,7 @@
 				530CB265196067CF00DA905F /* Player.swift */,
 				53078FA71A4D8A0C00D2DE43 /* Enemies */,
 				53CC03611A4E6635000CB921 /* Character.swift */,
+				A063A4A92103983100D1D82D /* SceneManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -449,9 +458,11 @@
 				53510F921A5A1AA6004FD586 /* Meeblon.swift in Sources */,
 				539114C31AE4267A00C8E00F /* AttackBehavior.swift in Sources */,
 				53510F941A5AEA62004FD586 /* IceCircle.swift in Sources */,
+				A063A4A82103908800D1D82D /* SKTransitionDirectionExtension.swift in Sources */,
 				53CC03641A4E9270000CB921 /* Goreblon.swift in Sources */,
 				5302A5C51BE248960012B951 /* Sounds.swift in Sources */,
 				5356187F19525C17000F2086 /* GameViewController.swift in Sources */,
+				A063A4A621038E2000D1D82D /* NotificationNameExtension.swift in Sources */,
 				53F3831F1AD0A5C500BE489E /* AIBehavior.swift in Sources */,
 				539114C11AE3F5B200C8E00F /* WanderBehavior.swift in Sources */,
 				5302A5C81BE24A330012B951 /* Tree.swift in Sources */,
@@ -463,6 +474,7 @@
 				538AFEC11E16C75000680BA2 /* AI.swift in Sources */,
 				535FF5C21A9770D5007D4C80 /* AoESpell.swift in Sources */,
 				5326113A19BC22F700E0ADC1 /* Enemy.swift in Sources */,
+				A063A4AA2103983100D1D82D /* SceneManager.swift in Sources */,
 				530340C91B139F2300950675 /* Room1Scene.swift in Sources */,
 				539114BF1AE3F2BA00C8E00F /* ChaseBehavior.swift in Sources */,
 				535FF5BB1A96E089007D4C80 /* Explosion.swift in Sources */,
@@ -535,7 +547,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -582,7 +594,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

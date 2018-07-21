@@ -22,12 +22,35 @@ struct WorldLayer {
     static let character: CGFloat = 0.5
 }
 
-class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate {
+class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate, SceneTransitioning {
+
+    private struct Identifiers {
+        static let edgeConstant: CGFloat = 10
+    }
 
     var lastUpdateTimeInterval: TimeInterval = 0
     let player = Player.sharedInstance
     var currentMovementAnimationKey = ""
     var startPoint: CGPoint = .zero
+
+    // MARK: - SceneTransitioning
+    var leftScene: GameScene?
+    var rightScene: GameScene?
+    var upScene: GameScene?
+    var downScene: GameScene?
+
+    // MARK: - SKScene
+
+    override func willMove(from view: SKView) {
+        super.willMove(from: view)
+
+        leftScene = nil
+        rightScene = nil
+        upScene = nil
+        downScene = nil
+    }
+
+    // MARK: - Setup
         
     func setupScene()
     {
@@ -44,14 +67,20 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         self.addChild(background)
 
         player.removeFromParent()
-        player.position = startPoint
         addChild(player)
+        player.position = startPoint
+        player.stopMoving()
     }
     
-    //Overridden
     func createEdges() {
-        assertionFailure("subclass must override")
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: Identifiers.edgeConstant, y: Identifiers.edgeConstant, width: frame.width - (Identifiers.edgeConstant * 2), height: frame.height - (Identifiers.edgeConstant * 2)))
+        self.physicsBody?.isDynamic = false
+        self.physicsBody?.categoryBitMask = CollisionBitMask.wall.rawValue
+        self.physicsBody?.collisionBitMask = CollisionBitMask.enemy.rawValue
+        self.physicsBody?.contactTestBitMask = CollisionBitMask.player.rawValue
     }
+
+    // MARK: - Gestures
     
     func initializeGestureRecognizers(){
         DispatchQueue.main.async {
@@ -123,39 +152,52 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             player.moveTo(position: scenePoint)
         }
     }
-    
+
+    // MARK: - SKPhysicsContactDelegate
     
     func didBegin(_ contact: SKPhysicsContact) {
         //TODO: Can use contactNormal vector to decided pushback vector for gettingHit animation
-        let nodeA = contact.bodyA.node
-        if (nodeA is Character){
-            let body = nodeA as! Character
-            body.collidedWith(contact.bodyB)
-            return
-        }
-        
-        let nodeB = contact.bodyB.node
-        if (nodeB is Character){
-            let body = nodeB as! Character
-            body.collidedWith(contact.bodyA)
-            return
-        }
-        
-        //TODO: Need to handle projectile collisions with non-characters
-        if (contact.bodyA.node is Fireball) {
-            let fireball = contact.bodyA.node as! Fireball
+        checkContact(contactPoint: contact.contactPoint, body1: contact.bodyA, body2: contact.bodyB)
+        checkContact(contactPoint: contact.contactPoint, body1: contact.bodyB, body2: contact.bodyA)
+    }
+
+    // MARK: - Private
+
+    private func checkContact(contactPoint: CGPoint, body1: SKPhysicsBody, body2: SKPhysicsBody) {
+        switch (body1.node, body2.node) {
+        case let (_ as Player, scene as GameScene):
+            transition(withScene: scene, contact: contactPoint)
+        case let (character as Character, _):
+            character.collidedWith(body2)
+        case let (fireball as Fireball, _):
             fireball.explode()
-            return
+        default:
+            break
         }
-        
-        if (contact.bodyB.node is Fireball) {
-            let fireball = contact.bodyB.node as! Fireball
-            fireball.explode()
-            return
+    }
+
+    private func transition(withScene scene: SKScene, contact: CGPoint) {
+        let frame = scene.frame
+
+        switch (contact.x, contact.y) {
+        case let (x, y) where x > frame.width - (Identifiers.edgeConstant + 5):
+            let startPoint = CGPoint(x: (frame.width - x) + 50, y: y)
+            transitionScene(direction: .right, startPoint: startPoint)
+        case let (x, y) where x < Identifiers.edgeConstant + 5:
+            let startPoint = CGPoint(x: (frame.width - x) - 50, y: y)
+            transitionScene(direction: .left, startPoint: startPoint)
+        case let (x, y) where y > frame.height - (Identifiers.edgeConstant + 5):
+            let startPoint = CGPoint(x: x, y: (frame.height - y) + 50)
+            transitionScene(direction: .up, startPoint: startPoint)
+        case let (x, y) where y < Identifiers.edgeConstant + 5:
+            let startPoint = CGPoint(x: x, y: (frame.height - y) - 50)
+            transitionScene(direction: .down, startPoint: startPoint)
+        default:
+            break
         }
     }
     
-    //MARK: Update Loop
+    //MARK: - Update Loop
     override func update(_ currentTime: TimeInterval) {
         let timeSinceLast = currentTime - self.lastUpdateTimeInterval;
         self.lastUpdateTimeInterval = currentTime;
@@ -163,9 +205,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     }
 }
 
+// MARK: - ChildFrameUpdating
+
 extension GameScene: ChildFrameUpdating {
     var updateableChildren: [SKNode & FrameUpdatable] {
         return (children.filter{ $0 is Character } as? [SKNode & FrameUpdatable]) ?? []
     }
 }
-

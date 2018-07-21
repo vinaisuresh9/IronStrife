@@ -21,25 +21,28 @@ protocol SceneTransitioning {
 }
 
 extension SceneTransitioning where Self: SKScene {
-    //MARK: Transitioning Scenes
-    func transitionUp (_ newScene: GameScene) {
-        let transition = SKTransition.push(with: SKTransitionDirection.down, duration: AnimationTime.time)
-        self.view?.presentScene(newScene, transition: transition)
-    }
 
-    func transitionRight (_ newScene:GameScene) {
-        let transition = SKTransition.push(with: SKTransitionDirection.left, duration: AnimationTime.time)
+    func transitionScene(direction: SKTransitionDirection, startPoint: CGPoint) {
+        var transitionedScene: GameScene?
+        switch direction {
+        case .up:
+            transitionedScene = upScene
+        case .down:
+            transitionedScene = downScene
+        case .left:
+            transitionedScene = leftScene
+        case .right:
+            transitionedScene = rightScene
+        }
+
+        guard let newScene = transitionedScene else { return }
+
+        PlayerOverviewManager.sharedInstance.currentScene = newScene
+        newScene.startPoint = startPoint
+
+        let transitionDirection = direction.invert()
+        let transition = SKTransition.push(with: transitionDirection, duration: AnimationTime.time)
         self.view?.presentScene(newScene, transition: transition)
 
-    }
-
-    func transitionLeft (_ newScene:GameScene) {
-        let transition = SKTransition.push(with: SKTransitionDirection.right, duration: AnimationTime.time)
-        self.view?.presentScene(newScene, transition: transition)
-    }
-
-    func transitionDown(_ newScene:GameScene) {
-        let transition = SKTransition.push(with: SKTransitionDirection.up, duration: AnimationTime.time)
-        self.view?.presentScene(newScene, transition: transition)
     }
 }
