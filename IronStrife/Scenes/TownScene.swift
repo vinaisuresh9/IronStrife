@@ -24,7 +24,6 @@ class TownScene: GameScene {
     // MARK: - SceneTransitioning
     override var leftScene: GameScene? {
         let scene = SceneManager.sharedInstance.scene(Room1Scene.self)
-        scene?.scaleMode = .aspectFill
         return scene
     }
 

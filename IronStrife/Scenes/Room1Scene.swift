@@ -18,7 +18,6 @@ class Room1Scene: GameScene {
 
     override var rightScene: GameScene? {
         let scene = SceneManager.sharedInstance.scene(TownScene.self)
-        scene?.scaleMode = .aspectFill
         return scene
     }
     

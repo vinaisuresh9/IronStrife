@@ -51,19 +51,19 @@ class Player: Character {
     }
     
     override func configureStats() {
-        self.health = 200
-        self.mana = 100
-        self.attackStrength = 25
-        self.defense = 10
-        self.movespeed = 250
+        health = 200
+        mana = 100
+        attackStrength = 25
+        defense = 10
+        movespeed = 250
     }
     
     func configurePhysicsBody() {
         super.configureDefaultPhysicsBody()
-        self.physicsBody?.allowsRotation = false;
-        self.physicsBody?.collisionBitMask = CollisionBitMask.enemy.rawValue | CollisionBitMask.other.rawValue
-        self.physicsBody?.contactTestBitMask = CollisionBitMask.enemyProjectile.rawValue
-        self.physicsBody?.categoryBitMask = CollisionBitMask.player.rawValue
+        physicsBody?.allowsRotation = false;
+        physicsBody?.collisionBitMask = CollisionBitMask.enemy.rawValue | CollisionBitMask.other.rawValue
+        physicsBody?.contactTestBitMask = CollisionBitMask.enemyProjectile.rawValue
+        physicsBody?.categoryBitMask = CollisionBitMask.player.rawValue
     }
     
     

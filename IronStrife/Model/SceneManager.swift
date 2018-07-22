@@ -15,11 +15,12 @@ final class SceneManager {
     private var sceneCache: [Int : GameScene] = [:]
 
     func scene<SceneType: GameScene>(_ sceneType: SceneType.Type) -> SceneType? {
-        let scene = sceneCache[sceneType.hash()] ?? sceneType.unarchiveFromFile()
-        if let unwrappedScene = scene as? GameScene {
+        let scene = sceneCache[sceneType.hash()] ?? sceneType.unarchiveFromFile() as? GameScene
+        if let unwrappedScene = scene {
             sceneCache[sceneType.hash()] = unwrappedScene
         }
 
+        scene?.scaleMode = .aspectFit
         return scene as? SceneType
     }
 }

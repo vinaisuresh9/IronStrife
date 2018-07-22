@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 private struct AnimationTime {
-    static let time: TimeInterval = 0.5
+    static let time: TimeInterval = 1
 }
 
 protocol SceneTransitioning {
