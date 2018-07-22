@@ -10,14 +10,14 @@ import Foundation
 import SpriteKit
 
 private struct AnimationTime {
-    static let time: TimeInterval = 1
+    static let time: TimeInterval = 0.5
 }
 
 protocol SceneTransitioning {
-    var upScene: GameScene? { get set }
-    var downScene: GameScene? { get set }
-    var rightScene: GameScene? { get set }
-    var leftScene: GameScene? { get set }
+    var upScene: GameScene? { get }
+    var downScene: GameScene? { get }
+    var rightScene: GameScene? { get }
+    var leftScene: GameScene? { get }
 }
 
 extension SceneTransitioning where Self: SKScene {

@@ -19,10 +19,16 @@ class TownScene: GameScene {
         let firstEnemy = Goreblon()
         firstEnemy.position = CGPoint(x: 40, y: self.frame.midY)
         addChild(firstEnemy)
-
-        leftScene = SceneManager.sharedInstance.scene(Room1Scene.self)
-        leftScene?.scaleMode = SKSceneScaleMode.aspectFill
     }
+
+    // MARK: - SceneTransitioning
+    override var leftScene: GameScene? {
+        let scene = SceneManager.sharedInstance.scene(Room1Scene.self)
+        scene?.scaleMode = .aspectFill
+        return scene
+    }
+
+    // MARK: - Update Loop
     
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)

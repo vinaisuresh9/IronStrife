@@ -36,7 +36,7 @@ class GameViewController: UIViewController {
         SKTextureAtlas.preloadTextureAtlases(Textures.allTextureAtlases, withCompletionHandler: {[weak self] () -> Void in
             SKTexture.preload(Textures.allTextures, withCompletionHandler: { () -> Void in
                 guard let strongSelf = self else { return }
-                if let scene = TownScene.unarchiveFromFile() as? TownScene {
+                if let scene = SceneManager.sharedInstance.scene(TownScene.self) {
                     // Configure the view.
                     let skView = strongSelf.view as! SKView
                     skView.showsFPS = true

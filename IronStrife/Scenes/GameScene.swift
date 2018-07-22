@@ -34,12 +34,23 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate,
     var startPoint: CGPoint = .zero
 
     // MARK: - SceneTransitioning
-    var leftScene: GameScene?
-    var rightScene: GameScene?
-    var upScene: GameScene?
-    var downScene: GameScene?
+    private(set) var leftScene: GameScene?
+    private(set) var rightScene: GameScene?
+    private(set) var upScene: GameScene?
+    private(set) var downScene: GameScene?
 
     // MARK: - SKScene
+
+    override func didMove(to view: SKView) {
+        super.didMove(to: view)
+
+        initializeGestureRecognizers()
+
+        player.removeFromParent()
+        addChild(player)
+        player.position = startPoint
+        player.stopMoving()
+    }
 
     override func willMove(from view: SKView) {
         super.willMove(from: view)
@@ -55,21 +66,15 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate,
     func setupScene()
     {
         //Do some initial setup
-        self.initializeGestureRecognizers()
-        self.physicsWorld.gravity = CGVector.zero
-        self.physicsWorld.contactDelegate = self
-        self.createEdges()
+        physicsWorld.gravity = CGVector.zero
+        physicsWorld.contactDelegate = self
+        createEdges()
 
         let background = SKSpriteNode(imageNamed: "Background.png")
         background.size = self.frame.size
         background.zPosition = WorldLayer.background
         background.position = CGPoint(x: self.frame.midX, y: self.frame.midY);
-        self.addChild(background)
-
-        player.removeFromParent()
-        addChild(player)
-        player.position = startPoint
-        player.stopMoving()
+        addChild(background)
     }
     
     func createEdges() {

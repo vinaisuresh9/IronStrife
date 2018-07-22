@@ -14,9 +14,12 @@ class Room1Scene: GameScene {
         super.sceneDidLoad()
 
         super.setupScene()
+    }
 
-        rightScene = SceneManager.sharedInstance.scene(TownScene.self)
-        rightScene?.scaleMode = SKSceneScaleMode.aspectFill
+    override var rightScene: GameScene? {
+        let scene = SceneManager.sharedInstance.scene(TownScene.self)
+        scene?.scaleMode = .aspectFill
+        return scene
     }
     
     override func update(_ currentTime: TimeInterval) {
