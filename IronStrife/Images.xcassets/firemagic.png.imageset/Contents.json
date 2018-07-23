@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "filename" : "firemagic.png"
     },
     {
       "idiom" : "universal",
-      "filename" : "firemagic.png",
       "scale" : "1x"
     },
     {

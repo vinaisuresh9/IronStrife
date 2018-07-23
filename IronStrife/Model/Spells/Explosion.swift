@@ -36,7 +36,6 @@ class Explosion: AoESpell {
     ///Initializes default Explosion
     convenience init(fireball: Fireball){
         self.init(texture: Textures.explosionTextures.textureNamed("FireExplosion1"))
-        self.configurePhysicsBody()
         self.parentFireball = fireball
         self.position = fireball.position
     

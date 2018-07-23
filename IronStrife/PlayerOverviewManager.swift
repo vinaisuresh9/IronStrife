@@ -44,7 +44,7 @@ class PlayerOverviewManager: NSObject {
         if let height = self.currentScene?.frame.size.height {
             healthBar.position = CGPoint(x: 150, y: height - 150)
         }
-        self.currentScene?.addChild(healthBar)
+        currentScene?.addChild(healthBar)
         healthBar.zPosition = 1
         
         
@@ -57,7 +57,7 @@ class PlayerOverviewManager: NSObject {
             manaBar.position = CGPoint(x: width - 150, y: height - 150)
 
         }
-        self.currentScene?.addChild(manaBar)
+        currentScene?.addChild(manaBar)
         manaBar.zPosition = 1
     }
     

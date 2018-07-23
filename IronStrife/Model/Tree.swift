@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class Tree: SKSpriteNode {
+class Tree: SKSpriteNode, PhysicsBodyContaining {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

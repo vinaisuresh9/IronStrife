@@ -67,6 +67,7 @@
 		A063A4A621038E2000D1D82D /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A063A4A521038E2000D1D82D /* NotificationNameExtension.swift */; };
 		A063A4A82103908800D1D82D /* SKTransitionDirectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A063A4A72103908800D1D82D /* SKTransitionDirectionExtension.swift */; };
 		A063A4AA2103983100D1D82D /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A063A4A92103983100D1D82D /* SceneManager.swift */; };
+		A069FB8A210551B400630C87 /* PhysicsBodyContaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069FB89210551B400630C87 /* PhysicsBodyContaining.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +133,7 @@
 		A063A4A521038E2000D1D82D /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		A063A4A72103908800D1D82D /* SKTransitionDirectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKTransitionDirectionExtension.swift; sourceTree = "<group>"; };
 		A063A4A92103983100D1D82D /* SceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
+		A069FB89210551B400630C87 /* PhysicsBodyContaining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsBodyContaining.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 			children = (
 				53055C8E205B616F009AEBCC /* SceneTransitioning.swift */,
 				A03E10A220FD84FF003EE774 /* FrameUpdatable.swift */,
+				A069FB89210551B400630C87 /* PhysicsBodyContaining.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A069FB8A210551B400630C87 /* PhysicsBodyContaining.swift in Sources */,
 				53AF40691A51D0F00036A274 /* Projectile.swift in Sources */,
 				537CC1951A4FA26A0072F6A4 /* Textures.swift in Sources */,
 				5356187D19525C17000F2086 /* GameScene.swift in Sources */,

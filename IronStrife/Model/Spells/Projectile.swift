@@ -9,7 +9,7 @@
 
 import SpriteKit
 
-class Projectile: SKSpriteNode {
+class Projectile: SKSpriteNode, PhysicsBodyContaining {
     var owner: Character?
     
     func configurePhysicsBody(){

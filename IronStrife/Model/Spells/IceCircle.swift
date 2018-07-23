@@ -30,7 +30,6 @@ class IceCircle: AoESpell {
     convenience init(owner: Player){
         self.init(texture: Textures.icespellTextures.textureNamed("IceCircle49"))
         self.owner = owner
-        configurePhysicsBody()
         position = owner.position
         
         for i in stride(from:49, through:1, by: -3) {

@@ -52,15 +52,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate,
         player.stopMoving()
     }
 
-    override func willMove(from view: SKView) {
-        super.willMove(from: view)
-
-        leftScene = nil
-        rightScene = nil
-        upScene = nil
-        downScene = nil
-    }
-
     // MARK: - Setup
         
     func setupScene()
