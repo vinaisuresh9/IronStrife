@@ -6,32 +6,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IronStrife/Model/Character.swift"
-            timestampString = "553882829.254704"
+            filePath = "IronStrife/Model/Spells/IceCircle.swift"
+            timestampString = "561139305.915392"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
-            landmarkName = "moveTo(position:)"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "updateWithTimeSinceLastUpdate(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IronStrife/Model/Spells/Fireball.swift"
-            timestampString = "553996152.677913"
+            filePath = "IronStrife/Model/Character.swift"
+            timestampString = "561139328.853304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "init(direction:owner:)"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "init(texture:color:size:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

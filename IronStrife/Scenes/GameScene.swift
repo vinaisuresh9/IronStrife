@@ -66,6 +66,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate,
         background.zPosition = WorldLayer.background
         background.position = CGPoint(x: self.frame.midX, y: self.frame.midY);
         addChild(background)
+
+        NotificationCenter.default.post(name: .physicsWorldCreated, object: nil)
     }
     
     func createEdges() {

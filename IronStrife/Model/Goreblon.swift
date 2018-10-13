@@ -11,23 +11,18 @@ import SpriteKit
 let goreblonDeathSound = "GoreblonDeath.wav"
 
 class Goreblon: Enemy {
-    
-    convenience init(){
-        self.init(texture: Textures.goreblonTextures.textureNamed("Down1"), color: UIColor.white, size: Textures.goreblonTextures.textureNamed("Down1").size())
-    }
-    
-    fileprivate override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
-        self.configurePhysicsBody()
-        self.initializeTextureArrays()
-        self.configureStats()
-        self.attackSoundPrefix = "GoreblonAttack"
-        self.numberAttackSounds = 3
-        preloadSounds()
-    }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+
+        initializeTextureArrays()
+        configureStats()
+        attackSoundPrefix = "GoreblonAttack"
+        numberAttackSounds = 3
+        preloadSounds()
+        initializeShadowAndPosition()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(configurePhysicsBody), name: .physicsWorldCreated, object: nil)
     }
     
     override func configureStats() {
@@ -39,7 +34,7 @@ class Goreblon: Enemy {
     }
     
     //MARK: PhysicsBody and Delegate
-    func configurePhysicsBody() {
+    @objc private func configurePhysicsBody() {
         super.configureDefaultPhysicsBody()
         self.physicsBody!.collisionBitMask = CollisionBitMask.enemy.rawValue | CollisionBitMask.other.rawValue | CollisionBitMask.player.rawValue | CollisionBitMask.wall.rawValue
         self.physicsBody?.contactTestBitMask = CollisionBitMask.player.rawValue | CollisionBitMask.wall.rawValue

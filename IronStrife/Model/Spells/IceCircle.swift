@@ -34,7 +34,6 @@ class IceCircle: AoESpell {
         
         for i in stride(from:49, through:1, by: -3) {
             textures.append(atlas.textureNamed("IceCircle\(i)"))
-
         }
         
         self.owner?.scene?.addChild(self)

@@ -9,20 +9,14 @@
 import SpriteKit
 
 class Meeblon: Enemy {
-    convenience init(){
-        self.init(texture: Textures.meeblonTextures.textureNamed("Down1"), color: UIColor.white, size: Textures.meeblonTextures.textureNamed("Down1").size())
-    }
-    
-    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
-        self.configurePhysicsBody()
-        self.configureStats()
-        self.initializeTextureArrays()
-
-    }
-
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+
+        configureStats()
+        initializeTextureArrays()
+        initializeShadowAndPosition()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(configurePhysicsBody), name: .physicsWorldCreated, object: nil)
     }
     
     override func configureStats() {
@@ -34,7 +28,7 @@ class Meeblon: Enemy {
     }
     
     //MARK: PhysicsBody and Delegate
-    func configurePhysicsBody() {
+    @objc private func configurePhysicsBody() {
         super.configureDefaultPhysicsBody()
         physicsBody!.collisionBitMask = CollisionBitMask.enemy.rawValue | CollisionBitMask.other.rawValue | CollisionBitMask.player.rawValue | CollisionBitMask.playerProjectile.rawValue
         physicsBody?.contactTestBitMask = CollisionBitMask.playerProjectile.rawValue | CollisionBitMask.player.rawValue | CollisionBitMask.enemyProjectile.rawValue

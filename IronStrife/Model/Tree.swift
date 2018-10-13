@@ -12,11 +12,11 @@ class Tree: SKSpriteNode {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        self.configurePhysicsBody()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(configurePhysicsBody), name: .physicsWorldCreated, object: nil)
     }
     
-    func configurePhysicsBody() {
+    @objc private func configurePhysicsBody() {
         self.configureDefaultPhysicsBody()
         physicsBody?.collisionBitMask = CollisionBitMask.enemy.rawValue | CollisionBitMask.player.rawValue | CollisionBitMask.enemyProjectile.rawValue | CollisionBitMask.playerProjectile.rawValue
         physicsBody?.categoryBitMask = CollisionBitMask.other.rawValue

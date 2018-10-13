@@ -20,5 +20,7 @@ extension SKSpriteNode  {
         physicsBody?.angularDamping = 0
         physicsBody?.linearDamping = 0
         physicsBody?.friction = 0
+
+        NotificationCenter.default.removeObserver(self, name: .physicsWorldCreated, object: nil)
     }
 }

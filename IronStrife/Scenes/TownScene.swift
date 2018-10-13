@@ -15,10 +15,6 @@ class TownScene: GameScene {
         
         startPoint = CGPoint(x:self.frame.midX, y:self.frame.midY)
         super.setupScene()
-
-        let firstEnemy = Goreblon()
-        firstEnemy.position = CGPoint(x: 40, y: self.frame.midY)
-        addChild(firstEnemy)
     }
 
     // MARK: - SceneTransitioning

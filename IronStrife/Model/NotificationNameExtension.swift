@@ -10,5 +10,5 @@ import Foundation
 
 extension Notification.Name {
 
-
+    static let physicsWorldCreated = Notification.Name("physicsWorldCreated")
 }

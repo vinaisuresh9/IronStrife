@@ -82,14 +82,16 @@ class Character: SKSpriteNode {
     //MARK: Initialization
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
-        
+        initializeShadowAndPosition()
+    }
+
+    func initializeShadowAndPosition() {
         zPosition = WorldLayer.character
-        
+
         addChild(shadowNode)
         shadowNode.zPosition = WorldLayer.shadow
         shadowNode.setScale(0.8)
         shadowNode.position = CGPoint(x: 0, y: -frame.size.height * 0.6)
-        
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -97,11 +99,11 @@ class Character: SKSpriteNode {
     }
     
     func initializeTextureArrays(){
-        
+        assertionFailure("Implement by subclass")
     }
     
     func configureStats() {
-        
+        assertionFailure("Implement by subclass")
     }
     
     func preloadSounds() {
@@ -116,7 +118,7 @@ class Character: SKSpriteNode {
     //MARK: Physics Bodies (Overridden)
     
     func collidedWith (_ other: SKPhysicsBody){
-
+//        assertionFailure("Implement by subclass")
     }
     
     //MARK: Applying Damage

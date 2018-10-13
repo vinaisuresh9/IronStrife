@@ -52,7 +52,7 @@ class Enemy: Character {
             let delayTime = DispatchTime.now() + Double(Int64(iceCircleHitCoolDown * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: delayTime) {
                 self.hitByIce = false
-                self.color = UIColor.white
+                self.color = UIColor.clear
                 self.slowFactor = 1
             }
         }
@@ -68,7 +68,7 @@ class Enemy: Character {
             let delayTime = DispatchTime.now() + Double(Int64(explosionHitCoolDown * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: delayTime) {
                 self.hitByExplosion = false
-                self.color = UIColor.white
+                self.color = UIColor.clear
             }
         } else if (other.categoryBitMask == CollisionBitMask.wall.rawValue) {
             stopMoving()
