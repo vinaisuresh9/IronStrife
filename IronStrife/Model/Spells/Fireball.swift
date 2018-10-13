@@ -26,12 +26,12 @@ class Fireball: Projectile {
         position = owner.position
         zRotation = CGFloat(MathFunctions.angleFromLine(position, point2: direction)!)
         run(SKAction.sequence([SKAction.wait(forDuration: 3), SKAction.removeFromParent()]))
-        let normalVector = MathFunctions.normalizedVector(position, point2: direction)
     }
 
     override func configurePhysicsBody() {
         super.configurePhysicsBody()
 
+        let normalVector = MathFunctions.normalizedVector(position, point2: direction)
         physicsBody?.velocity = CGVector(dx: normalVector.dx * CGFloat(Fireball.moveSpeed), dy: normalVector.dy * CGFloat(Fireball.moveSpeed))
     }
     

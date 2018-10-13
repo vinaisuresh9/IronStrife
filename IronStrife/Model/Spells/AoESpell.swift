@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class AoESpell: SKSpriteNode, PhysicsBodyContaining {
+class AoESpell: SKSpriteNode {
     var owner: Player?
     var textures: [SKTexture] = []
     
